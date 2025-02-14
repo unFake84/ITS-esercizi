@@ -13,6 +13,7 @@ while n_tutor > 0 or attesa < 50: # il repeat in Python non esiste: bisogna tras
         n_tutor -= 1
 
     else:
+        
         print("Studente in attesa")
         attesa += 1
 

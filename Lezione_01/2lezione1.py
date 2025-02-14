@@ -1,7 +1,5 @@
 posti_max: int = int(input("inserisci posti max: "))
-
 posti_liberi = posti_max
-
 
 while True:
 
@@ -13,7 +11,9 @@ while True:
 
         if posti_liberi > 0:
             posti_liberi -= 1
+
         else:
+
             print("Il parcheggio è pieno")
 
 
@@ -21,8 +21,11 @@ while True:
     elif opzione == "uscita":
 
         if posti_liberi < posti_max:
+
             posti_liberi += 1
+
         else:
+            
             print("Il parcheggio è vuoto")
 
 

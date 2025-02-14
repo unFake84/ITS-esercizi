@@ -6,6 +6,7 @@ while cont <= 5:
     n: int = int(input("inserisci un numero: "))
 
     if n > 0:
+        
         sum += n
     
     cont += 1

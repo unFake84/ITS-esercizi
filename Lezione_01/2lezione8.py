@@ -7,10 +7,14 @@ b: int = int(input("inserisci il secondo numero: "))
 if a < b and a > 0:
 
     while a <= b:
+
         somma += a
         a += 1
+
     else:
+        
         print(f"Il risultato è: {somma} ")
 
 else:
+    
     print("Errore!")

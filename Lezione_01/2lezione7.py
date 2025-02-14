@@ -13,6 +13,7 @@ while True:
 
             somma += voto
             num_voti += 1
+
         else:
 
             print("Inserire un voto maggiore o uguale a 0!")
@@ -22,6 +23,7 @@ while True:
         if num_voti > 0:
 
             print(f"La media è: {somma / num_voti}")
+            
         else:
 
             print("Errore, non sono stati inseriti voti")

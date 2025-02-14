@@ -8,15 +8,20 @@ while True:
     if opzione == "iscrivi":
 
         if max_posti > 0:
+
             max_posti -= 1
         else:
+
             print("Non ci sono posti disponibili")
 
     elif opzione == "annulla":
 
         if max_posti < 100:
+
             max_posti += 1
+
         else:
+
             print("Tutti i posti sono già disponibili")
 
     elif opzione == "visualizza":
@@ -27,6 +32,7 @@ while True:
     elif opzione == "elimina":
 
         print(f"Il corso {nome_corso}, è stato eliminato")
+        
         nome_corso: str = str(input("inserire il nome del corso: "))
 
     elif opzione == "esci":

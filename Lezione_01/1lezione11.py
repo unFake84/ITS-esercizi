@@ -10,8 +10,11 @@ while True:
     if opzione == "prenota":
 
         if liberi > 0:
+
             liberi -= 1
+
         else:
+
             print("Non ci sono posti disponibili")
 
 
@@ -19,8 +22,11 @@ while True:
     elif opzione == "libera":
 
         if liberi < 20:
+
             liberi += 1
+
         else:
+
             print("Tutti i posti sono già disponibili")
 
 
@@ -33,4 +39,5 @@ while True:
 
 
     elif opzione == "esci":
+        
         break

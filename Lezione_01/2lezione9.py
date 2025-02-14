@@ -5,12 +5,15 @@ divisibili = 0
 if n > 0:
 
     while numbers < 10:
+
         number: int = int(input(f"inserisci il {numbers+1}° numero: ")) 
 
         if number % n == 0:
+
             divisibili += 1
         
         numbers += 1
+        
     print(f"Il risultato è: {number}")
 
 else:
