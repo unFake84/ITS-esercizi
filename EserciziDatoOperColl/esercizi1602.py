@@ -108,72 +108,142 @@
     
 # print(f"La lista degli invitati finali è: {dinner} ")
 
-# 3-7: Shrinking Guest List:
-import time
+# # 3-7: Shrinking Guest List:
+# import time
 
-dinner: list = ["Chopin", "Mozart", "Bach"]
+# dinner: list = ["Chopin", "Mozart", "Bach"]
 
-for i in dinner:
+# for i in dinner:
     
-    print(f"Il Sig. {i}, è invitato a cena!")
-    time.sleep(1)
+#     print(f"Il Sig. {i}, è invitato a cena!")
+#     time.sleep(1)
 
-print("Il Sig. Bach ha dovuto disdire la cena!")
-time.sleep(1)
-print("Nuova lista di invitati")
-time.sleep(1)
-dinner.pop(2)
-dinner.append("Beethoven")
+# print("Il Sig. Bach ha dovuto disdire la cena!")
+# time.sleep(1)
+# print("Nuova lista di invitati")
+# time.sleep(1)
+# dinner.pop(2)
+# dinner.append("Beethoven")
 
-for i in dinner:
+# for i in dinner:
     
-    print(f"Il Sig. {i}, è invitato a cena!")
-    time.sleep(1)
+#     print(f"Il Sig. {i}, è invitato a cena!")
+#     time.sleep(1)
 
-print("E' stato trovato un tavolo con altri posti!")
-time.sleep(1)
-dinner.insert(0, "Schubert")
-dinner.insert(2, "Debussy")
-dinner.insert(5, "Lizst")
+# print("E' stato trovato un tavolo con altri posti!")
+# time.sleep(1)
+# dinner.insert(0, "Schubert")
+# dinner.insert(2, "Debussy")
+# dinner.insert(5, "Lizst")
 
-for i in dinner:
+# for i in dinner:
     
-    print(f"Il Sig. {i}, è invitato a cena!")
-    time.sleep(1)
+#     print(f"Il Sig. {i}, è invitato a cena!")
+#     time.sleep(1)
     
-print(f"La lista degli invitati finali è: {dinner} ")
-time.sleep(1)
+# print(f"La lista degli invitati finali è: {dinner} ")
+# time.sleep(1)
 
-print("Communicazione in arrivo.. ..Tavoli in ritardo..")
-time.sleep(1)
+# print("Communicazione in arrivo.. ..Tavoli in ritardo..")
+# time.sleep(1)
 
-print("E' necessario disdire gli invitati dalla cena fino ad un massimo di 2 posti!")
-time.sleep(1)
+# print("E' necessario disdire gli invitati dalla cena fino ad un massimo di 2 posti!")
+# time.sleep(1)
 
-dinner.pop(5)
-print("Sig. Lizst siamo spiacenti di informarla che la cena è stata annullata.")
-time.sleep(1)
+# dinner.pop(5)
+# print("Sig. Lizst siamo spiacenti di informarla che la cena è stata annullata.")
+# time.sleep(1)
 
-dinner.pop(4)
-print("Sig. Beethoven siamo spiacenti di informarla che la cena è stata annullata.")
-time.sleep(1)
+# dinner.pop(4)
+# print("Sig. Beethoven siamo spiacenti di informarla che la cena è stata annullata.")
+# time.sleep(1)
 
-dinner.pop(3)
-print("Sig. Mozart siamo spiacenti di informarla che la cena è stata annullata.")
-time.sleep(1)
+# dinner.pop(3)
+# print("Sig. Mozart siamo spiacenti di informarla che la cena è stata annullata.")
+# time.sleep(1)
 
-dinner.pop(2)
-print("Sig. Debussy siamo spiacenti di informarla che la cena è stata annullata")
-time.sleep(1)
+# dinner.pop(2)
+# print("Sig. Debussy siamo spiacenti di informarla che la cena è stata annullata")
+# time.sleep(1)
 
-print(f"La nuova lista degli invitati finali è: {dinner}")
-time.sleep(1)
+# print(f"La nuova lista degli invitati finali è: {dinner}")
+# time.sleep(1)
 
-for i in dinner:
-    print(f"Il sig. {i} è ancora invitato a cena")
-    time.sleep(1)
+# for i in dinner:
+#     print(f"Il sig. {i} è ancora invitato a cena")
+#     time.sleep(1)
     
-del dinner
-dinner = []
-time.sleep(1)
-print(f"{dinner} La lista è vuota")
+# del dinner
+# dinner = []
+# time.sleep(1)
+# print(f"{dinner} La lista è vuota")
+
+
+# # 3-8 Seeing the world:
+# import time
+# location: list = ["Halstatt", "Wolfgang am see", "Salisburgo", "Innsbruck", "Vienna"]
+
+# # Mostro la lista nel suo ordine originale
+# print("Lista originale:")
+# print(location)
+# time.sleep(2)
+
+# # Ordino la lista in ordine alfabetico crescente con la funzione SORTED
+# s = sorted(location)
+# print(f"\nLista Ordinata:\n{s}")
+# time.sleep(2)
+
+# # Ordino la lista all'incontrario con la funzione SORTED(REVERSE)
+# r = sorted(location, reverse = True)
+# print(f"\nLista invertita:\n{r}")
+# time.sleep(2)
+
+# # Mostro la lista nel suo ordine originale
+# print(f"\nLa lista è ancora nel suo ordine originale:\n{location}")
+# time.sleep(2)
+
+# # ||Cambio|| l'ordine della lista 
+# location.reverse()
+# print(f"\nUsato REVERSE per cambiare l'ordine della lista:\n{location}")
+# time.sleep(2)
+
+# # ||Ripristino|| l' ordine della lista
+# location.reverse()
+# print(f"\nL'ordine della lista si è ripristinata:\n{location}")
+# time.sleep(2)
+
+# # ||Sistemo|| l' ordine della lista in ordine alfabetico crescente
+# location.sort()
+# print(f"\nFunzione SORT per sistemare la lista in ordine alfabetico crescente:\n{location}")
+# time.sleep(2)
+
+# # ||Sistemo|| l'ordine della lista in ordine alfabetico decrescente
+# location.sort(reverse = True)
+# print(f"\nFunzione SORT per sistemare la lista in ordine alfabetico decrescente:\n{location}")
+# time.sleep(2)
+
+
+# #3-9: Dinner Guests:
+# # names: list = ["a", "b", "c", "d", "e"]
+# # print(len(names))
+# import time
+# dinner: list = ["Chopin", "Mozart", "Bach"]
+
+# for i in dinner:
+#     print(f" Sig. {i}, è invitato a cena!")
+#     time.sleep(1)
+
+# print(f"{len(dinner)} persone sono state ivitate a cena")
+
+# 3-10: Every Function:
+# Creo lista vuota
+list = []
+
+# Imposto che il limite massimo di input è 3
+for i in range(3):
+
+    user: str = input("Inserire una preferenza: ")
+    user = list.append(user)
+
+print("Vuoi mostrare la tua lista?")
+
