@@ -245,5 +245,6 @@ for i in range(3):
     user: str = input("Inserire una preferenza: ")
     user = list.append(user)
 
-print("Vuoi mostrare la tua lista?")
+
+risposta: str = input("Vuoi mostrare la tua lista?")
 
