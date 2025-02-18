@@ -242,9 +242,13 @@ list = []
 # Imposto che il limite massimo di input è 3
 for i in range(3):
 
-    user: str = input("Inserire una preferenza: ")
+    # Faccio inserire all'utente 3 preferenze
+    user: str = input("\nInserire una preferenza: \n")
     user = list.append(user)
 
+# Chiedo all'utente se vuole mostrare la sua lista personale
+risposta: str = input("\nVuoi mostrare la tua lista?\n")
 
-risposta: str = input("Vuoi mostrare la tua lista?")
+if risposta == "si":
 
+    print(list)
