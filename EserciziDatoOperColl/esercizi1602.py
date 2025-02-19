@@ -239,16 +239,17 @@
 # Creo lista vuota
 list = []
 
-# Imposto che il limite massimo di input è 3
-for i in range(3):
+# Imposto che il limite massimo di input è 5
+for i in range(5):
 
-    # Faccio inserire all'utente 3 preferenze
-    user: str = input("\nInserire una preferenza: \n")
+    # Faccio inserire all'utente 5 preferenze
+    user: str = input(f"\nInserire una preferenza {i+1}/5: \n")
     user = list.append(user)
 
-# Chiedo all'utente se vuole mostrare la sua lista personale
-risposta: str = input("\nVuoi mostrare la tua lista?\n")
+# apro un ciclo di opzioni
+while True:
 
-if risposta == "si":
+    # Chiedo all'utente cosa vuole fare
+    risposta: str = input("\nCosa vuoi fare ora?\n Inserire un opzione tra:\n1Uppercase, Lowercase,")
+    
 
-    print(list)
