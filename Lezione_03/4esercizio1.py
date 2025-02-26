@@ -1,12 +1,17 @@
 # creo la mia lista di 3 pizze preferite
 pizza: list[str] = ["Bufala", "Margherita", "Capricciosa"]
 
+print("")
+
 # utilizzo ciclo FOR per stampare la mia lista personale
 for elem in pizza:
 
     print(elem)
 
 # uso la formattazione per inserire una frase ad ogni iterazione del ciclo
+
+print("")
+
 for i in range(0, len(pizza)):
 
     print(f"Mi piace la pizza al gusto {pizza[i]}")

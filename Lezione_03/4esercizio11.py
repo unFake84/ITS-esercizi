@@ -3,7 +3,9 @@ print('\n')
 
 # riprendo lista pers es4-1 e creo una lista nuova,poi uso funzione .APPEND per aggiungere un elemento a ciascuna lista
 pizza: list[str] = ["Bufala", "Margherita", "Capricciosa"]
-friend_pizza: list[str] = ["Diavola", "Marinara", "Napoli"]
+# friend_pizza: list[str] = pizza[:] crea una lista con lo slice [ : ]
+friend_pizza = list(pizza) # crea una lista identica a "pizza"
+
 
 pizza.append("Boscaiola")
 friend_pizza.append("4Formaggi")
