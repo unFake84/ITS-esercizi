@@ -21,5 +21,23 @@ for user in usernames:
             print(f"Hello {user}, thank you for logging in again.")
             print("-----------------------------------------------------------------------")
 
-del(usernames)
-print("List deleted!")
+while usernames:
+      
+        usernames.pop()
+
+# # secondo metodo
+# usernames.clear()
+
+# # terzo metodo
+# usernames: list[str] = []
+
+# # quarto metodo
+#del(usernames)
+
+print(f"{usernames} List deleted!")
+print("-----------------------------------------------------------------------")
+
+# # teoricamente..
+# if usernames == []:
+         
+        # print("We need to find some users!")
