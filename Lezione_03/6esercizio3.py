@@ -5,10 +5,11 @@ glossario: dict[str, str] = {
                     "Any": "allows any type of data to be inserted in lists, sets and dictionaries ",
                     ".pop()": "allows the removal of elements in lists, sets and dictionaries",
 }
-
+i = 1
 print("-----------------------------------------------------------------------")
 
 for key, value in glossario.items():
 
-    print(f"{key}:\n{value}")
+    print(f"{i}) {key}:\n{value}")
     print("-----------------------------------------------------------------------")
+    i += 1

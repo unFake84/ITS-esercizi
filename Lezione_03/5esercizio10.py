@@ -2,10 +2,10 @@
 current_users: list[str] = ["alpha", "beta", "charlie", "delta", "echo"]
 new_users: list[str] = ["Foxtrot", "Alpha", "Golf", "Echo", "India", "BETA", "deLTa"]
 
-print("|-----------------------------------------------------------------------|")
-print(f"|[[{current_users}]]                      |")
-print(f"|[[{new_users}]]     |")
-print("|-----------------------------------------------------------------------|")
+print(".----------------------------------------------------------------------.")
+print(f"|          [[{current_users}]]           |")
+print(f"|  [[{new_users}]]  |")
+print("'----------------------------------------------------------------------'")
 
 for user in new_users:
 
