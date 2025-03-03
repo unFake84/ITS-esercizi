@@ -3,7 +3,7 @@ from typing import Any
 cities: dict[str, Any] = {
     "Rome": {
         "country": "Italy",
-          "population": 2.752,
+          "population": "2.752.000 approx.",
             "fact": "chaotic!"
               },
       "Salisburg": {
@@ -33,5 +33,3 @@ for key, dict in cities.items():
     print()    
     print(dict)
     print("-----------------------------------------------------------------------")
-
-    
