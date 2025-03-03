@@ -1,3 +1,9 @@
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+
 # # creo una lista da 1 a 10
 # lista_1: list[int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 # lista_2: list [int] = []
@@ -9,3 +15,9 @@
 #     lista_2.append(potenza**3)
 
 # print(lista_2)
+
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!
+#ESERCIZIO SOSPESO!!

@@ -2,7 +2,7 @@
 lista: list[int] = []
 
 # utilizzo il ciclo FOR e la funzione .APPEND per far inserire un numero dopo l'altro fino al raggiungimento dell'obiettivo
-for loop in range(1, 1000000+1):
+for loop in range(1, 1000001):
 
     lista.append(loop)
 
@@ -16,3 +16,4 @@ print(max(lista))
 
 # utilizzo la funzione SUM per sommare tutti i numeri da 1 a 1mil. e controllare la velocità di calcolo(?)
 print(sum(lista))
+# quick!
