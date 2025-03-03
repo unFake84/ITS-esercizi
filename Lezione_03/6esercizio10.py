@@ -1,4 +1,6 @@
 #from typing import Any
+
+# riprendo dizionario es 6.2 e aggiungo liste per inserire + numeri ad ogni 'chiave'
 fav_numbers: dict[str, int] = {
     "A": [10, 100, 600],
       "B": [20, 200, 700],
@@ -8,6 +10,7 @@ fav_numbers: dict[str, int] = {
 }
 
 
+# ciclo FOR con due iteratori per ricavare tutti gli elementi del dizionario
 for key, value in fav_numbers.items():
 
     print(f"The alphabet: {key}, like number\s: {value}.")
