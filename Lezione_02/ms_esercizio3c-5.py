@@ -1,8 +1,10 @@
+from typing import Any
+
 user_nome: str = (input("Digitare nome dell'utente: "))
 user_ruolo: str = (input("Digitare ruolo dell'utente: "))
-user_eta: str = (input("Digitare l'età dell'utente: "))
+user_eta: int = (int(input("Digitare l'età dell'utente: ")))
 
-dizionario: dict[str:str and int] = {"nome": user_nome,"ruolo": user_ruolo, "età": user_eta}
+dizionario: dict[str, Any] = {"nome": user_nome,"ruolo": user_ruolo, "età": user_eta}
 
 match dizionario:
 
@@ -12,17 +14,17 @@ match dizionario:
 
     case {"ruolo": "moderatore"}:
 
+        print(f"Salve {user_nome}! Può gestire i contenuti ma non modificare le impostazioni.")
+
+    case {"ruolo": "utente"} if user_eta >= 18:
+
         print("Accesso standard a tutti i servizi.")
 
-    case {"ruolo": user_ruolo, "eta": user_eta} if user_eta >= 18:
+    case {"ruolo": "utente"} if user_eta >= 1 and user_eta < 18:
 
-        print("Accesso standard a tutti i servizi.")
+        print("Accesso limitato! Alcune funzionalità sono limitate!")
 
-    case {"ruolo": user_ruolo, "eta": user_eta} if user_eta < 18:
-
-        print("Accesso limitato! Alcune funzionalità sono bloccate.")
-
-    case {"ruolo": user_ruolo}:
+    case {"ruolo": "ospite"}:
 
         print("Accesso ristretto! Solo visualizzazione dei contenuti.")
 
