@@ -31,34 +31,32 @@ match user.lower():
 
         print(f"Non so dire in quale categoria classificare l'animale '{user.upper()}'")
 
-animal_type: list[str] = []
+animal_type: str
 
 if user in mammiferi or rettili or uccelli or pesci:
 
     if user in mammiferi:
 
-        animal_type.extend(mammiferi)
-    
+        animal_type = "mammiferi"
+
     elif user in rettili:
 
-        animal_type.extend(rettili)
+        animal_type = "rettili"
 
     elif user in uccelli:
 
-        animal_type.extend(uccelli)
+        animal_type = "uccelli"
 
     elif user in pesci:
 
-        animal_type.extend(pesci)
+        animal_type = "pesci"
 
     else:
 
         animal_type = "unknow"
 
-habitat_mammiferi: list[str] = ["terra", "acqua"]
-habitat_rettili: list[str] = ["terra", "acqua"]
-habitat_uccelli: list[str] = ["terra", "aria"]
-habitat_pesci: list[str] = ["acqua"]
+habitat: list[str] = ["terra", "aria", "acqua"]
+
 
 # dizionario: dict[str, str] = {
 #     "mammiferi": {"mammiferi": "habitat_mammiferi"},

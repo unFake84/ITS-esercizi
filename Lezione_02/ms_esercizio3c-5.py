@@ -16,13 +16,15 @@ match dizionario:
 
         print(f"Salve {user_nome}! Può gestire i contenuti ma non modificare le impostazioni.")
 
-    case {"ruolo": "utente"} if user_eta >= 18:
+    case {"ruolo": "utente"}: 
 
-        print("Accesso standard a tutti i servizi.")
+        if dizionario["età"] >= 18:
 
-    case {"ruolo": "utente"} if user_eta >= 1 and user_eta < 18:
+            print("Accesso standard a tutti i servizi.")
 
-        print("Accesso limitato! Alcune funzionalità sono limitate!")
+        else:
+
+            print("Accesso limitato! Alcune funzionalità sono limitate!")
 
     case {"ruolo": "ospite"}:
 
