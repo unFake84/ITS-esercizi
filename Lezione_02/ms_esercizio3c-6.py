@@ -3,16 +3,64 @@ rettili: list[str] = ["serpente", "lucertola", "tartaruga", "coccodrillo"]
 uccelli: list[str] = ["aquila", "pappagallo", "gufo", "falco", "cigno", "anatra", "gallina", "tacchino"]
 pesci: list[str] = ["squalo", "trota", "salmone", "carpa"]
 
-# generale: list[str] = []
-# generale.extend(mammiferi + rettili + uccelli + pesci)
-
 user: str = (input("Inserire un'animale: "))
+
+user2: str = (input("Inserire l'habitat in cui vive l'animale: "))
+
+animal_type: str
+
+if user in mammiferi or user in rettili or user in uccelli or user in pesci:
+
+    if user in mammiferi:
+
+        animal_type = "mammiferi"
+
+    elif user in rettili:
+
+        animal_type = "rettili"
+
+    elif user in uccelli:
+
+        animal_type = "uccelli"
+
+    else:
+
+            animal_type = "pesci"
+
+else:
+
+    animal_type = "unknow"
+
+habitat: list[str] = ["terra", "aria", "acqua"]
+
+dizionario: dict[str, int] = {}
+dizionario[user] = {"animal_type": animal_type, "habitat": user2}
+#tipo: list[str] = dizionario["animal_type"]
+#habit: list[str] = dizionario["habitat"]
 
 match user.lower():
 
     case user if user in mammiferi:
 
         print(f"{user.upper()} appartiene alla categoria dei Mammiferi")
+
+        match user2.lower():
+             
+            case user2 if user2 == "terra":
+                  
+                  print(f"L'animale {user} è uno dei {dizionario[user]['animal_type']} che può vivere sulla terra!")
+
+            case user2 if user2 == "acqua" and user != "balena" and user != "delfino":
+
+                  print(f"L'animale {user} appartiene ai {animal_type.upper()}, non può vivere qui, se non per nuotarci!")
+
+            case user2 if user2 == "aria":
+                  
+                  print(f"L'animale {user} appartiene ai {animal_type.upper()}, non può vivere qui, se non per saltare!")
+
+            case _:
+                  print(f"L'animale {user} è dei {animal_type.upper()}, non vive qui, forse l'hai sognato o letto in un libro fantasy! :)")
+        
 
     case user if user in rettili:
 
@@ -31,32 +79,13 @@ match user.lower():
 
         print(f"Non so dire in quale categoria classificare l'animale '{user.upper()}'")
 
-animal_type: str
+# for _ in mammiferi, rettili, uccelli, pesci:
 
-if user in mammiferi or rettili or uccelli or pesci:
+#     dizionario["nome"] = mammiferi + rettili + pesci
+#     dizionario["habitat"] = habitat
+#     dizionario["animal_type"] = animal_type
 
-    if user in mammiferi:
-
-        animal_type = "mammiferi"
-
-    elif user in rettili:
-
-        animal_type = "rettili"
-
-    elif user in uccelli:
-
-        animal_type = "uccelli"
-
-    elif user in pesci:
-
-        animal_type = "pesci"
-
-    else:
-
-        animal_type = "unknow"
-
-habitat: list[str] = ["terra", "aria", "acqua"]
-
+#print(dizionario)
 
 # dizionario: dict[str, str] = {
 #     "mammiferi": {"mammiferi": "habitat_mammiferi"},
