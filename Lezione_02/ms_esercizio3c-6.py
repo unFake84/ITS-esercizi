@@ -35,8 +35,6 @@ habitat: list[str] = ["terra", "aria", "acqua"]
 
 dizionario: dict[str, int] = {}
 dizionario[user] = {"animal_type": animal_type, "habitat": user2}
-#tipo: list[str] = dizionario["animal_type"]
-#habit: list[str] = dizionario["habitat"]
 
 match user.lower():
 
@@ -47,12 +45,18 @@ match user.lower():
         match user2.lower():
              
             case user2 if user2 == "terra":
-                  
-                  print(f"L'animale {user} è uno dei {dizionario[user]['animal_type']} che può vivere sulla terra!")
+                
+                if user == "delfino" or user == "balena":
 
-            case user2 if user2 == "acqua" and user != "balena" and user != "delfino":
+                    print(f"{user.title()} è sì un mammifero ma vive prevalentemente nell'acqua!")
 
-                  print(f"L'animale {user} appartiene ai {animal_type.upper()}, non può vivere qui, se non per nuotarci!")
+                #else:
+                    
+                    #print(f"L'animale {user} è uno dei {dizionario[user]['animal_type']} che può vivere sulla {dizionario[user]['habitat']}!")
+
+            case user2 if user2 == "acqua":
+
+                  print(f"L'animale {user} appartiene ai {dizionario[user]['animal_type']}, il suo habitat è l'{dizionario[user]['habitat']}")
 
             case user2 if user2 == "aria":
                   
