@@ -50,10 +50,6 @@ match user.lower():
 
                     print(f"{user.title()} è sì un mammifero ma vive prevalentemente nell'acqua!")
 
-                #else:
-                    
-                    #print(f"L'animale {user} è uno dei {dizionario[user]['animal_type']} che può vivere sulla {dizionario[user]['habitat']}!")
-
             case user2 if user2 == "acqua":
 
                   print(f"L'animale {user} appartiene ai {dizionario[user]['animal_type']}, il suo habitat è l'{dizionario[user]['habitat']}")
