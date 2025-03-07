@@ -25,7 +25,7 @@ if user in mammiferi or user in rettili or user in uccelli or user in pesci:
 
     else:
 
-            animal_type = "pesci"
+        animal_type = "pesci"
 
 else:
 
@@ -33,68 +33,126 @@ else:
 
 habitat: list[str] = ["terra", "aria", "acqua"]
 
-dizionario: dict[str, int] = {}
-dizionario[user] = {"animal_type": animal_type, "habitat": user2}
+dizionario: dict[str, str] = {"name":user, "animal_type": animal_type, "habitat": user2}
 
-match user.lower():
+match animal_type:
 
-    case user if user in mammiferi:
+    case "mammiferi":
 
-        print(f"{user.upper()} appartiene alla categoria dei Mammiferi")
+        print(f"{user.upper()} appartiene alla categoria dei Mammiferi!")
 
         match user2.lower():
              
-            case user2 if user2 == "terra":
+            case "terra":
                 
-                if user == "delfino" or user == "balena":
+                match user:
 
-                    print(f"{user.title()} è sì un mammifero ma vive prevalentemente nell'acqua!")
+                    case "cane" | "gatto" | "cavallo" | "elefante" | "leone":
 
-            case user2 if user2 == "acqua":
+                        print(f"{user.title()} è un mammifero che vive sulla terra!.")
+                    
+                    case "balena" | "delfino":
 
-                  print(f"L'animale {user} appartiene ai {dizionario[user]['animal_type']}, il suo habitat è l'{dizionario[user]['habitat']}")
+                        print(f"{user.title()} è si un mammifero ma vive sull'acqua!.")
 
-            case user2 if user2 == "aria":
-                  
-                  print(f"L'animale {user} appartiene ai {animal_type.upper()}, non può vivere qui, se non per saltare!")
+            case "acqua":
+
+                match user:
+                    
+                    case "balena" | "delfino":
+
+                        print(f"{user.title()} è un mammifero che vive sull'acqua!.")
+
+                    case "cane" | "gatto" | "cavallo" | "elefante" | "leone":
+
+                        print(f"{user.title()} è si un mammifero ma vive sulla terra!.")
 
             case _:
-                  print(f"L'animale {user} è dei {animal_type.upper()}, non vive qui, forse l'hai sognato o letto in un libro fantasy! :)")
-        
 
-    case user if user in rettili:
+                print(f"Non ho mai visto l'animale {user.title()} vivere in tale ambiente!.")
 
-        print(f"{user.upper()} appartiene alla categoria dei Rettili")
+    case "rettili":
 
+        print(f"{user.upper()} appartiene alla categoria dei Rettili!")
 
-    case user if user in uccelli:
+        match user2.lower():
 
-        print(f"{user.upper()} appartiene alla categoria dei Uccelli")
+            case "terra":
 
-    case user if user in pesci:
+                match user:
 
-        print(f"{user.upper()} appartiene alla categoria dei Pesci")
+                    case "lucertola" | "serpente" | "tartaruga" | "coccodrillo":
 
-    case _:
+                        print(f"{user.title()} è un rettile che può anche vivere sulla terra!.")
+                    
+            case "acqua":
 
-        print(f"Non so dire in quale categoria classificare l'animale '{user.upper()}'")
+                match user:
 
-# for _ in mammiferi, rettili, uccelli, pesci:
+                    case "serpente" | "tartaruga" | "coccodrillo":
 
-#     dizionario["nome"] = mammiferi + rettili + pesci
-#     dizionario["habitat"] = habitat
-#     dizionario["animal_type"] = animal_type
+                        print(f"{user.title()} è un rettile che può stare anche nell'acqua!.")
+                    
+                    case _:
 
-#print(dizionario)
+                        print(f"La {user.title()} non ci vive ma può nuotarci!.")
 
-# dizionario: dict[str, str] = {
-#     "mammiferi": {"mammiferi": "habitat_mammiferi"},
-#         "rettili": {"rettili": "habitat_rettili"},
-#             "uccelli": {"uccelli": "habitat_uccelli"},
-#                 "pesci": {"pesci": "habitat_pesci"},
-# }
+            case _:
 
-# print(animal_type)
-# print(user)
-# print(dizionario)
-# print(generale)
+                print(f"L'animale {user.title()} puo solamente respirarla l'aria!.")
+
+    case "uccelli":
+
+        print(f"{user.upper()} appartiene alla categoria dei Rettili!.")
+
+        match user2.lower():
+
+            case "terra":
+
+                match user:
+
+                    case "gallina" | "tacchino":
+
+                        print(f"{user.upper()}è si un uccello ma non può volare!.")
+
+                    case _:
+
+                        print(f"{user.upper()} e sì! ma il suo habitat ideale è l'aria!.")
+
+            case "aria":
+
+                match user:
+                    
+                    case "gallina" | "tacchino":
+
+                        print(f"{user.upper()} è si un uccello ma non può volare!.")
+
+                    case _:
+
+                        print(f"L' animale {user.upper()} ha il suo habitat nell'aria!.")
+
+    case "pesci":
+
+        print(f"{user.upper()} appartiene alla categoria dei Pesci!.")
+
+        match user2.lower():
+
+            case "terra":
+
+                match user:
+
+                    case "squalo"| "trota" | "salmone" | "carpa":
+
+                        print(f"L'animale {user.upper()} non può vivere sulla terra!.")
+
+            case "aria":
+
+                match user:
+
+                    case "squalo"| "trota" | "salmone" | "carpa":
+
+                        print(f"L'animale {user.upper()} non può vivere sull'aria!.")
+
+            case _:
+
+                print(f"L' animale {user.upper()} ha il suo habitat nell'acqua!.")

@@ -5,8 +5,6 @@ while True:
 
     opzione: str = str(input("inserisci un opzione: "))
     
-
-
     if opzione == "ingresso":
 
         if posti_liberi > 0:
