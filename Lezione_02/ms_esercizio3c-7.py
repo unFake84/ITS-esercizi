@@ -17,7 +17,7 @@ lancio: int = 1
 
 while len(monete) < 8:
 
-    user: str = (input(f"Inserire {lancio}° lancio,\n['t'/'T'-'c'/'C']\n  /^\     /^\ \n Testa o croce?: ").lower())
+    user: str = (input(f"Inserire {lancio}/8° lancio,\n['t'|'T'] ['c'|'C']\n    ^         ^  \n  Testa o croce?: ").lower())
 
     match user:
 
@@ -42,8 +42,8 @@ while len(monete) < 8:
             time.sleep(2)
             os.system('clear')
 
-print(f"Testa: {count_t}")
-print(f"Croce: {count_c}")
+print(f"Testa tot: {count_t}")
+print(f"Croce tot: {count_c}")
 print(f"Percentuale Testa = {((count_t / 8) * 100):.2f}")
 print(f"Percentuale Croce = {((count_c / 8) * 100):.2f}")
 time.sleep(5)
