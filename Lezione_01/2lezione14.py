@@ -8,6 +8,7 @@ while punteggio < 100:
     while True:
         
         print(f"Punteggio: {punteggio}")
+        
         d1: int = (int(input("Simulare il primo dado: ")))
         d2: int = (int(input("Simulare il secondo dado: ")))
 
