@@ -8,7 +8,7 @@ per verificare se la data corrisponde a una festività o a un evento speciale
 import time
 import os
 
-print("Benvenuti")
+print("\nBenvenuti\n")
 
 while True:
 
@@ -17,35 +17,44 @@ while True:
         user_data: int = (int(input("Inserire giorno: ")))
         user_mese: int = (int(input("Inserire mese: ")))
 
+        print("")
+
         if user_mese <= 0 or user_mese > 12:
 
-            print("Per favore inserire una data valida.")
+            print("Per favore inserire una data valida.\n")
             continue
 
         elif user_mese == 2:
 
             if user_data < 1:
                 
-                print("Per favore inserire una data valida.")
+                print("Per favore inserire una data valida.\n")
                 continue
                 
             elif user_data > 29:
 
-                print("Febbraio può avere massimo 29 giorni!")
+                print("Febbraio può avere massimo 29 giorni!\n")
                 continue
+
+        elif user_mese == 4 or user_mese == 6 or user_mese == 9 or user_mese == 11:
+
+                if user_data < 1 or user_data > 30:
+
+                    print("Questo mese arriva fino al 30!\n")
+                    continue
 
         elif user_mese != 2:
 
             if user_data < 1 or user_data > 31:
 
-                print("Per favore inserire una data valida.")
+                print("Per favore inserire una data valida.\n")
                 continue
         
         break
 
     except ValueError:
 
-        print("Per favore inserire una data valida.")
+        print("Per favore inserire una data valida.\n")
 
 datamese: tuple[int, int] = (user_data, user_mese)
 
@@ -53,63 +62,58 @@ match datamese:
 
     case (1, 1):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è capodanno!")
+        print(f"Il {datamese[0]}/{datamese[1]} è capodanno!\n")
 
     case(14, 2):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è San Valentino!")
+        print(f"Il {datamese[0]}/{datamese[1]} è San Valentino!\n")
 
     case(9, 3):
 
-        print("E' il compleanno di Uccia!")
+        print("E' il compleanno di Uccia!\n")
 
     case(2, 6):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è la festa della Repubblica Italiana!")
+        print(f"Il {datamese[0]}/{datamese[1]} è la festa della Repubblica Italiana!\n")
 
     case(15, 8):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è ferragosto!")
+        print(f"Il {datamese[0]}/{datamese[1]} è ferragosto!\n")
 
     case(31, 10):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è il mio compleanno!")
+        print(f"Il {datamese[0]}/{datamese[1]} è il mio compleanno!\n")
 
     case(25, 12):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è Natale!")
+        print(f"Il {datamese[0]}/{datamese[1]} è Natale!\n")
 
     case(31, 12):
 
-        print(f"Il {datamese[0]}/{datamese[1]} è la fine dell'anno!")
+        print(f"Il {datamese[0]}/{datamese[1]} è la fine dell'anno!\n")
 
     case _:
 
-        print("Nessuna festività importante in questa data.")
-
-scelta: str = (input("Vuoi riavviare il programma?\n'si' per riavviare 'no' per chiudere: "))
+        print("Nessuna festività importante in questa data.\n")
 
 while True:
 
-    match scelta:
+        scelta: str = (input("Vuoi riavviare il programma?\n'si' per riavviare, 'no' per chiudere: "))
 
-        case scelta if scelta == 'si':
+        if scelta.lower() == 'no':
 
-            print("Riavvio in corso")
-            time.sleep(3)
-            os.system('/usr/bin/python3 /home/its/Esercizi/Lezione_02/ms_esercizio3c-10.py')
-            time.sleep(1)
-            break
-
-        case scelta if scelta == 'no':
-
-            print("Buona giornata")
+            print("\nBuona giornata\n")
             time.sleep(2)
             os.system('clear')
             time.sleep(1)
             break
 
-        case _:
+        elif scelta.lower() == 'si':
 
-            print("Inserire 'si o 'no'.\n")
-            continue
+            print("\nRiavvio in corso\n")
+            time.sleep(3)
+            os.system('clear')
+            os.system('/usr/bin/python3 /home/its/Esercizi/Lezione_02/ms_esercizio3c-10.py')
+            break
+
+        print("\nInserire 'si' o 'no'\n")
