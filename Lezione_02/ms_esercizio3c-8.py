@@ -15,9 +15,9 @@ match frase:
 
     case frase if frase[-1] == '?':
             
-        lunghezza = len(frase) + 1
+        lunghezza = len(frase)
             
-        if lunghezza % 2 == 0:
+        if lunghezza % 2 == 1:
 
             print("Si!")
 
@@ -27,7 +27,7 @@ match frase:
     
     case frase if frase[-1] == '!':
           
-        lunghezza = len(frase) + 1
+        lunghezza = len(frase)
 
         print("Wow!")
 
