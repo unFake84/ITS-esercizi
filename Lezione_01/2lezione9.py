@@ -1,4 +1,4 @@
-n: int = int(input("inserire un numero intero positivo: "))
+n: int = (int(input("inserire un numero intero positivo: ")))
 numbers = 0
 divisibili = 0
 

@@ -1,41 +1,47 @@
 punteggio: int = 0
-d1: int = 0
-d2: int = 0
-sum: int = 0
+
+print("-----------------------------------------------------------------------")
 
 while punteggio < 100:
 
-    while True:
-        
-        print(f"Punteggio: {punteggio}")
-        
-        d1: int = (int(input("Simulare il primo dado: ")))
-        d2: int = (int(input("Simulare il secondo dado: ")))
+    try:
 
-        if d1 > 0 and d1 <= 6 and d2 > 0 and d2 <= 6:
+        utente_d1: int = (int(input("Simulare 1° dado: ")))
+        utente_d2: int = (int(input("Simulare 2° dado: ")))
 
-            sum = d1 + d2
-            break
-        
+        if utente_d1 > 0 and utente_d1 <= 6 and utente_d2 > 0 and utente_d2 <= 6:
+
+            sum: int = utente_d1 + utente_d2
+
+            if utente_d1%2 == 0 and utente_d2%2 == 0 and sum > 8:
+
+               punteggio = 100
+               print("Vittoria!")
+               print(f"Il punteggio attuale è: {punteggio}")
+               print("-----------------------------------------------------------------------")
+
+            elif utente_d1 == 6 or utente_d2 == 6 or sum == 7:
+
+                punteggio += 10
+                print(f"Il punteggio attuale è: {punteggio}")
+                print("-----------------------------------------------------------------------")
+
+            else:
+
+                punteggio = 0
+                print("Sconfitta.")
+                print(f"Il punteggio attuale è: {punteggio}")
+                print("-----------------------------------------------------------------------")
+                break
         else:
 
-            print("Uno dei due numeri o entrambi non rispettano le regole!.")
+            print("Un dado ha sei facce.")
+            print("-----------------------------------------------------------------------")
 
-    if d1 % 2 == 0 and d2 % 2 == 0 and sum > 8:
+    except ValueError:
 
-        punteggio = 100
+        print("Numero non riconoscibile, riprovare.")
+        print("-----------------------------------------------------------------------")
+        punteggio += 1
 
-    elif d1 == 6 or d2 == 6 or sum == 7:
-
-        punteggio += 10
-
-    else:
-
-        punteggio = 0
-
-        print("Sconfitta!")
-        print(punteggio)
-        break
-
-if punteggio == 100:
-    print("Vittoria!")
+    sum: int = utente_d1 + utente_d2
