@@ -37,4 +37,4 @@ while True:
 
     except ValueError:
 
-        print("Non è stato inserito un numero")
+        print("Non è stato inserito un numero.")
