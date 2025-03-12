@@ -27,6 +27,21 @@ while len(monete) < 8:
             count_t += 1
             lancio += 1
             os.system('clear')
+            print("--")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-----")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-------")
+            time.sleep(0.2)
+            os.system('clear')
+            print("---------")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-----------")
+            time.sleep(0.2)
+            os.system('clear')
             
 
         case user if user == 'c' or user == 'C':
@@ -34,6 +49,21 @@ while len(monete) < 8:
             monete.append(user)
             count_c += 1
             lancio += 1
+            os.system('clear')
+            print("--")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-----")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-------")
+            time.sleep(0.2)
+            os.system('clear')
+            print("---------")
+            time.sleep(0.2)
+            os.system('clear')
+            print("-----------")
+            time.sleep(0.2)
             os.system('clear')
 
         case _:
