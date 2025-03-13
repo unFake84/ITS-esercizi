@@ -10,12 +10,12 @@ Usare il match statement.
 import os
 import time
 
-monete: list[str] = []
+#monete: list[str] = []
 count_t: int = 0
 count_c: int = 0
 lancio: int = 1
 
-while len(monete) < 8:
+while lancio < 9:
 
     user: str = (input(f"Inserire {lancio}/8° lancio,\n['t'|'T'] ['c'|'C']\n    ^         ^  \n  Testa o croce?: ").lower())
 
@@ -23,7 +23,7 @@ while len(monete) < 8:
 
         case user if user == 't' or user == 'T':
 
-            monete.append(user)
+            #monete.append(user)
             count_t += 1
             lancio += 1
             os.system('clear')
@@ -46,7 +46,7 @@ while len(monete) < 8:
 
         case user if user == 'c' or user == 'C':
 
-            monete.append(user)
+            #monete.append(user)
             count_c += 1
             lancio += 1
             os.system('clear')
