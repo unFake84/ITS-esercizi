@@ -18,22 +18,24 @@ def make_album(artist: str, album: str, tracks = None) -> dict:
 
     return dictionary
 
-# print(make_album("Pink Floyd", "Another brick in the wall"))
-# print(make_album("Gigi D'Agostino", "L'Amour Toujours"))
-# print(make_album("Vasco Rossi", "Bollicine", 8))
+if __name__ == "__main__":
 
-while True:
-    
-    user1: str = (input("Inserire Artista: "))
+    # print(make_album("Pink Floyd", "Another brick in the wall"))
+    # print(make_album("Gigi D'Agostino", "L'Amour Toujours"))
+    # print(make_album("Vasco Rossi", "Bollicine", 8))
 
-    if user1 == "exit":
+    while True:
         
-        break
- 
-    user2: str = (input("Inserire Album: "))
+        user1: str = (input("Inserire Artista: "))
 
-    if user1 == "exit":
+        if user1 == "exit":
+            
+            break
+    
+        user2: str = (input("Inserire Album: "))
 
-        break
+        if user1 == "exit":
 
-    make_album(artist = user1, album = user2)
+            break
+
+        make_album(artist = user1, album = user2)

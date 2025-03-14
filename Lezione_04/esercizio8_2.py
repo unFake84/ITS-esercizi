@@ -8,6 +8,8 @@ def favorite_book(title: str) -> None:
 
     print(f"One of my favorite books is {title}")
 
-utente: str = (input("Enter a title of a favourite book: "))
+if __name__ == "__main__":
 
-favorite_book(utente)
+    utente: str = (input("Enter a title of a favourite book: "))
+
+    favorite_book(utente)

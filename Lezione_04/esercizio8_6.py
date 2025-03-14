@@ -10,6 +10,8 @@ def city_country(name: str, country: str) -> None:
 
     return f"{name.title()}, {country.title()}"
 
-print(city_country("salisburgo", "austria"))
-print(city_country("vienna", "austria"))
-print(city_country("london", "england"))
+if __name__ == "__main__":
+
+    print(city_country("salisburgo", "austria"))
+    print(city_country("vienna", "austria"))
+    print(city_country("london", "england"))

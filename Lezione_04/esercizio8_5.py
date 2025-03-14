@@ -11,6 +11,8 @@ def describe_city(name: str, country: str = 'Italy') -> None:
 
     print(f"The country {name}, is located in {country}.")
 
-describe_city("Rome")
-describe_city("Milan")
-describe_city("Vienna", "Austria")
+if __name__ == "__main__":
+
+    describe_city("Rome")
+    describe_city("Milan")
+    describe_city("Vienna", "Austria")

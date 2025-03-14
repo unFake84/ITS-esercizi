@@ -11,4 +11,6 @@ def show_messages(*args) -> list[str]:
 
         print(i)
 
-show_messages()
+if __name__ == "__main__":
+
+    show_messages()

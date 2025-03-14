@@ -10,5 +10,7 @@ def make_shirt(size: str, text: str) -> None:
 
     print(f"The T-shirt of size {size} contains this sentence ‘{text}’..")
 
-make_shirt("XL", "BOOM")
-make_shirt(text="BOOM", size="M")
+if __name__ == "__main__":
+
+    make_shirt("XL", "BOOM")
+    make_shirt(text="BOOM", size="M")

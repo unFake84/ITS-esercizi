@@ -10,6 +10,8 @@ def make_shirt(size: str = 'L', text: str = 'I love Python.') -> None:
 
     print(f"The T-shirt of size {size} contains this sentence ‘{text}’..")
 
-make_shirt()
-make_shirt("M")
-make_shirt("XS", "I REALLY LOVE PYTHON!")
+if __name__ == "__main__":
+
+    make_shirt()
+    make_shirt("M")
+    make_shirt("XS", "I REALLY LOVE PYTHON!")

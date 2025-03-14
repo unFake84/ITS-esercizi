@@ -21,15 +21,17 @@ def make_album(artist: str, album: str, tracks = None) -> dict:
 
     return dictionary
 
-print(make_album("Pink Floyd", "Another brick in the wall"))
-print(make_album("Gigi D'Agostino", "L'Amour Toujours"))
-print(make_album("Vasco Rossi", "Bollicine", 8))
+if __name__ == "__main__":
+
+    print(make_album("Pink Floyd", "Another brick in the wall"))
+    print(make_album("Gigi D'Agostino", "L'Amour Toujours"))
+    print(make_album("Vasco Rossi", "Bollicine", 8))
 
 
-# print(f"{album['nome']}: {album['album']}")
-# print(f"{album2['nome']}: {album2['album']}")
-# print(f"{album3['nome']}: {album3['album']}")
+    # print(f"{album['nome']}: {album['album']}")
+    # print(f"{album2['nome']}: {album2['album']}")
+    # print(f"{album3['nome']}: {album3['album']}")
 
-# metodo alternativo
-#print(album["artist"])
-#print(album["album"])
+    # metodo alternativo
+    #print(album["artist"])
+    #print(album["album"])

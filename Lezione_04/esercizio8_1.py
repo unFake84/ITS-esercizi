@@ -8,6 +8,8 @@ def display_message(name: str, ) -> None:
 
     print(f"Sig. {name}, today I am learning the functions.")
 
-utente: str = (input("Insert name: "))
+if __name__ == "__main__":
 
-display_message(utente)
+    utente: str = (input("Insert name: "))
+
+    display_message(utente)
