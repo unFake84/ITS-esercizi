@@ -23,4 +23,4 @@ def make_car(mark: str, model: str, **kwargs) -> dict:
 
 if __name__ == "__main__":
       
-        print(make_car("Mercedes", "Smart", year= 2010, tow_package=False, color="white and grey"))
+        print(make_car("Mercedes", "Smart", year= 2010, tow_package= False, color= "white and grey"))
