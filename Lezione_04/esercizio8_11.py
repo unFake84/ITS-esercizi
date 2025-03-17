@@ -4,28 +4,37 @@ Start with your work from Exercise 8-10. Call the function send_messages() with 
 After calling the function, print both of your lists to show that the original list has retained its messages.
 '''
 
-lista: list[str] = ["Ciao!", "A dopo!", "Addio!"]
+def show_messages(*args) -> None:
 
-def show_messages(*args) -> list[str]:
+    for messaggio in lista:
 
-    for _ in lista:
+        print(messaggio)
 
-        print(_)
+def send_messages(*args) -> None:
 
-def send_messages(*args) -> list[str]:
-
+    print("-----------------------------")
+    #print("Show_messages:")
+    #show_messages()
     sent_messages: list[str] = []
-    lunghezza: int = len(lista)
 
-    for _ in range(lunghezza):
+    for lista in args:
 
-        sent_messages.append(lista[0])
-        #lista.pop(0)
-        #print(lista)
+        #cont: int = 0
 
+        for elemento in lista:
+
+            #print(f"---------{cont+1} iteration--------- [elemento = {cont}]")
+            sent_messages.append(elemento)
+            #print(f"[{elemento}] added to sent_messages!")
+            #cont += 1
+        
+    print("-----------------------------")
     print(f"Lista = {lista}")
     print(f"Sent_messages = {sent_messages}")
+    print("-----------------------------")
 
 if __name__ == "__main__":
+
+    lista: list[str] = ["Ehi!", "Ciao!", "A dopo!", "Addio!"]
 
     send_messages(lista)

@@ -9,7 +9,7 @@ at least one of which is not in the default country.
 
 def describe_city(name: str, country: str = 'Italy') -> None:
 
-    print(f"The country {name}, is located in {country}.")
+    print(f"The city {name}, is located in {country}.")
 
 if __name__ == "__main__":
 

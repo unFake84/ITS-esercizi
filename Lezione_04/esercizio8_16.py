@@ -8,14 +8,46 @@ import module_name as mn
 from module_name import *
 '''
 
-import esercizio8_2
+#-----------------------------------------------------------------------------------
+# import esercizio8_2
 
-from .esercizio8_3 import make_shirt
+# esercizio8_2.favorite_book("Il Signore Degli Anelli.")
+#-----------------------------------------------------------------------------------
 
-from .esercizio8_2 import favorite_book as fn
+#-----------------------------------------------------------------------------------
+# from esercizio8_3 import make_shirt
 
-import esercizio8_2 as mn
+# make_shirt(text = "Yabadabadooo", size = "XXL")
+#-----------------------------------------------------------------------------------
 
-from .esercizio8_2 import *
+#-----------------------------------------------------------------------------------
+# from esercizio8_5 import describe_city as fn
+# 
+# fn("Venice")
+# fn("London", "England")
+#-----------------------------------------------------------------------------------
 
-favorite_book("Il Signore Degli Anelli.")
+#-----------------------------------------------------------------------------------
+# import esercizio8_2 as mn
+# 
+# mn.favorite_book("Liebestraum No.3")
+#-----------------------------------------------------------------------------------
+from typing import Any
+from esercizio8_7 import *
+
+dati = make_album("Bach", "Il mio primo Bach", 10)
+
+# # 1 modo
+# print(
+#   f"L'artista {dati['artista']} ha fatto modo che dopo quasi 300 anni dalla sua morte, " \
+#       f"gli è stato dedicato un libro chiamato: {dati['albums']}, " \
+#            f"contiene {dati['traccie']} traccie da lui composte." \
+# )
+
+# 2 modo
+print(f"""
+    L'artista {dati['artista']} ha fatto modo che dopo quasi 300 anni dalla sua morte, 
+        gli è stato dedicato un libro chiamato: {dati['albums']}, 
+            contiene {dati['traccie']} traccie da lui composte.\n"""
+)
+#-----------------------------------------------------------------------------------

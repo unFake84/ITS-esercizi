@@ -4,9 +4,9 @@ that prints one sentence telling everyone what you are learning about in this ch
 Call the function, and make sure the message displays correctly.
 '''
 
-def display_message(name: str, ) -> None:
+def display_message(name: str) -> None:
 
-    print(f"Sig. {name}, today I am learning the functions.")
+    print(f"Hello {name}! Today I am learning the functions!")
 
 if __name__ == "__main__":
 

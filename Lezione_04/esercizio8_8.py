@@ -20,11 +20,10 @@ def make_album(artist: str, album: str, tracks = None) -> dict:
 
 if __name__ == "__main__":
 
-    # print(make_album("Pink Floyd", "Another brick in the wall"))
-    # print(make_album("Gigi D'Agostino", "L'Amour Toujours"))
-    # print(make_album("Vasco Rossi", "Bollicine", 8))
-
     while True:
+
+        print("-------------------------------------------------")
+        print("Scrivere 'exit' in qualsiasi momento per uscire.")
         
         user1: str = (input("Inserire Artista: "))
 
@@ -34,8 +33,16 @@ if __name__ == "__main__":
     
         user2: str = (input("Inserire Album: "))
 
-        if user1 == "exit":
+        if user2 == "exit":
 
             break
+        
+        testo_tupla: tuple[str, str] = make_album(artist = user1, album = user2)
 
-        make_album(artist = user1, album = user2)
+        print("-------------------------------------------------")
+        print(f"Artista = {testo_tupla['artista'].title()}\nAlbum = {testo_tupla['albums'].title()}")
+        # print(make_album(user1, user2)) # sembra giusto
+
+    print("-------------------------------------------------")
+    print("See ya")
+    print("-------------------------------------------------")
