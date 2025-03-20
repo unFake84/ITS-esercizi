@@ -40,16 +40,18 @@ class Persona:
 
         print(f"\nNome: {self.name}\nCognome: {self.lastname}\nEtà: {self.age}\n")
 
-# crea un oggetto di tipo persona
-d: Persona = Persona()
+if __name__ == "__main__":
 
-# impostare il nome della persona
-d.setname("Dioni")
+    # crea un oggetto di tipo persona
+    d: Persona = Persona()
 
-# impostare il cognome
-d.setlastname("Manon")
+    # impostare il nome della persona
+    d.setname("Dioni")
 
-# impostare il nome
-d.setage(40)
+    # impostare il cognome
+    d.setlastname("Manon")
 
-d.displaydata()
+    # impostare il nome
+    d.setage(40)
+
+    d.displaydata()

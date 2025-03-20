@@ -18,7 +18,7 @@ class Persona:
 
     def __init__(self, name: str, lastname: str, age: int):
 
-        # il 'self' sta dicendo che la var 'name' appartiene alla classe 'Persona'
+        # il 'self' indica che la var 'name' appartiene alla classe 'Persona' ed etc.
         self.name = name
         self.lastname = lastname
         self.age = age
@@ -27,9 +27,12 @@ class Persona:
 
         print(f"\nNome: {self.name}\nCognome: {self.lastname}\nEtà: {self.age}\n")
 
-d: Persona = Persona("Dioni", "Manon", 40)
+if __name__ == "__main__":
 
-#print(d) # Errore, fa vedere solo l'indirizzo di memoria
+    d: Persona = Persona("Dioni", "Manon", 40)
 
-# mostra i dati di una persona
-d.displaydata()
+    # mostra i dati di una persona
+    d.displaydata()
+
+    # # Errore, fa vedere solo l'indirizzo di memoria
+    # print(d)
