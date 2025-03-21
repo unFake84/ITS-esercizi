@@ -21,7 +21,7 @@ class Animal:
 
         self.legs = newlegs
 
-    # 5.
+    # 5a.
     def get_legs(self):
 
         return self.legs
@@ -29,23 +29,29 @@ class Animal:
     # 6.
     def print_info(self) -> None:
 
-        print(f"The {self.species}, composed of {self.legs} legs, lives on Earth.")
+        print(f"The {self.species.lower()}, composed of {self.legs} legs, lives on Earth.")
 
-# 1.
-gatto: Animal = Animal("Cat", 4)
-umano: Animal = Animal("Human", 2)
+if __name__ == "__main__":
 
-# 2.
-print(f"{gatto.species} has {gatto.legs} legs.")
-print(f"{umano.species} has {umano.legs} legs.")
+    # 1.
+    gatto: Animal = Animal("Cat", 4)
+    umano: Animal = Animal("Human", 2)
 
-# 3.
-umano.legs = 3
-print(f"Some {umano.species}s has {umano.legs} legs sometimes in the morning.")
+    # 2.
+    print(f"{gatto.species} has {gatto.legs} legs.")
+    print(f"{umano.species} has {umano.legs} legs.")
 
-# 4b.
-umano.set_legs(2)
+    # 3.
+    umano.legs = 3
+    print(f"Some {umano.species.lower()}s have {umano.legs} legs sometimes in the morning.")
 
-# 6b.
-gatto.print_info()
-umano.print_info()
+    # 4b.
+    umano.set_legs(2)
+
+    #5b.
+    print(f"#### The cat has {gatto.get_legs()} legs. ####")
+    print(f"#### The human has {umano.get_legs()} legs. ####")
+
+    # 6b.
+    gatto.print_info()
+    umano.print_info()
