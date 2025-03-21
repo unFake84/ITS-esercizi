@@ -20,33 +20,46 @@ class Person:
         self.name = name
         self.age = age
 
-alice = Person("Alice W.", 45)
-bob = Person("Bob M.", 36)
+if __name__ == "__main__":
 
-# 1.
-print(bob.age)
+    alice = Person("Alice W.", 45)
+    bob = Person("Bob M.", 36)
 
-# 2.
-if bob.age < alice.age:
+    # 1.
+    print(bob.age)
 
-    print(f"Alice is {alice.age} years old, so compared to Bob, {bob.age}, she is older than him.")
+    # 2.
+    if bob.age < alice.age:
 
-# 3.
-charlie = Person("Charlie B.", 47)
-delta = Person("Delta A.", 87)
-echo = Person("Echo F.", 25)
+        print(f"Alice is {alice.age} years old, so compared to Bob, {bob.age}, she is older than him.")
 
-people: list[Any] = []
+    # 3.
+    charlie = Person("Charlie B.", 17)
+    delta = Person("Delta A.", 87)
+    echo = Person("Echo F.", 25)
 
-people.append(alice)
-people.append(bob)
-people.append(charlie)
-people.append(delta)
-people.append(echo)
+    # 3a. metodo
+    people: list[Any] = []
 
-# 4.
-for i in people:
+    people.append(alice)
+    people.append(bob)
+    people.append(charlie)
+    people.append(delta)
+    people.append(echo)
 
-    if min(people):
+    # # 3.b metodo
+    # people: list[Any] = [alice, bob, charlie, delta, echo]
 
-        print("Banana")
+    # 4.
+
+    eta_min: int = 130
+    nome_min: str = ""
+
+    for person in people:
+
+        if person.age < eta_min:
+
+            eta_min = person.age
+            nome_min = person.name
+
+    print(f"{nome_min} with the age of {eta_min} years is the youngest.")
