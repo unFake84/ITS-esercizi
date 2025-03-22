@@ -9,6 +9,7 @@ Student. Test your method on the objects!
 printing methods respectively too.
 '''
 
+# 1.
 class Student:
 
     def __init__(self, name: str, studyProgram: str, age: int, gender: str):
@@ -18,6 +19,7 @@ class Student:
         self.age = age
         self.gender = gender
 
+    # 3.
     def printInfo(self) -> None:
 
         #print(f"At the {self.name} of my perspective is the course {self.studyProgram}")
@@ -25,10 +27,12 @@ class Student:
 
 if __name__ == "__main__":
     
+    # 2.
     center: Student = Student("Center", "FullStack", 40, "M")
     left: Student = Student("Left", "VideoMaker", 27, "M")
     right: Student = Student("Right", "CyberSec", 19, "F")
 
+    # 4.
     center.printInfo()
     left.printInfo()
     right.printInfo()
