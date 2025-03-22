@@ -60,6 +60,17 @@ class Menu:
             print(f"Nome: {i.name}\nPrezzo: {i.price} €")
             print("-------------------")
 
+    # 7.
+    def getAveragePrice(self):
+
+        average = 0
+
+        for i in self.lista:
+
+            average += i.price
+
+        return average / len(self.lista)
+
 if __name__ == "__main__":
 
     # 2.
@@ -72,7 +83,7 @@ if __name__ == "__main__":
 
     # 5.
     carne: Food = Food("Kobe Beef", 549.80, "Japanese beef")
-    pesce: Food = Food("Spigola", 35, "Patatel al forno, limone, sale")
+    pesce: Food = Food("Spigola", 35, "Patate al forno, limone, sale")
     antipasto: Food = Food("Bruschetta", 5, "Pane, pomodoro, sale, aglio, olio")
 
     menu: Menu = Menu(lista) 
@@ -83,3 +94,5 @@ if __name__ == "__main__":
 
     # 6b.
     menu.printPrices()
+    media = menu.getAveragePrice()
+    print(f"La media è {media:.2f}")
