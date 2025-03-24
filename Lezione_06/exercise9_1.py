@@ -16,6 +16,7 @@ Restaurant:
 3.
     Make an instance called restaurant from your class.
     Print the two attributes individually, and then call both methods.
+    
 '''
 
 # 1.
