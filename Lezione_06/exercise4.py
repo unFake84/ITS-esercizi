@@ -57,8 +57,9 @@ class Menu:
 
         for i in self.lista:
 
-            print(f"Nome: {i.name}\nPrezzo: {i.price} €")
-            print("-------------------")
+            print(f"Nome: {i.name}\nIngredienti: {i.description}{'.'}\nPrezzo: {i.price} €")
+            print("-------------------------" * 2)
+            # print("-" * len(i.description) * 2)
 
     # 7.
     def getAveragePrice(self):
@@ -95,4 +96,4 @@ if __name__ == "__main__":
     # 6b.
     menu.printPrices()
     media = menu.getAveragePrice()
-    print(f"La media è {media:.2f}")
+    print(f"La media è: {media:.2f}")
