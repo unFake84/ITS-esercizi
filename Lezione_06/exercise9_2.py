@@ -1,24 +1,10 @@
 '''
-Restaurant:
-
-1.
-    Make a class called Restaurant.
-    The __init__() method for Restaurant should store
-    two attributes: a restaurant_name and a cuisine_type.
-
-2.
-    Make a method called describe_restaurant()
-    that prints these two pieces of information,
-    and a method called open_restaurant() that
-    prints a message indicating that the restaurant is open.
-
-3.
-    Make an instance called restaurant from your class.
-    Print the two attributes individually, and then call both methods.
-    
+Three Restaurants:
+Start with your class from Exercise 9-1.
+Create three different instances from the class,
+and call describe_restaurant() for each instance.
 '''
 
-# 1.
 class Restaurant:
 
     def __init__(self, restaurant_name: str, cuisine_type: str):
@@ -26,7 +12,6 @@ class Restaurant:
         self.restaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
 
-    # 2.
     def describe_restaurant(self) -> None:
 
         print(
@@ -38,13 +23,25 @@ class Restaurant:
 
         print(f"Il ristorante {self.restaurant_name} è aperto!")
 
-# 3.
-
 restaurant: Restaurant = Restaurant("D&D da Dioni", "As long as the food is good!")
 
+print("-----------------------" * 2)
 print("Primo attributo:", restaurant.restaurant_name)
 print("Secondo attributo:", restaurant.cuisine_type)
 print("-----------------------" * 2)
 
 restaurant.describe_restaurant()
 restaurant.open_restaurant()
+
+# ex9_2.
+restaurant_2: Restaurant = Restaurant("Da Python", "Let's chew on some code")
+restaurant_3: Restaurant = Restaurant("Ucc's Jazz", "Jazz and Food")
+restaurant_4: Restaurant = Restaurant("1870","Belle cuisine")
+
+print("-----------------------" * 2)
+restaurant_2.describe_restaurant()
+print("-----------------------" * 2)
+restaurant_3.describe_restaurant()
+print("-----------------------" * 2)
+restaurant_4.describe_restaurant()
+print("-----------------------" * 2)
