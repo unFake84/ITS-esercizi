@@ -36,15 +36,16 @@ class Restaurant:
         
     def open_restaurant(self) -> None:
 
-        print(f"Il ristorante {self.restaurant_name} è aperto!")
+        print(f"Il ristorante '{self.restaurant_name}' è aperto!")
 
-# 3.
+if __name__ == "__main__":
 
-restaurant: Restaurant = Restaurant("D&D da Dioni", "As long as the food is good!")
+    # 3.
+    restaurant: Restaurant = Restaurant("D&D da Dioni", "As long as the food is good!")
 
-print("Primo attributo:", restaurant.restaurant_name)
-print("Secondo attributo:", restaurant.cuisine_type)
-print("-----------------------" * 2)
+    print("Primo attributo:", restaurant.restaurant_name)
+    print("Secondo attributo:", restaurant.cuisine_type)
+    print("-----------------------" * 2)
 
-restaurant.describe_restaurant()
-restaurant.open_restaurant()
+    restaurant.describe_restaurant()
+    restaurant.open_restaurant()

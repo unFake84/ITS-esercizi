@@ -23,25 +23,27 @@ class Restaurant:
 
         print(f"Il ristorante {self.restaurant_name} è aperto!")
 
-restaurant: Restaurant = Restaurant("D&D da Dioni", "As long as the food is good!")
+if __name__ == "__main__":
 
-print("-----------------------" * 2)
-print("Primo attributo:", restaurant.restaurant_name)
-print("Secondo attributo:", restaurant.cuisine_type)
-print("-----------------------" * 2)
+    restaurant: Restaurant = Restaurant("D&D da Dioni", "As long as the food is good!")
 
-restaurant.describe_restaurant()
-restaurant.open_restaurant()
+    print("-----------------------" * 2)
+    print("Primo attributo:", restaurant.restaurant_name)
+    print("Secondo attributo:", restaurant.cuisine_type)
+    print("-----------------------" * 2)
 
-# ex9_2.
-restaurant_2: Restaurant = Restaurant("Da Python", "Let's chew on some code")
-restaurant_3: Restaurant = Restaurant("Ucc's Jazz", "Jazz and Food")
-restaurant_4: Restaurant = Restaurant("1870","Belle cuisine")
+    restaurant.describe_restaurant()
+    restaurant.open_restaurant()
 
-print("-----------------------" * 2)
-restaurant_2.describe_restaurant()
-print("-----------------------" * 2)
-restaurant_3.describe_restaurant()
-print("-----------------------" * 2)
-restaurant_4.describe_restaurant()
-print("-----------------------" * 2)
+    # ex9_2.
+    restaurant_2: Restaurant = Restaurant("Da Python", "Let's chew on some code")
+    restaurant_3: Restaurant = Restaurant("Ucc's Jazz", "Jazz and Food")
+    restaurant_4: Restaurant = Restaurant("1870","Belle cuisine")
+
+    print("-----------------------" * 2)
+    restaurant_2.describe_restaurant()
+    print("-----------------------" * 2)
+    restaurant_3.describe_restaurant()
+    print("-----------------------" * 2)
+    restaurant_4.describe_restaurant()
+    print("-----------------------" * 2)
