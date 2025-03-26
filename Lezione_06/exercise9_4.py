@@ -26,14 +26,12 @@ Number Served:
 class Restaurant: 
 
     # 1a.    
-    def __init__(self, restaurant_name: str, cuisine_type: str, number_served = 0):
+    def __init__(self, restaurant_name: str, cuisine_type: str, number_served: int = 0):
 
         self.restaurant_name = restaurant_name
         self.cuisine_type = cuisine_type
         # 1b.
         self.number_served = number_served
-        # # 4b.
-        # self.costumer_served + number_served
 
     def describe_restaurant(self) -> None:
 
@@ -47,7 +45,7 @@ class Restaurant:
         print(f"Il ristorante '{self.restaurant_name}' è aperto!")
 
     # 3a.
-    def set_number_served(self, number_served = 0) -> None:
+    def set_number_served(self, number_served) -> None:
 
         self.number_served = number_served
 
