@@ -15,9 +15,9 @@ def tartaruga(pos: int = 1):
         # scivolata, arretra 6 quadrati (no sotto l'1)
         pos -= 6
 
-        if pos < 1:
+        # if pos < 1:
 
-            pos = 1
+        #     pos = 1
 
     elif mossa >= 8:
 
@@ -40,9 +40,9 @@ def lepre(pos: int = 1):
         # arretra di 12 posizioni, grande scivolata
         pos -= 12
 
-        if pos < 1:
+        # if pos < 1:
 
-            pos = 1
+        #     pos = 1
 
     elif mossa >= 6 and mossa <=8:
 
@@ -54,40 +54,41 @@ def lepre(pos: int = 1):
         # arretra di 2 quadrati (no sotto l'1), piccola scivolata
         pos -= 2
 
-        if pos < 1:
+        # if pos < 1:
 
-            pos = 1
+        #     pos = 1
 
     return pos
 
-def gara(pos_t, pos_l):
+def gara(pos_t: int, pos_l: int):
 
     pista: list[str] = ['_'] * 70
 
-    for i in range(len(pista)):
+#     for i in range(len(pista)):
 
-        if pos_t != pos_l:
+#         if pos_t == pos_l:
 
-            pista[pos_t - 1] = 'T'
-            pista[pos_l - 1] = 'L'
+#             pista[pos_t - 1] = 'T'
+#             pista[pos_l - 1] = 'L'
 
-        else:
+#         else:
 
-            pista[pos_l - 1] = 'OUCH!!!'
+#             pista[pos_t - 1] = 'OUCH!!!'
+#             pista[pos_l - 1] = 'OUCH!!!'
 
-        print(*pista)
+#         print(*pista)
 
-if __name__ == "__main__":
+# if __name__ == "__main__":
 
-    print("'BANG !!!!! AND THEY'RE OFF !!!!!'")
+#     print("'BANG !!!!! AND THEY'RE OFF !!!!!'")
 
-    while True:
+#     while True:
 
-        time.sleep(1)
+#         time.sleep(1)
 
-        pos_t: int = tartaruga()
-        pos_l: int = lepre()
+#         pos_t: int = tartaruga()
+#         pos_l: int = lepre()
 
-        gara(pos_t, pos_l)
+#         gara(pos_t, pos_l)
 
-        print("\n", "#" * 50)
+#         print("\n", "#" * 50)
