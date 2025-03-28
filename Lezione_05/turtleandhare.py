@@ -55,43 +55,45 @@ def gara(pos_t: int, pos_l: int):
     posizione_lepre: int = 1
     giocata: int = 1
 
-    print("LET THE GAME BEGIN!!!")
-    time.sleep(0.8)
-    os.system('clear')
-
-    print("READY!!!")
-    print("         _\n     .-./*)\n   _/___\/\n     U U\n")
-    time.sleep(0.8)
-    os.system('clear')
-
-    print("SET!!!")
-    print("""
-       _
-      (\\\\
-       \||
-     __(_";
-    /    \\
-   ()___)\)_
-        """)
-    time.sleep(0.8)
-    os.system('clear')
-
-    print("BANG !!!!! AND THEY'RE OFF !!!!!")
-
-    partenza: list[str] = ['_'] * 69
-
-    print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
-    print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
-    print('TH', *partenza, '\n' * 2)
-    print("""
-    BBBB  AAAA  N   N  GGGGG   MM MM
-    B  B  A  A  NN  N  G       MM MM
-    BBB   AAAA  N N N  G  GG   MM MM
-    B  B  A  A  N  NN  G   G  
-    BBBB  A  A  N   N  GGGGG   MM MM
-          """)
-
     while True:
+
+        if giocata == 1:
+
+            print("LET THE GAME BEGIN!!!")
+            time.sleep(0.8)
+            os.system('clear')
+
+            print("READY!!!")
+            print("         _\n     .-./*)\n   _/___\/\n     U U\n")
+            time.sleep(0.8)
+            os.system('clear')
+
+            print("SET!!!")
+            print("""
+        _
+       (\\\\
+        \||
+      __(_";
+     /    \\
+    ()___)\)_
+                """)
+            time.sleep(0.8)
+            os.system('clear')
+
+            print("BANG !!!!! AND THEY'RE OFF !!!!!")
+
+            partenza: list[str] = ['_'] * 69
+
+            print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
+            print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
+            print('TH', *partenza, '\n' * 2)
+            print("""
+            BBBB  AAAA  N   N  GGGGG   MM MM
+            B  B  A  A  NN  N  G       MM MM
+            BBB   AAAA  N N N  G  GG   MM MM
+            B  B  A  A  N  NN  G   G  
+            BBBB  A  A  N   N  GGGGG   MM MM
+                """)
 
         time.sleep(1)
         os.system('clear')
@@ -129,6 +131,7 @@ DDDD   R   R  A   A  W   W
                   """)
             
             interruttore: int = 1
+
             while interruttore == 1:
                 
                     user: str = (input("Ricominciare?: "))
@@ -139,7 +142,11 @@ DDDD   R   R  A   A  W   W
 
                     elif user != 'si':
 
-                        print("Risposta non valida, per chiudere digitare si.")
+                        print("""
+      Risposta non valida
+    Per chiudere digitare 'no'.
+    Per riavviare digitare 'si'.
+                        """)
 
                     elif user == 'si':
 
@@ -153,6 +160,9 @@ DDDD   R   R  A   A  W   W
 
                 posizione_tartaruga = 1
                 posizione_lepre = 1
+                giocata = 1
+                os.system('clear')
+                time.sleep(2)
 
         elif posizione_tartaruga >= 70:
 
@@ -174,7 +184,38 @@ DDDD   R   R  A   A  W   W
 
 """)
             print(f"Risultato finale: {max_tarta} vs {max_lepre}")
-            break
+            
+            interruttore: int = 1
+
+            while interruttore == 1:
+                
+                    user: str = (input("Ricominciare?: "))
+
+                    if user == 'no':
+                    
+                        interruttore = 0                    
+
+                    elif user != 'si':
+
+                        print("""
+      Risposta non valida
+    Per chiudere digitare 'no'.
+    Per riavviare digitare 'si'.
+                        """)
+
+                    elif user == 'si':
+
+                        interruttore = 0
+                    
+            if interruttore == 0 and user == 'no':
+
+                break
+
+            elif interruttore == 0 and user == 'si':
+
+                posizione_tartaruga = 1
+                posizione_lepre = 1
+                giocata = 1
 
         elif posizione_lepre >= 70:
 
@@ -195,7 +236,38 @@ DDDD   R   R  A   A  W   W
         > "<       []
 """)
             print(f"Risultato finale: {max_lepre} vs {max_tarta}")
-            break
+            
+            interruttore: int = 1
+
+            while interruttore == 1:
+                
+                    user: str = (input("Ricominciare?: "))
+
+                    if user == 'no':
+                    
+                        interruttore = 0                    
+
+                    elif user != 'si':
+
+                        print("""
+      Risposta non valida
+    Per chiudere digitare 'no'.
+    Per riavviare digitare 'si'.
+                        """)
+
+                    elif user == 'si':
+
+                        interruttore = 0
+                    
+            if interruttore == 0 and user == 'no':
+
+                break
+
+            elif interruttore == 0 and user == 'si':
+
+                posizione_tartaruga = 1
+                posizione_lepre = 1
+                giocata = 1
         
         elif posizione_tartaruga < 1:
 
@@ -230,7 +302,6 @@ f"     .-./*)   \n"
 f"   _/___\/    \n"
 f"     U U      \n"
                 )
-                continue
 
             elif posizione_tartaruga < posizione_lepre:
                 
