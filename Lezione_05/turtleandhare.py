@@ -76,7 +76,7 @@ def gara(pos_t: int, pos_l: int):
     print("BANG !!!!! AND THEY'RE OFF !!!!!")
     partenza: list[str] = ['_'] * 69
     print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
-    print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}")
+    print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
     print('TL', *partenza, '\n' * 2)
     print("""
     BBBB  AAAA  N   N  GGGGG   MM MM
@@ -179,7 +179,7 @@ DDDD   R   R  A   A  W   W
             
             if posizione_tartaruga > posizione_lepre:
                 
-                print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}")
+                print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
                 print(*pista, '\n')
                 print(
 f"              \n"
@@ -194,7 +194,7 @@ f"     U U      \n"
 
             elif posizione_tartaruga < posizione_lepre:
                 
-                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}")
+                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}\n")
                 print(*pista, '\n')
                 print("""
        _
@@ -207,7 +207,7 @@ f"     U U      \n"
 
             else:
 
-                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}")
+                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}\n")
                 print(*pista, '\n')
                 print("""
      OOO   U   U   CCCC  H   H  [] []
