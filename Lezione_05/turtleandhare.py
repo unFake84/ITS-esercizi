@@ -55,6 +55,9 @@ def gara(pos_t: int, pos_l: int):
     posizione_lepre: int = 0
     giocata: int = 1
 
+    print("LET THE GAME BEGIN!!!")
+    time.sleep(0.8)
+    os.system('clear')
     print("READY!!!")
     time.sleep(0.8)
     os.system('clear')
@@ -81,7 +84,7 @@ def gara(pos_t: int, pos_l: int):
 
             pista[posizione_lepre - 1] = 'OUCH!!!'
 
-        elif posizione_tartaruga == posizione_lepre and posizione_tartaruga == 70 and posizione_lepre == 70:
+        elif posizione_tartaruga == posizione_lepre and posizione_tartaruga >= 70 and posizione_lepre >= 70:
 
             print("IT'S A TIE.")
             print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
@@ -119,7 +122,16 @@ def gara(pos_t: int, pos_l: int):
             pista[posizione_lepre - 1] = 'L'
 
         #print('Tarta',pos_t,'\n', 'Lepre', pos_l)
-        print(f"[Tarta pos]= {posizione_tartaruga}\n[Lepre pos]= {posizione_lepre}")
+        if giocata:
+            
+            if posizione_tartaruga > posizione_lepre:
+
+                print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}")
+
+            else:
+
+                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}")
+
         print(*pista)
         giocata += 1
 
