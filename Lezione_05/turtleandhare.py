@@ -63,23 +63,28 @@ def gara(pos_t: int, pos_l: int):
     time.sleep(0.8)
     os.system('clear')
     print("SET!!!")
-    print(
-        f"      (\\" "\n"\
-        f"       \||" "\n"\
-        f'     __(_";' "\n"\
-        f"    /    \ " "\n"\
-        f"   ()___)\)_" "\n"\
-        )
+    print("""
+       _
+      (\\\\
+       \||
+     __(_";
+    /    \\
+   ()___)\)_
+        """)
     time.sleep(0.8)
     os.system('clear')
     print("BANG !!!!! AND THEY'RE OFF !!!!!")
     partenza: list[str] = ['_'] * 69
     print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
     print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}")
-    print('TL', *partenza)
-    # time.sleep(1)
-    #os.system('clear')
-    
+    print('TL', *partenza, '\n' * 2)
+    print("""
+    BBBB  AAAA  N   N  GGGGG   MM MM
+    B  B  A  A  NN  N  G       MM MM
+    BBB   AAAA  N N N  G  GG   MM MM
+    B  B  A  A  N  NN  G   G  
+    BBBB  A  A  N   N  GGGGG   MM MM
+          """)
 
     while True:
 
@@ -102,38 +107,47 @@ def gara(pos_t: int, pos_l: int):
 
         elif posizione_tartaruga == posizione_lepre and posizione_tartaruga >= 70 and posizione_lepre >= 70:
 
+            os.system('clear')
             print("IT'S A TIE.")
             print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
-            print("         _\n     .-./*)\n   _/___\/\n     U U\n")
-            print(
-                f"      (\\" "\n"\
-                f"       \||" "\n"\
-                f'     __(_";' "\n"\
-                f"    /    \ " "\n"\
-                f"   ()___)\)_" "\n"\
-                )
+            print("""
+DDDD   RRRR   AAAAA  W   W
+D   D  R   R  A   A  W   W
+D   D  RRRR   AAAAA  W W W
+D   D  R  R   A   A  WW WW
+DDDD   R   R  A   A  W   W
+                  """)
             break
 
         elif posizione_tartaruga >= 70:
 
             posizione_tartaruga = 70
+            os.system('clear')
             print("TORTOISE WINS! || VAY!!!")
             print('1° posizione Tartaruga =',posizione_tartaruga, '\n', '2° posizione Lepre =', posizione_lepre)
-            print("         _\n     .-./*)\n   _/___\/\n     U U\n")
+            print(
+                f"               []# # #  \n"\
+                f"         _     || # # # \n"\
+                f"     .-./*)    ||# # #  \n"\
+                f"   _/___\/     ||       \n"\
+                f"     U U       []       \n"\
+                )
             break
 
         elif posizione_lepre >= 70:
 
             posizione_lepre = 70
+            os.system('clear')
             print("HARE WINS || YUCH!!!")
-            print('1° posizione Lepre =',posizione_lepre, '\n', '2° posizione Tartaruga =', posizione_tartaruga)
-            print(
-                f"      (\\" "\n"\
-                f"       \||" "\n"\
-                f'     __(_";' "\n"\
-                f"    /    \ " "\n"\
-                f"   ()___)\)_" "\n"\
-                )
+            print('1° posizione: Lepre =',posizione_lepre, '\n', '2° posizione: Tartaruga =', posizione_tartaruga)
+            print("""
+       _
+      (\\\\       []# # #
+       \||      || # # #
+     __(_";     ||# # #
+    /    \\      ||
+   ()___)\)_    []
+                  """)
             break
         
         elif posizione_tartaruga < 1:
@@ -159,12 +173,43 @@ def gara(pos_t: int, pos_l: int):
             if posizione_tartaruga > posizione_lepre:
                 
                 print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}")
+                print(*pista, '\n')
+                print(
+f"              \n"
+f"              \n"                    
+f"              \n"
+f"         _    \n"
+f"     .-./*)   \n"
+f"   _/___\/    \n"
+f"     U U      \n"
+                )
+                continue
 
-            else:
+            elif posizione_tartaruga < posizione_lepre:
                 
                 print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}")
+                print(*pista, '\n')
+                print("""
+       _
+      (\\\\
+       \||
+     __(_";
+    /    \\
+   ()___)\)_
+                        """)
 
-        print(*pista)
+            else:
+
+                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}")
+                print(*pista, '\n')
+                print("""
+     OOO   U   U   CCCC  H   H  [] []
+    O   O  U   U  C      H   H  || ||
+    O   O  U   U  C      HHHHH  [] []
+    O   O  U   U  C      H   H  
+     OOO   UUUUU   CCCC  H   H  [] []
+                """)
+
         giocata += 1
 
 gara(tartaruga(), lepre())
