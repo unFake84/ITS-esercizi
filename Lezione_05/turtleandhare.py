@@ -1,5 +1,6 @@
 import time
 import random
+import os
 
 def tartaruga(pos: int = 1):
 
@@ -14,10 +15,6 @@ def tartaruga(pos: int = 1):
 
         # scivolata, arretra 6 quadrati (no sotto l'1)
         pos -= 6
-
-        # if pos < 1:
-
-        #     pos = 1
 
     elif mossa >= 8:
 
@@ -40,10 +37,6 @@ def lepre(pos: int = 1):
         # arretra di 12 posizioni, grande scivolata
         pos -= 12
 
-        # if pos < 1:
-
-        #     pos = 1
-
     elif mossa >= 6 and mossa <=8:
 
         # avanza di un quadrato, piccolo balzo
@@ -54,41 +47,80 @@ def lepre(pos: int = 1):
         # arretra di 2 quadrati (no sotto l'1), piccola scivolata
         pos -= 2
 
-        # if pos < 1:
-
-        #     pos = 1
-
     return pos
 
 def gara(pos_t: int, pos_l: int):
 
-    pista: list[str] = ['_'] * 70
+    posizione_tartaruga: int = 0
+    posizione_lepre: int = 0
+    giocata: int = 1
 
-#     for i in range(len(pista)):
+    print("READY!!!")
+    time.sleep(0.8)
+    os.system('clear')
+    print("SET!!!")
+    time.sleep(0.8)
+    os.system('clear')
+    print("BANG !!!!! AND THEY'RE OFF !!!!!")
 
-#         if pos_t == pos_l:
+    while True:
 
-#             pista[pos_t - 1] = 'T'
-#             pista[pos_l - 1] = 'L'
+        time.sleep(1)
+        os.system('clear')
 
-#         else:
+        pista: list[str] = ['_'] * 70
 
-#             pista[pos_t - 1] = 'OUCH!!!'
-#             pista[pos_l - 1] = 'OUCH!!!'
+        pos_t = tartaruga()
+        pos_l = lepre()
+        print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
 
-#         print(*pista)
+        posizione_tartaruga += pos_t
+        posizione_lepre += pos_l
 
-# if __name__ == "__main__":
+        if posizione_tartaruga == posizione_lepre and posizione_tartaruga < 70 and posizione_lepre < 70:
 
-#     print("'BANG !!!!! AND THEY'RE OFF !!!!!'")
+            pista[posizione_lepre - 1] = 'OUCH!!!'
 
-#     while True:
+        elif posizione_tartaruga == posizione_lepre and posizione_tartaruga == 70 and posizione_lepre == 70:
 
-#         time.sleep(1)
+            print("IT'S A TIE.")
+            print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
+            break
 
-#         pos_t: int = tartaruga()
-#         pos_l: int = lepre()
+        elif posizione_tartaruga >= 70:
 
-#         gara(pos_t, pos_l)
+            posizione_tartaruga = 70
+            print("TORTOISE WINS! || VAY!!!")
+            print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
+            break
 
-#         print("\n", "#" * 50)
+        elif posizione_lepre >= 70:
+
+            posizione_lepre = 70
+            print("HARE WINS || YUCH!!!")
+            print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
+            break
+        
+        elif posizione_tartaruga < 1:
+
+            posizione_tartaruga = 1
+            pista[posizione_tartaruga - 1] = 'T'
+            pista[posizione_lepre - 1] = 'L'
+
+        elif posizione_lepre < 1:
+
+            posizione_lepre = 1
+            pista[posizione_lepre - 1] = 'L'
+            pista[posizione_tartaruga - 1] = 'T'
+
+        elif posizione_tartaruga != posizione_lepre:
+
+            pista[posizione_tartaruga - 1] = 'T'
+            pista[posizione_lepre - 1] = 'L'
+
+        #print('Tarta',pos_t,'\n', 'Lepre', pos_l)
+        print(f"[Tarta pos]= {posizione_tartaruga}\n[Lepre pos]= {posizione_lepre}")
+        print(*pista)
+        giocata += 1
+
+gara(tartaruga(), lepre())
