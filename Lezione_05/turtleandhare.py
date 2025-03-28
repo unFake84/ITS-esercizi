@@ -93,8 +93,8 @@ def gara(pos_t: int, pos_l: int):
 
         pista: list[str] = ['_'] * 70
 
-        pos_t = tartaruga()
-        pos_l = lepre()
+        pos_t = tartaruga() -1
+        pos_l = lepre() -1
         print("!!WHO WILL COME FIRST!!?")
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
 
@@ -105,8 +105,9 @@ def gara(pos_t: int, pos_l: int):
 
             pista[posizione_lepre - 1] = 'OUCH!!!'
 
-        elif posizione_tartaruga == posizione_lepre and posizione_tartaruga >= 70 and posizione_lepre >= 70:
+        elif posizione_tartaruga >= 70 and posizione_lepre >= 70:
 
+            time.sleep(1)
             os.system('clear')
             print("IT'S A TIE.")
             print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
@@ -122,32 +123,38 @@ DDDD   R   R  A   A  W   W
         elif posizione_tartaruga >= 70:
 
             posizione_tartaruga = 70
+            time.sleep(1)
             os.system('clear')
             print("TORTOISE WINS! || VAY!!!")
             print('1° posizione Tartaruga =',posizione_tartaruga, '\n', '2° posizione Lepre =', posizione_lepre)
-            print(
-                f"               []# # #  \n"\
-                f"         _     || # # # \n"\
-                f"     .-./*)    ||# # #  \n"\
-                f"   _/___\/     ||       \n"\
-                f"     U U       []       \n"\
-                )
+            print("""
+
+     _..---.--.
+   .'\ __|/O.__)       []# # #
+  /__.' _/ .-'_\\       || # # # 
+ (____.'.-_\____)      ||# # # 
+  (_/ _)__(_ \_)\_     || 
+   (_..)--(.._)'--'    []
+
+""")
             break
 
         elif posizione_lepre >= 70:
 
             posizione_lepre = 70
+            time.sleep(1)
             os.system('clear')
             print("HARE WINS || YUCH!!!")
             print('1° posizione: Lepre =',posizione_lepre, '\n', '2° posizione: Tartaruga =', posizione_tartaruga)
             print("""
-       _
-      (\\\\       []# # #
-       \||      || # # #
-     __(_";     ||# # #
-    /    \\      ||
-   ()___)\)_    []
-                  """)
+
+      _     _
+     ( |\  //|     []# # #
+      \|\\\\//\|     || # # #
+        /66\\       ||# # #
+       ((_v.)      ||
+        > "<       []
+""")
             break
         
         elif posizione_tartaruga < 1:
