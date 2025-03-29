@@ -2,7 +2,7 @@ import time
 import random
 import os
 
-def tartaruga(pos: int = 1):
+def tartaruga(pos: int = 0):
 
     mossa: int = random.randint(1, 10)
 
@@ -23,7 +23,7 @@ def tartaruga(pos: int = 1):
 
     return pos
 
-def lepre(pos: int = 1):
+def lepre(pos: int = 0):
 
     mossa: int = random.randint(1,10)
 
@@ -57,25 +57,21 @@ def gara(pos_t: int, pos_l: int):
     controllo: bool = False
     minuti: int = 0
     secondi: int = 0
+    meteo: bool = False
 
     while True:
 
         secondi += 1
 
-        if secondi == 60:
-
-            minuti += 1
-            secondi = 0
-
         if giocata == 1:
 
             print("LET THE GAME BEGIN!!!")
-            time.sleep(1.2)
+            time.sleep(1)
             os.system('clear')
 
             print("READY!!!")
             print("         _\n     .-./*)\n   _/___\/\n     U U\n")
-            time.sleep(0.7)
+            time.sleep(1)
             os.system('clear')
 
             print("SET!!!")
@@ -87,7 +83,7 @@ def gara(pos_t: int, pos_l: int):
      /    \\
     ()___)\)_
                 """)
-            time.sleep(0.7)
+            time.sleep(1)
             os.system('clear')
 
             print("BANG !!!!! AND THEY'RE OFF !!!!!")
@@ -112,16 +108,60 @@ def gara(pos_t: int, pos_l: int):
         time.sleep(1)
         os.system('clear')
 
+        if giocata%10 == 0:
+
+            meteo = not meteo
+
+        if secondi == 60:
+
+            minuti += 1
+            secondi = 0
+
         pista: list[str] = ['_'] * 70
 
-        pos_t = tartaruga() -1
-        pos_l = lepre() -1
+        if meteo == True:
+
+            pos_t = - 1
+            pos_l = - 2
+
+        pos_t += tartaruga()
+        pos_l += lepre()
 
         print("!!WHO WILL COME FIRST!!?")
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
 
         posizione_tartaruga += pos_t
         posizione_lepre += pos_l
+
+        if posizione_tartaruga < 1:
+
+            posizione_tartaruga = 1
+            pista[posizione_tartaruga - 1] = 'T'
+
+            if posizione_lepre < 70:
+
+                pista[posizione_lepre - 1] = 'H'
+
+            else:
+
+                posizione_lepre = 70
+                pista[posizione_lepre - 1] = 'W'
+
+
+        elif posizione_lepre < 1:
+
+            posizione_lepre = 1
+            pista[posizione_lepre - 1] = 'H'
+
+            if posizione_tartaruga < 70:
+
+                pista[posizione_tartaruga - 1] = 'T'
+
+            else:
+
+                posizione_tartaruga = 70
+                pista[posizione_tartaruga - 1] = 'W'#
+
         max_tarta: int = posizione_tartaruga
         max_lepre: int = posizione_lepre
 
@@ -163,6 +203,10 @@ DDDD   R   R  A   A  W   W
                 if secondi == 0:
 
                     print(f"Durata gara: {minuti} minuto.")
+
+                elif secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
 
                 else:
 
@@ -244,6 +288,10 @@ DDDD   R   R  A   A  W   W
 
                     print(f"Durata gara: {minuti} minuto.")
 
+                elif secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
+
                 else:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
@@ -323,6 +371,10 @@ DDDD   R   R  A   A  W   W
 
                     print(f"Durata gara: {minuti} minuto.")
 
+                elif secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
+
                 else:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
@@ -363,17 +415,9 @@ DDDD   R   R  A   A  W   W
                 time.sleep(2)
                 os.system('clear')
         
-        elif posizione_tartaruga < 1:
 
-            posizione_tartaruga = 1
-            pista[posizione_tartaruga - 1] = 'T'
-            pista[posizione_lepre - 1] = 'H'
 
-        elif posizione_lepre < 1:
 
-            posizione_lepre = 1
-            pista[posizione_lepre - 1] = 'H'
-            pista[posizione_tartaruga - 1] = 'T'
 
         elif posizione_tartaruga != posizione_lepre:
 
@@ -431,5 +475,7 @@ f"     U U      \n"
             giocata = 0
 
         giocata += 1
+        pos_t = 0
+        pos_l = 0
 
 gara(tartaruga(), lepre())
