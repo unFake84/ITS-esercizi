@@ -150,9 +150,23 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti > 1:
+
+                if secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
                 print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+
+            elif minuti > 0:
+
+                if secondi == 0:
+
+                    print(f"Durata gara: {minuti} minuto.")
+
+                else:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
             interruttore: int = 1
 
@@ -216,9 +230,23 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti > 1:
+
+                if secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
                 print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+
+            elif minuti > 0:
+
+                if secondi == 0:
+
+                    print(f"Durata gara: {minuti} minuto.")
+
+                else:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
             interruttore: int = 1
 
@@ -281,9 +309,23 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti > 1:
+
+                if secondi == 1:
+
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
                 print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+
+            elif minuti > 0:
+
+                if secondi == 0:
+
+                    print(f"Durata gara: {minuti} minuto.")
+
+                else:
+
+                    print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
             interruttore: int = 1
 
