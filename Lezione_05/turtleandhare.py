@@ -54,18 +54,28 @@ def gara(pos_t: int, pos_l: int):
     posizione_tartaruga: int = 1
     posizione_lepre: int = 1
     giocata: int = 1
+    controllo: bool = False
+    minuti: int = 0
+    secondi: int = 0
 
     while True:
+
+        secondi += 1
+
+        if secondi == 60:
+
+            minuti += 1
+            secondi = 0
 
         if giocata == 1:
 
             print("LET THE GAME BEGIN!!!")
-            time.sleep(0.8)
+            time.sleep(1.2)
             os.system('clear')
 
             print("READY!!!")
             print("         _\n     .-./*)\n   _/___\/\n     U U\n")
-            time.sleep(0.8)
+            time.sleep(0.7)
             os.system('clear')
 
             print("SET!!!")
@@ -77,7 +87,7 @@ def gara(pos_t: int, pos_l: int):
      /    \\
     ()___)\)_
                 """)
-            time.sleep(0.8)
+            time.sleep(0.7)
             os.system('clear')
 
             print("BANG !!!!! AND THEY'RE OFF !!!!!")
@@ -85,7 +95,8 @@ def gara(pos_t: int, pos_l: int):
             partenza: list[str] = ['_'] * 69
 
             print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
-            print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
+            print(f"1° pos[Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
+            print(f"Tempo di gara: min {minuti}:{secondi} sec\n")
             print('TH', *partenza, '\n' * 2)
             print("""
             BBBB  AAAA  N   N  GGGGG   MM MM
@@ -93,7 +104,10 @@ def gara(pos_t: int, pos_l: int):
             BBB   AAAA  N N N  G  GG   MM MM
             B  B  A  A  N  NN  G   G  
             BBBB  A  A  N   N  GGGGG   MM MM
-                """)
+            """)
+
+            giocata += 1
+            secondi += 1
 
         time.sleep(1)
         os.system('clear')
@@ -117,6 +131,8 @@ def gara(pos_t: int, pos_l: int):
 
         elif posizione_tartaruga >= 70 and posizione_lepre >= 70:
 
+            controllo = True
+
             time.sleep(1)
             os.system('clear')
 
@@ -129,6 +145,14 @@ D   D  RRRR   AAAAA  W W W
 D   D  R  R   A   A  WW WW
 DDDD   R   R  A   A  W   W
                   """)
+
+            if minuti == 0:
+
+                print(f"Durata gara: {secondi} secondi.")
+
+            elif minuti > 0:
+
+                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
             
             interruttore: int = 1
 
@@ -161,11 +185,14 @@ DDDD   R   R  A   A  W   W
                 posizione_tartaruga = 1
                 posizione_lepre = 1
                 giocata = 1
-                os.system('clear')
+                secondi = 0
+                minuti = 0
                 time.sleep(2)
+                os.system('clear')
 
         elif posizione_tartaruga >= 70:
 
+            controllo = True
             posizione_tartaruga = 70
 
             time.sleep(1)
@@ -184,6 +211,14 @@ DDDD   R   R  A   A  W   W
 
 """)
             print(f"Risultato finale: {max_tarta} vs {max_lepre}")
+
+            if minuti == 0:
+
+                print(f"Durata gara: {secondi} secondi.")
+
+            elif minuti > 0:
+
+                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
             
             interruttore: int = 1
 
@@ -216,9 +251,14 @@ DDDD   R   R  A   A  W   W
                 posizione_tartaruga = 1
                 posizione_lepre = 1
                 giocata = 1
+                secondi = 0
+                minuti = 0
+                time.sleep(2)
+                os.system('clear')
 
         elif posizione_lepre >= 70:
 
+            controllo = True
             posizione_lepre = 70
 
             time.sleep(1)
@@ -236,6 +276,14 @@ DDDD   R   R  A   A  W   W
         > "<       []
 """)
             print(f"Risultato finale: {max_lepre} vs {max_tarta}")
+
+            if minuti == 0:
+
+                print(f"Durata gara: {secondi} secondi.")
+
+            elif minuti > 0:
+
+                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
             
             interruttore: int = 1
 
@@ -268,6 +316,10 @@ DDDD   R   R  A   A  W   W
                 posizione_tartaruga = 1
                 posizione_lepre = 1
                 giocata = 1
+                secondi = 0
+                minuti = 0
+                time.sleep(2)
+                os.system('clear')
         
         elif posizione_tartaruga < 1:
 
@@ -287,11 +339,12 @@ DDDD   R   R  A   A  W   W
             pista[posizione_lepre - 1] = 'H'
 
         #print('Tarta',pos_t,'\n', 'Lepre', pos_l)
-        if giocata:
+        if controllo == False:
             
             if posizione_tartaruga > posizione_lepre:
                 
-                print(f"1°[Tarta pos]= {posizione_tartaruga}\n2°[Lepre pos]= {posizione_lepre}\n")
+                print(f"1° pos [Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
+                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
                 print(*pista, '\n')
                 print(
 f"              \n"
@@ -305,7 +358,8 @@ f"     U U      \n"
 
             elif posizione_tartaruga < posizione_lepre:
                 
-                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}\n")
+                print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
+                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
                 print(*pista, '\n')
                 print("""
        _
@@ -318,7 +372,8 @@ f"     U U      \n"
 
             else:
 
-                print(f"1°[Lepre pos]= {posizione_lepre}\n2°[Tarta pos]= {posizione_tartaruga}\n")
+                print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
+                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
                 print(*pista, '\n')
                 print("""
      OOO   U   U   CCCC  H   H  [] []
@@ -327,6 +382,11 @@ f"     U U      \n"
     O   O  U   U  C      H   H  
      OOO   UUUUU   CCCC  H   H  [] []
                 """)
+
+        elif controllo == True:
+
+            controllo = False
+            giocata = 0
 
         giocata += 1
 
