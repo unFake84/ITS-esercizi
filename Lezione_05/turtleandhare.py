@@ -414,10 +414,6 @@ DDDD   R   R  A   A  W   W
                 minuti = 0
                 time.sleep(2)
                 os.system('clear')
-        
-
-
-
 
         elif posizione_tartaruga != posizione_lepre:
 
