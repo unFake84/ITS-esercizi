@@ -58,6 +58,7 @@ def gara(pos_t: int, pos_l: int):
     minuti: int = 0
     secondi: int = 0
     meteo: bool = False
+    terreno: list[str] = [".",".",",",",",".","Y",".",".",","]
 
     while True:
 
@@ -104,15 +105,18 @@ def gara(pos_t: int, pos_l: int):
      /     |     \\
            |
                 """)
-            print('TH', *partenza, '\n' * 2)
+            print('TH', *partenza)
             print("""
-            BBBB  AAAA  N   N  GGGGG   MM MM
-            B  B  A  A  NN  N  G       MM MM
-            BBB   AAAA  N N N  G  GG   MM MM
-            B  B  A  A  N  NN  G   G  
-            BBBB  A  A  N   N  GGGGG   MM MM
+    BBBB  AAAA  N   N  GGGGG   MM MM
+    B  B  A  A  NN  N  G       MM MM
+    BBB   AAAA  N N N  G  GG   MM MM
+    B  B  A  A  N  NN  G   G  
+    BBBB  A  A  N   N  GGGGG   MM MM
+                  
             """)
-            print('\n' * 5)
+            
+            print(*terreno, sep= ".")
+            #print('\n' * 4)
 
             giocata += 1
             secondi += 1
@@ -150,11 +154,16 @@ def gara(pos_t: int, pos_l: int):
             posizione_tartaruga = 1
             pista[posizione_tartaruga - 1] = 'T'
 
+            if posizione_lepre < 1:
+
+                posizione_lepre = 1
+                pista[posizione_lepre - 1] = 'H'
+
             if posizione_lepre < 70:
 
                 pista[posizione_lepre - 1] = 'H'
 
-            else:
+            elif posizione_lepre >= 70:
 
                 posizione_lepre = 70
                 pista[posizione_lepre - 1] = 'W'
@@ -165,14 +174,19 @@ def gara(pos_t: int, pos_l: int):
             posizione_lepre = 1
             pista[posizione_lepre - 1] = 'H'
 
-            if posizione_tartaruga < 70:
+            if posizione_tartaruga < 1:
+
+                posizione_tartaruga = 1
+                pista[posizione_tartaruga - 1] = 'T'
+
+            elif posizione_tartaruga < 70:
 
                 pista[posizione_tartaruga - 1] = 'T'
 
-            else:
+            elif posizione_tartaruga >= 70:
 
                 posizione_tartaruga = 70
-                pista[posizione_tartaruga - 1] = 'W'#
+                pista[posizione_tartaruga - 1] = 'W'
 
         max_tarta: int = posizione_tartaruga
         max_lepre: int = posizione_lepre
@@ -223,15 +237,17 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 1:
+            elif minuti >= 2:
 
                 if secondi == 1:
 
                     print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
-                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+                elif secondi >= 2:
+                    
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti == 1:
 
                 if secondi == 0:
 
@@ -241,7 +257,7 @@ DDDD   R   R  A   A  W   W
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
 
-                else:
+                elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
@@ -328,15 +344,17 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 1:
+            elif minuti >= 2:
 
                 if secondi == 1:
 
                     print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
-                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+                elif secondi >= 2:
+                    
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti == 1:
 
                 if secondi == 0:
 
@@ -346,7 +364,7 @@ DDDD   R   R  A   A  W   W
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
 
-                else:
+                elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
@@ -432,15 +450,17 @@ DDDD   R   R  A   A  W   W
 
                 print(f"Durata gara: {secondi} secondi.")
 
-            elif minuti > 1:
+            elif minuti >= 2:
 
                 if secondi == 1:
 
                     print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
 
-                print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
+                elif secondi >= 2:
+                    
+                    print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
 
-            elif minuti > 0:
+            elif minuti == 1:
 
                 if secondi == 0:
 
@@ -450,7 +470,7 @@ DDDD   R   R  A   A  W   W
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
 
-                else:
+                elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
             
@@ -539,9 +559,8 @@ f"              \n"
 f"         _    \n"
 f"     .-./*)   \n"
 f"   _/___\/    \n"
-f"     U U      \n"
+f"     U U      "
                 )
-                print('\n' * 5)
 
             elif posizione_tartaruga < posizione_lepre:
                 
@@ -583,9 +602,7 @@ f"     U U      \n"
        \||
      __(_";
     /    \\
-   ()___)\)_
-                        """)
-                print('\n' * 5)                
+   ()___)\)_""")                
 
             else:
 
@@ -620,15 +637,14 @@ f"     U U      \n"
            |
                         """)
 
-                print(*pista, '\n')
+                print(*pista)
                 print("""
      OOO   U   U   CCCC  H   H  [] []
     O   O  U   U  C      H   H  || ||
     O   O  U   U  C      HHHHH  [] []
     O   O  U   U  C      H   H  
-     OOO   UUUUU   CCCC  H   H  [] []
-                """)
-                print('\n' * 6)
+     OOO   UUUUU   CCCC  H   H  [] []""")
+                print('\n')
 
         elif controllo == True:
 
@@ -638,5 +654,12 @@ f"     U U      \n"
         giocata += 1
         pos_t = 0
         pos_l = 0
+
+        if terreno:
+                
+            ripetizione_terreno = terreno.pop(0)
+            terreno.append(ripetizione_terreno)
+            print(*terreno, sep= ".")
+            print('\n' * 4)
 
 gara(tartaruga(), lepre())
