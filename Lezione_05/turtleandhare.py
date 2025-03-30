@@ -65,12 +65,12 @@ def gara(pos_t: int, pos_l: int):
 
         if giocata == 1:
 
-            print("LET THE GAME BEGIN!!!")
+            print("LET THE GAME BEGIN!!!", "\n" * 7)
             time.sleep(1)
             os.system('clear')
 
             print("READY!!!")
-            print("         _\n     .-./*)\n   _/___\/\n     U U\n")
+            print("         _\n     .-./*)\n   _/___\/\n     U U\n", "\n" * 5)
             time.sleep(1)
             os.system('clear')
 
@@ -82,7 +82,7 @@ def gara(pos_t: int, pos_l: int):
       __(_";
      /    \\
     ()___)\)_
-                """)
+                """, "\n" * 5)
             time.sleep(1)
             os.system('clear')
 
@@ -93,6 +93,17 @@ def gara(pos_t: int, pos_l: int):
             print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
             print(f"1° pos[Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
             print(f"Tempo di gara: min {minuti}:{secondi} sec\n")
+            print("""
+           |
+     \     |     /
+       \       /
+         ,d8b,      
+    -----88888 ---   
+         '98P'      
+       /       \    
+     /     |     \\
+           |
+                """)
             print('TH', *partenza, '\n' * 2)
             print("""
             BBBB  AAAA  N   N  GGGGG   MM MM
@@ -101,6 +112,7 @@ def gara(pos_t: int, pos_l: int):
             B  B  A  A  N  NN  G   G  
             BBBB  A  A  N   N  GGGGG   MM MM
             """)
+            print('\n' * 5)
 
             giocata += 1
             secondi += 1
@@ -173,9 +185,30 @@ def gara(pos_t: int, pos_l: int):
 
             controllo = True
 
-            time.sleep(1)
+            print("""
+                   __
+                  / \--..____
+                   \ \       \-----,,,..
+                    \ \       \         \--,,..
+                     \ \       \         \  ,'
+                      \ \       \         \ ``..
+                       \ \       \         \-''
+                        \ \       \__,,--'''
+                         \ \       \.
+                          \ \      ,/
+                           \ \__..-
+                            \ \\
+                             \ \\
+                              \ \   
+                               \ \\
+                                \ \\
+                                 \ \\
+                                  \ \\
+                                   \ \\
+                                    \ \            
+            """)
+            time.sleep(1.5)
             os.system('clear')
-
             print("IT'S A TIE.")
             print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
             print("""
@@ -253,9 +286,30 @@ DDDD   R   R  A   A  W   W
             controllo = True
             posizione_tartaruga = 70
 
-            time.sleep(1)
+            print("""
+                   __
+                  / \--..____
+                   \ \       \-----,,,..
+                    \ \       \         \--,,..
+                     \ \       \         \  ,'
+                      \ \       \         \ ``..
+                       \ \       \         \-''
+                        \ \       \__,,--'''
+                         \ \       \.
+                          \ \      ,/
+                           \ \__..-
+                            \ \\
+                             \ \\
+                              \ \   
+                               \ \\
+                                \ \\
+                                 \ \\
+                                  \ \\
+                                   \ \\
+                                    \ \            
+            """)
+            time.sleep(1.5)
             os.system('clear')
-
             print("TORTOISE WINS! || VAY!!!")
             print('1° posizione Tartaruga =',posizione_tartaruga, '\n', '2° posizione Lepre =', posizione_lepre)
             print("""
@@ -337,9 +391,30 @@ DDDD   R   R  A   A  W   W
             controllo = True
             posizione_lepre = 70
 
-            time.sleep(1)
+            print("""
+                   __
+                  / \--..____
+                   \ \       \-----,,,..
+                    \ \       \         \--,,..
+                     \ \       \         \  ,'
+                      \ \       \         \ ``..
+                       \ \       \         \-''
+                        \ \       \__,,--'''
+                         \ \       \.
+                          \ \      ,/
+                           \ \__..-
+                            \ \\
+                             \ \\
+                              \ \   
+                               \ \\
+                                \ \\
+                                 \ \\
+                                  \ \\
+                                   \ \\
+                                    \ \            
+            """)
+            time.sleep(1.5)
             os.system('clear')
-
             print("HARE WINS || YUCH!!!")
             print('1° posizione: Lepre =',posizione_lepre, '\n', '2° posizione: Tartaruga =', posizione_tartaruga)
             print("""
@@ -427,6 +502,35 @@ DDDD   R   R  A   A  W   W
                 
                 print(f"1° pos [Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
                 print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
+
+                if meteo == True:
+
+                    print("""
+
+        _
+      _( )_          _      
+    _(     )_      _( )_
+   (_________)   _(     )_
+     \  \  \    (_________)
+       \  \       \  \ \\
+                    \  \   
+
+                            """)
+
+                if meteo == False:
+
+                    print("""
+           |
+     \     |     /
+       \       /
+         ,d8b,      
+    -----88888 ---   
+         '98P'      
+       /       \    
+     /     |     \\
+           |
+                        """)
+
                 print(*pista, '\n')
                 print(
 f"              \n"
@@ -437,11 +541,41 @@ f"     .-./*)   \n"
 f"   _/___\/    \n"
 f"     U U      \n"
                 )
+                print('\n' * 5)
 
             elif posizione_tartaruga < posizione_lepre:
                 
                 print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
                 print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
+
+                if meteo == True:
+
+                    print("""
+
+        _
+      _( )_          _      
+    _(     )_      _( )_
+   (_________)   _(     )_
+     \  \  \    (_________)
+       \  \       \  \ \\
+                    \  \   
+
+                            """)
+
+                if meteo == False:
+
+                    print("""
+           |
+     \     |     /
+       \       /
+         ,d8b,      
+    -----88888 ---   
+         '98P'      
+       /       \    
+     /     |     \\
+           |
+                        """)
+
                 print(*pista, '\n')
                 print("""
        _
@@ -451,11 +585,41 @@ f"     U U      \n"
     /    \\
    ()___)\)_
                         """)
+                print('\n' * 5)                
 
             else:
 
                 print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
                 print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
+
+                if meteo == True:
+
+                    print("""
+
+        _
+      _( )_          _      
+    _(     )_      _( )_
+   (_________)   _(     )_
+     \  \  \    (_________)
+       \  \       \  \ \\
+                    \  \   
+
+                            """)
+
+                if meteo == False:
+
+                    print("""
+           |
+     \     |     /
+       \       /
+         ,d8b,      
+    -----88888 ---   
+         '98P'      
+       /       \    
+     /     |     \\
+           |
+                        """)
+
                 print(*pista, '\n')
                 print("""
      OOO   U   U   CCCC  H   H  [] []
@@ -464,6 +628,7 @@ f"     U U      \n"
     O   O  U   U  C      H   H  
      OOO   UUUUU   CCCC  H   H  [] []
                 """)
+                print('\n' * 6)
 
         elif controllo == True:
 
