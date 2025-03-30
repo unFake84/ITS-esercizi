@@ -105,7 +105,7 @@ def gara(pos_t: int, pos_l: int):
      /     |     \\
            |
                 """)
-            print('TH', *partenza)
+            print('[START]', 'TH', *partenza, '[GOAL]')
             print("""
     BBBB  AAAA  N   N  GGGGG   MM MM
     B  B  A  A  NN  N  G       MM MM
@@ -551,7 +551,7 @@ DDDD   R   R  A   A  W   W
            |
                         """)
 
-                print(*pista, '\n')
+                print('[START]', *pista, '[GOAL]','\n')
                 print(
 f"              \n"
 f"              \n"                    
@@ -595,7 +595,7 @@ f"     U U      "
            |
                         """)
 
-                print(*pista, '\n')
+                print('[START]', *pista, '[GOAL]','\n')
                 print("""
        _
       (\\\\
@@ -637,13 +637,13 @@ f"     U U      "
            |
                         """)
 
-                print(*pista)
+                print('[START]', *pista, '[GOAL]')
                 print("""
-     OOO   U   U   CCCC  H   H  [] []
-    O   O  U   U  C      H   H  || ||
-    O   O  U   U  C      HHHHH  [] []
-    O   O  U   U  C      H   H  
-     OOO   UUUUU   CCCC  H   H  [] []""")
+ OOO   U   U   CCCC  H   H  [] []
+O   O  U   U  C      H   H  || ||
+O   O  U   U  C      HHHHH  [] []
+O   O  U   U  C      H   H  
+ OOO   UUUUU   CCCC  H   H  [] []""")
                 print('\n')
 
         elif controllo == True:
@@ -656,9 +656,9 @@ f"     U U      "
         pos_l = 0
 
         if terreno:
-                
-            ripetizione_terreno = terreno.pop(0)
-            terreno.append(ripetizione_terreno)
+
+            terreno.pop(0)
+            terreno.append(random.choice([".", ",", "Y"]))
             print(*terreno, sep= ".")
             print('\n' * 4)
 
