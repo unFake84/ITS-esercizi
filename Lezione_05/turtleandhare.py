@@ -59,6 +59,8 @@ def gara(pos_t: int, pos_l: int):
     secondi: int = 0
     meteo: bool = False
     terreno: list[str] = [".",".",",",",",".","Y",".",".",","]
+    stamina_tarta: int = 100
+    stamina_lepre: int = 100
 
     while True:
 
@@ -107,11 +109,11 @@ def gara(pos_t: int, pos_l: int):
                 """)
             print('[START]', 'TH', *partenza, '[GOAL]')
             print("""
-    BBBB  AAAA  N   N  GGGGG   MM MM
-    B  B  A  A  NN  N  G       MM MM
-    BBB   AAAA  N N N  G  GG   MM MM
-    B  B  A  A  N  NN  G   G  
-    BBBB  A  A  N   N  GGGGG   MM MM
+BBBB  AAAA  N   N  GGGGG   MM MM
+B  B  A  A  NN  N  G       MM MM
+BBB   AAAA  N N N  G  GG   MM MM
+B  B  A  A  N  NN  G   G  
+BBBB  A  A  N   N  GGGGG   MM MM
                   
             """)
             
@@ -145,6 +147,7 @@ def gara(pos_t: int, pos_l: int):
 
         print("!!WHO WILL COME FIRST!!?")
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
+        #print(f"STAMINA TARTA: {stamina_tarta} --------- STAMINA LEPRE: {stamina_lepre}")
 
         posizione_tartaruga += pos_t
         posizione_lepre += pos_l
@@ -167,7 +170,6 @@ def gara(pos_t: int, pos_l: int):
 
                 posizione_lepre = 70
                 pista[posizione_lepre - 1] = 'W'
-
 
         elif posizione_lepre < 1:
 
@@ -649,6 +651,7 @@ O   O  U   U  C      H   H
         elif controllo == True:
 
             controllo = False
+            meteo = False
             giocata = 0
 
         giocata += 1
@@ -658,7 +661,7 @@ O   O  U   U  C      H   H
         if terreno:
 
             terreno.pop(0)
-            terreno.append(random.choice([".", ",", "Y"]))
+            terreno.append(random.choice([".", ",", "Y", "YY"]))
             print(*terreno, sep= ".")
             print('\n' * 4)
 
