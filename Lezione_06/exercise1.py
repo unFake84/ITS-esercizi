@@ -51,7 +51,6 @@ if __name__ == "__main__":
     # people: list[Any] = [alice, bob, charlie, delta, echo]
 
     # 4.
-
     eta_min: int = 130
     nome_min: str = ""
 

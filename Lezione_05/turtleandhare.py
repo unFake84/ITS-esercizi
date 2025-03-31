@@ -59,8 +59,6 @@ def gara(pos_t: int, pos_l: int):
     secondi: int = 0
     meteo: bool = False
     terreno: list[str] = [".",".",",",",",".","Y",".",".",","]
-    stamina_tarta: int = 100
-    stamina_lepre: int = 100
 
     while True:
 
@@ -69,7 +67,7 @@ def gara(pos_t: int, pos_l: int):
         if giocata == 1:
 
             print("LET THE GAME BEGIN!!!", "\n" * 7)
-            time.sleep(1)
+            time.sleep(1.5)
             os.system('clear')
 
             print("READY!!!")
@@ -118,7 +116,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
             """)
             
             print(*terreno, sep= ".")
-            #print('\n' * 4)
+            print('\n' * 4)
 
             giocata += 1
             secondi += 1
@@ -648,21 +646,35 @@ O   O  U   U  C      H   H
  OOO   UUUUU   CCCC  H   H  [] []""")
                 print('\n')
 
-        elif controllo == True:
+        if terreno and giocata > 1:
+
+            if posizione_tartaruga > posizione_lepre:
+
+                terreno.pop(0)
+                terreno.append(random.choice([".", ",", "Y", "YY", ".", ",", ",", "."]))
+                print(*terreno, sep= ".")
+                print('\n' * 4)
+
+            else:
+
+                terreno.pop(0)
+                terreno.pop(0)
+                
+                terreno.append(random.choice([".", ",", "Y", "YY"]))
+                terreno.append(",")
+                
+                print(*terreno, sep= ".")
+                print('\n' * 4)   
+
+        if controllo == True:
 
             controllo = False
             meteo = False
             giocata = 0
+            os.system('clear')
 
         giocata += 1
         pos_t = 0
         pos_l = 0
-
-        if terreno:
-
-            terreno.pop(0)
-            terreno.append(random.choice([".", ",", "Y", "YY"]))
-            print(*terreno, sep= ".")
-            print('\n' * 4)
 
 gara(tartaruga(), lepre())
