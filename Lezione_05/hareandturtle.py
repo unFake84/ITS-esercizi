@@ -133,7 +133,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
             time.sleep(1)
 
             giocata += 1
-            secondi += 1
+            secondi += 2
             iterazionitot += 20
 
         time.sleep(0.1)
