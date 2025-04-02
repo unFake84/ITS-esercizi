@@ -75,6 +75,8 @@ def gara(pos_t: int, pos_l: int):
 
         if giocata == 1:
 
+            os.system('clear')
+
             #print(f"gestionemeteo [{gestionemeteo}]----pos_t [{pos_t}]----pos_l [{pos_l}]----dieciminuti {iterazionitot}")
 
             print("LET THE GAME BEGIN!!!", "\n" * 7)
@@ -151,7 +153,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
         pista: list[str] = ['_'] * 70
 
-        if decimosecondo == 10:
+        if decimosecondo == 10 and posizione_tartaruga:
 
             if meteo == True:
 
@@ -190,20 +192,36 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
                 posizione_lepre = 70
 
-        elif posizione_lepre < 1:
+        if posizione_lepre < 1:
 
             posizione_lepre = 1
 
             if posizione_tartaruga < 1:
 
                 posizione_tartaruga = 1
-                pista[posizione_tartaruga - 1] = 'T'
 
             elif posizione_tartaruga >= 70:
 
                 posizione_tartaruga = 70
 
-        elif posizione_tartaruga == posizione_lepre and posizione_tartaruga < 70 and posizione_lepre < 70:
+        if posizione_tartaruga != posizione_lepre and posizione_tartaruga <= 70 and posizione_lepre <= 70:
+
+            if pos_t > pos_l:
+
+                pista[posizione_tartaruga - 1] = '🐢→'
+                pista[posizione_lepre - 1] = '←🐇'
+
+            elif pos_t < pos_l:
+
+                pista[posizione_tartaruga - 1] = '←🐢'
+                pista[posizione_lepre - 1] = '🐇→'
+
+            elif pos_t == pos_l:
+
+                pista[posizione_tartaruga - 1] = '〰🐢〰'
+                pista[posizione_lepre - 1] = '〰🐇〰'
+
+        if posizione_tartaruga == posizione_lepre and posizione_tartaruga < 70 and posizione_lepre < 70:
 
             pista[posizione_lepre - 1] = '🐢➔💥🐇⤴'
 
@@ -473,8 +491,6 @@ DDDD   R   R  A   A  W   W
                 elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
-            
-            # interruttore: int = 1
 
             while interruttore == 1:
                 
@@ -503,23 +519,6 @@ DDDD   R   R  A   A  W   W
             elif interruttore == 0 and user == 'si':
 
                 controllo = True
-
-        elif posizione_tartaruga != posizione_lepre:
-
-            if pos_t > pos_l:
-
-                pista[posizione_tartaruga - 1] = '🐢→'
-                pista[posizione_lepre - 1] = '←🐇'
-
-            elif pos_t < pos_l:
-
-                pista[posizione_tartaruga - 1] = '←🐢'
-                pista[posizione_lepre - 1] = '🐇→'
-
-            elif pos_t == pos_l:
-
-                pista[posizione_tartaruga - 1] = '〰🐢〰'
-                pista[posizione_lepre - 1] = '〰🐇〰'
 
         if controllo == False:
             
@@ -690,7 +689,6 @@ O   O  U   U  C      H   H
             minuti = 0
             interruttore = 1
             time.sleep(2)
-            os.system('clear')
     
     print("Made by\n   Dioni\n  ®2025.")
 
