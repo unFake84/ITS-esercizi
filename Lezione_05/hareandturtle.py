@@ -144,7 +144,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
             meteo = not meteo
             gestionemeteo += 1
             
-        #print(f"proviamo[decimosecondo]: {decimosecondo}----banana[controllo_meteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
+
 
         if secondi == 60:
 
@@ -153,7 +153,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
         pista: list[str] = ['_'] * 70
 
-        if decimosecondo == 10 and posizione_tartaruga:
+        if decimosecondo == 10:
 
             if meteo == True:
 
@@ -176,9 +176,6 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
         max_tarta: int = posizione_tartaruga
         max_lepre: int = posizione_lepre
-
-        print("!!WHO WILL COME FIRST!!?")
-        print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
 
         if posizione_tartaruga < 1:
 
@@ -225,7 +222,11 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
             pista[posizione_lepre - 1] = '🐢➔💥🐇⤴'
 
-        elif posizione_tartaruga >= 70 and posizione_lepre >= 70:
+        #print(f"proviamo[decimosecondo]: {decimosecondo}----banana[controllo_meteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
+        print("!!WHO WILL COME FIRST!!?")
+        print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
+
+        if max_tarta >= 70 and max_lepre >= 70:
 
             controllo = True
 
@@ -674,6 +675,7 @@ O   O  U   U  C      H   H
             else:
 
                 print(*terreno, sep= ".")
+                print('\n' * 4)
 
         if controllo == True:
 
@@ -690,6 +692,15 @@ O   O  U   U  C      H   H
             interruttore = 1
             time.sleep(2)
     
-    print("Made by\n   Dioni\n  ®2025.")
+    print("""
+            /  
+        _--/   
+    Made  ||   
+    by         
+    Dioni      
+    ®2025.     
+  ||__         
+  /--          
+""")
 
 gara(tartaruga(), lepre())
