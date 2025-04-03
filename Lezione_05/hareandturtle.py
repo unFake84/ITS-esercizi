@@ -57,7 +57,7 @@ def gara(pos_t: int, pos_l: int):
     controllo: bool = False
     minuti: int = 0
     iterazionitot: int = 0
-    secondi: int = 0
+    secondi: int = 1
     meteo: bool = False
     terreno: list[str] = [".",".",",",",",".","Y",".",".",","]
     decimosecondo: int = 1
@@ -81,15 +81,18 @@ def gara(pos_t: int, pos_l: int):
 
             #print(f"gestionemeteo [{gestionemeteo}]----pos_t [{pos_t}]----pos_l [{pos_l}]----dieciminuti {iterazionitot}")
 
-            print("LET THE GAME BEGIN!!!", "\n" * 7)
+            print("")
+            print("LET THE GAME BEGIN!!!", "\n" * 30)
             time.sleep(1.5)
             os.system('clear')
 
+            print("")
             print("READY!!!")
-            print("         _\n     .-./*)\n   _/___\/\n     U U\n", "\n" * 5)
+            print("         _\n     .-./*)\n   _/___\/\n     U U\n", "\n" * 25)
             time.sleep(1)
             os.system('clear')
 
+            print("")
             print("SET!!!")
             print("""
         _
@@ -98,7 +101,7 @@ def gara(pos_t: int, pos_l: int):
       __(_";
      /    \\
     ()___)\)_
-                """, "\n" * 5)
+                """, "\n" * 22)
             time.sleep(1)
             os.system('clear')
 
@@ -108,7 +111,7 @@ def gara(pos_t: int, pos_l: int):
 
             print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
             print(f"1° pos[Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
-            print(f"Tempo di gara: min {minuti}:{secondi} sec\n")
+            print(f"Tempo di gara: min 0{minuti}:0{secondi} sec\n")
             print("""
            |
      \     |     /
@@ -120,22 +123,23 @@ def gara(pos_t: int, pos_l: int):
      /     |     \\
            |
                 """)
+            print("\n" * 3)
             print('[START]', '🏁🎉!', *partenza, '[GOAL]')
             print("""
+                  
 BBBB  AAAA  N   N  GGGGG   MM MM
 B  B  A  A  NN  N  G       MM MM
 BBB   AAAA  N N N  G  GG   MM MM
 B  B  A  A  N  NN  G   G  
 BBBB  A  A  N   N  GGGGG   MM MM
-                  
-            """)
+                  """)
             
             print(*terreno, sep= ".")
             print('\n' * 4)
             time.sleep(1)
 
             giocata += 1
-            secondi += 2
+            secondi += 1
             iterazionitot += 20
 
         time.sleep(0.1)
@@ -203,6 +207,22 @@ BBBB  A  A  N   N  GGGGG   MM MM
                 posizione_tartaruga = 70
                 controllo == True
 
+        if posizione_tartaruga >= 70 and posizione_lepre >= 70:
+
+            posizione_tartaruga = 70
+            posizione_lepre = 70
+            controllo = True
+
+        if posizione_tartaruga >= 70:
+
+            posizione_tartaruga = 70
+            controllo = True
+
+        if posizione_lepre >= 70:
+
+            posizione_lepre = 70
+            controllo = True
+
         if posizione_tartaruga != posizione_lepre and posizione_tartaruga <= 70 and posizione_lepre <= 70:
 
             if pos_t > pos_l:
@@ -224,12 +244,12 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
             pista[posizione_lepre - 1] = "''🐢💥🐇,,,"
 
-        print(f"proviamo[decimosecondo]: {decimosecondo}----banana[gestionemeteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
+        #print(f"proviamo[decimosecondo]: {decimosecondo}----banana[gestionemeteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
         print("!!WHO WILL COME FIRST!!?")
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
         print(f"1° pos [{t if posizione_tartaruga > posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga > posizione_lepre else posizione_lepre}")
         print(f"2° pos [{t if posizione_tartaruga < posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga < posizione_lepre else posizione_lepre}")
-        print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
+        print(f"Tempo di gara: min 0{minuti}:{(str(0) + str(secondi)) if secondi < 10 else secondi} sec \n")
         if controllo == False:
 
             if meteo == True:
@@ -259,7 +279,8 @@ BBBB  A  A  N   N  GGGGG   MM MM
      /     |     \\
            |
                         """)
-            
+
+            print("\n" * 3)
             print('[START]', *pista, '[GOAL]', "\n")
 
             if posizione_tartaruga > posizione_lepre:
@@ -287,14 +308,14 @@ f"     U U      "
             else:
 
                 print("""                      
+                      
  OOO   U   U   CCCC  H   H  [] []
 O   O  U   U  C      H   H  || ||
 O   O  U   U  C      HHHHH  [] []
 O   O  U   U  C      H   H  
- OOO   UUUUU   CCCC  H   H  [] []""")                
-                print('\n')
+ OOO   UUUUU   CCCC  H   H  [] []""")
 
-        if max_tarta >= 70 and max_lepre >= 70:
+        if controllo == True:
 
             os.system('clear')
             print("""
@@ -321,9 +342,12 @@ O   O  U   U  C      H   H
             """)
             time.sleep(1.5)
             os.system('clear')
-            print("IT'S A TIE.")
-            print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
-            print("""
+
+            if max_tarta >= 70 and max_lepre >= 70:
+
+                print("IT'S A TIE.")
+                print('[Tarta pos]=',posizione_tartaruga,'\n', '[Lepre pos]=', posizione_lepre)
+                print("""
 DDDD   RRRR   AAAAA  W   W
 D   D  R   R  A   A  W   W
 D   D  RRRR   AAAAA  W W W
@@ -331,92 +355,11 @@ D   D  R  R   A   A  WW WW
 DDDD   R   R  A   A  W   W
                   """)
 
-            if minuti == 0:
+            elif posizione_tartaruga >= 70:
 
-                print(f"Durata gara: {secondi} secondi.")
-
-            elif minuti >= 2:
-
-                if secondi == 1:
-
-                    print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
-
-                elif secondi >= 2:
-                    
-                    print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
-
-            elif minuti == 1:
-
-                if secondi == 0:
-
-                    print(f"Durata gara: {minuti} minuto.")
-
-                elif secondi == 1:
-
-                    print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
-
-                elif secondi >= 2:
-
-                    print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
-
-            while interruttore == 1:
-                
-                    user: str = (input("Ricominciare?: "))
-
-                    if user == 'no':
-                    
-                        interruttore = 0                    
-
-                    elif user != 'si':
-
-                        print("""
-      Risposta non valida
-    Per chiudere digitare 'no'.
-    Per riavviare digitare 'si'.
-                        """)
-
-                    elif user == 'si':
-
-                        interruttore = 0
-
-            if interruttore == 0 and user == 'no':
-
-                break
-
-            elif interruttore == 0 and user == 'si':
-
-                controllo = True
-
-        elif posizione_tartaruga >= 70:
-
-            os.system('clear')
-            print("""
-                   __
-                  / \--..____
-                   \ \       \-----,,,..
-                    \ \       \         \--,,..
-                     \ \       \         \  ,'
-                      \ \       \         \ ``..
-                       \ \       \         \-''
-                        \ \       \__,,--'''
-                         \ \       \.
-                          \ \      ,/
-                           \ \__..-
-                            \ \\
-                             \ \\
-                              \ \   
-                               \ \\
-                                \ \\
-                                 \ \\
-                                  \ \\
-                                   \ \\
-                                    \_\            
-            """)
-            time.sleep(1.5)
-            os.system('clear')
-            print("TORTOISE WINS! || VAY!!!")
-            print('1° posizione Tartaruga =',posizione_tartaruga, '\n', '2° posizione Lepre =', posizione_lepre)
-            print("""
+                print("TORTOISE WINS! || VAY!!!")
+                print('1° posizione Tartaruga =',posizione_tartaruga, '\n', '2° posizione Lepre =', posizione_lepre)
+                print("""
 
      _..---.--.
    .'\ __|/O.__)       []# # #
@@ -426,94 +369,12 @@ DDDD   R   R  A   A  W   W
    (_..)--(.._)'--'    []
 
 """)
-            print(f"Risultato finale: {max_tarta} vs {max_lepre}")
 
-            if minuti == 0:
+            elif posizione_lepre >= 70:
 
-                print(f"Durata gara: {secondi} secondi.")
-
-            elif minuti >= 2:
-
-                if secondi == 1:
-
-                    print(f"Durata gara: {minuti} minuti e {secondi} secondo.")
-
-                elif secondi >= 2:
-                    
-                    print(f"Durata gara: {minuti} minuti e {secondi} secondi.")
-
-            elif minuti == 1:
-
-                if secondi == 0:
-
-                    print(f"Durata gara: {minuti} minuto.")
-
-                elif secondi == 1:
-
-                    print(f"Durata gara: {minuti} minuto e {secondi} secondo.")
-
-                elif secondi >= 2:
-
-                    print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
-
-            while interruttore == 1:
-                
-                    user: str = (input("Ricominciare?: "))
-
-                    if user == 'no':
-                    
-                        interruttore = 0                    
-
-                    elif user != 'si':
-
-                        print("""
-      Risposta non valida
-    Per chiudere digitare 'no'.
-    Per riavviare digitare 'si'.
-                        """)
-
-                    elif user == 'si':
-
-                        interruttore = 0
-                    
-            if interruttore == 0 and user == 'no':
-
-                break
-
-            elif interruttore == 0 and user == 'si':
-
-                controllo = True
-
-        elif posizione_lepre >= 70:
-
-            os.system('clear')
-            print("""
-                   __
-                  / \--..____
-                   \ \       \-----,,,..
-                    \ \       \         \--,,..
-                     \ \       \         \  ,'
-                      \ \       \         \ ``..
-                       \ \       \         \-''
-                        \ \       \__,,--'''
-                         \ \       \.
-                          \ \      ,/
-                           \ \__..-
-                            \ \\
-                             \ \\
-                              \ \   
-                               \ \\
-                                \ \\
-                                 \ \\
-                                  \ \\
-                                   \ \\
-                                    \_\            
-            """)
-            time.sleep(1.5)
-            os.system('clear')
-            print("HARE WINS || YUCH!!!")
-            print('1° posizione: Lepre =',posizione_lepre, '\n', '2° posizione: Tartaruga =', posizione_tartaruga)
-            print("""
+                print("HARE WINS || YUCH!!!")
+                print('1° posizione: Lepre =',posizione_lepre, '\n', '2° posizione: Tartaruga =', posizione_tartaruga)
+                print("""
 
       _     _
      ( |\  //|     []# # #
@@ -522,7 +383,8 @@ DDDD   R   R  A   A  W   W
        ((_v.)      ||
         > "<       []
 """)
-            print(f"Risultato finale: {max_lepre} vs {max_tarta}")
+
+            print(f"Risultato finale: {max_tarta if max_tarta > max_lepre else max_lepre} vs {max_tarta if max_tarta < max_lepre else max_lepre}")
 
             if minuti == 0:
 
@@ -633,3 +495,5 @@ DDDD   R   R  A   A  W   W
 """)
 
 gara(tartaruga(), lepre())
+
+# print("\n", "-"*173, "\n", "-"*173, "\n", "-"*173)
