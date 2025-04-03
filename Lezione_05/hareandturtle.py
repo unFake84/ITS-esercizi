@@ -63,6 +63,8 @@ def gara(pos_t: int, pos_l: int):
     decimosecondo: int = 1
     interruttore: int = 1
     gestionemeteo = 0
+    t: str = "Tarta🐢"
+    l: str = "Lepre🐇"
 
     while True:
 
@@ -102,7 +104,7 @@ def gara(pos_t: int, pos_l: int):
 
             print("BANG !!!!! AND THEY'RE OFF !!!!!")
             
-            partenza: list[str] = ['_'] * 69
+            partenza: list[str] = ['_'] * 72 
 
             print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
             print(f"1° pos[Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
@@ -118,7 +120,7 @@ def gara(pos_t: int, pos_l: int):
      /     |     \\
            |
                 """)
-            print('[START]', '🏁🎉', *partenza, '[GOAL]')
+            print('[START]', '🏁🎉!', *partenza, '[GOAL]')
             print("""
 BBBB  AAAA  N   N  GGGGG   MM MM
 B  B  A  A  NN  N  G       MM MM
@@ -143,8 +145,6 @@ BBBB  A  A  N   N  GGGGG   MM MM
 
             meteo = not meteo
             gestionemeteo += 1
-            
-
 
         if secondi == 60:
 
@@ -188,6 +188,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
             elif posizione_lepre >= 70:
 
                 posizione_lepre = 70
+                controllo = True
 
         if posizione_lepre < 1:
 
@@ -200,36 +201,102 @@ BBBB  A  A  N   N  GGGGG   MM MM
             elif posizione_tartaruga >= 70:
 
                 posizione_tartaruga = 70
+                controllo == True
 
         if posizione_tartaruga != posizione_lepre and posizione_tartaruga <= 70 and posizione_lepre <= 70:
 
             if pos_t > pos_l:
 
-                pista[posizione_tartaruga - 1] = '🐢→'
-                pista[posizione_lepre - 1] = '←🐇'
+                pista[posizione_tartaruga - 1] = '..🐢-→'
+                pista[posizione_lepre - 1] = '←-🐇..'
 
             elif pos_t < pos_l:
 
-                pista[posizione_tartaruga - 1] = '←🐢'
-                pista[posizione_lepre - 1] = '🐇→'
+                pista[posizione_tartaruga - 1] = '←-🐢..'
+                pista[posizione_lepre - 1] = '..🐇-→'
 
             elif pos_t == pos_l:
 
-                pista[posizione_tartaruga - 1] = '〰🐢〰'
-                pista[posizione_lepre - 1] = '〰🐇〰'
+                pista[posizione_tartaruga - 1] = "〰🐢〰"
+                pista[posizione_lepre - 1] = "〰🐇〰"
 
         if posizione_tartaruga == posizione_lepre and posizione_tartaruga < 70 and posizione_lepre < 70:
 
-            pista[posizione_lepre - 1] = '🐢➔💥🐇⤴'
+            pista[posizione_lepre - 1] = "''🐢💥🐇,,,"
 
-        #print(f"proviamo[decimosecondo]: {decimosecondo}----banana[controllo_meteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
+        print(f"proviamo[decimosecondo]: {decimosecondo}----banana[gestionemeteo]: [{gestionemeteo}]----dieciminuti[iterazionitot]: {iterazionitot}")
         print("!!WHO WILL COME FIRST!!?")
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
+        print(f"1° pos [{t if posizione_tartaruga > posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga > posizione_lepre else posizione_lepre}")
+        print(f"2° pos [{t if posizione_tartaruga < posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga < posizione_lepre else posizione_lepre}")
+        print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
+        if controllo == False:
+
+            if meteo == True:
+
+                    print("""
+
+        _
+      _( )_          _      
+    _(     )_      _( )_
+   (_________)   _(     )_
+     \  \  \    (_________)
+       \  \       \  \ \\
+                    \  \   
+
+                            """)
+
+            if meteo == False:
+
+                    print("""
+           |
+     \     |     /
+       \       /
+         ,d8b,      
+ - --- - 88888 --- - 
+         '98P'      
+       /       \    
+     /     |     \\
+           |
+                        """)
+            
+            print('[START]', *pista, '[GOAL]', "\n")
+
+            if posizione_tartaruga > posizione_lepre:
+
+                print(
+f"              \n"
+f"              \n"                    
+f"              \n"
+f"         _    \n"
+f"     .-./*)   \n"
+f"   _/___\/    \n"
+f"     U U      "
+                )
+
+            elif posizione_tartaruga < posizione_lepre:
+
+                print("""
+       _
+      (\\\\
+       \||
+     __(_";
+    /    \\
+   ()___)\)_""")                
+
+            else:
+
+                print("""                      
+ OOO   U   U   CCCC  H   H  [] []
+O   O  U   U  C      H   H  || ||
+O   O  U   U  C      HHHHH  [] []
+O   O  U   U  C      H   H  
+ OOO   UUUUU   CCCC  H   H  [] []""")                
+                print('\n')
 
         if max_tarta >= 70 and max_lepre >= 70:
 
-            controllo = True
-
+            os.system('clear')
             print("""
                    __
                   / \--..____
@@ -291,8 +358,6 @@ DDDD   R   R  A   A  W   W
                 elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
-            
-            # interruttore: int = 1
 
             while interruttore == 1:
                 
@@ -313,7 +378,7 @@ DDDD   R   R  A   A  W   W
                     elif user == 'si':
 
                         interruttore = 0
-                    
+
             if interruttore == 0 and user == 'no':
 
                 break
@@ -324,9 +389,7 @@ DDDD   R   R  A   A  W   W
 
         elif posizione_tartaruga >= 70:
 
-            controllo = True
-            posizione_tartaruga = 70
-
+            os.system('clear')
             print("""
                    __
                   / \--..____
@@ -392,8 +455,6 @@ DDDD   R   R  A   A  W   W
                 elif secondi >= 2:
 
                     print(f"Durata gara: {minuti} minuto e {secondi} secondi.")
-            
-            # interruttore: int = 1
 
             while interruttore == 1:
                 
@@ -425,9 +486,7 @@ DDDD   R   R  A   A  W   W
 
         elif posizione_lepre >= 70:
 
-            controllo = True
-            posizione_lepre = 70
-
+            os.system('clear')
             print("""
                    __
                   / \--..____
@@ -521,136 +580,6 @@ DDDD   R   R  A   A  W   W
 
                 controllo = True
 
-        if controllo == False:
-            
-            if posizione_tartaruga > posizione_lepre:
-                
-                print(f"1° pos [Tarta]= {posizione_tartaruga}\n2° pos [Lepre]= {posizione_lepre}")
-                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
-
-                if meteo == True:
-
-                    print("""
-
-        _
-      _( )_          _      
-    _(     )_      _( )_
-   (_________)   _(     )_
-     \  \  \    (_________)
-       \  \       \  \ \\
-                    \  \   
-
-                            """)
-
-                if meteo == False:
-
-                    print("""
-           |
-     \     |     /
-       \       /
-         ,d8b,      
- - --- - 88888 --- - 
-         '98P'      
-       /       \    
-     /     |     \\
-           |
-                        """)
-
-                print('[START]', *pista, '[GOAL]','\n')
-                print(
-f"              \n"
-f"              \n"                    
-f"              \n"
-f"         _    \n"
-f"     .-./*)   \n"
-f"   _/___\/    \n"
-f"     U U      "
-                )
-
-            elif posizione_tartaruga < posizione_lepre:
-                
-                print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
-                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
-
-                if meteo == True:
-
-                    print("""
-
-        _
-      _( )_          _      
-    _(     )_      _( )_
-   (_________)   _(     )_
-     \  \  \    (_________)
-       \  \       \  \ \\
-                    \  \   
-
-                            """)
-
-                if meteo == False:
-
-                    print("""
-           |
-     \     |     /
-       \       /
-         ,d8b,      
- - --- - 88888 --- - 
-         '98P'      
-       /       \    
-     /     |     \\
-           |
-                        """)
-
-                print('[START]', *pista, '[GOAL]','\n')
-                print("""
-       _
-      (\\\\
-       \||
-     __(_";
-    /    \\
-   ()___)\)_""")                
-
-            else:
-
-                print(f"1° pos [Lepre]= {posizione_lepre}\n2° pos [Tarta]= {posizione_tartaruga}")
-                print(f"Tempo di gara: min {minuti}:{secondi} sec \n")
-
-                if meteo == True:
-
-                    print("""
-
-        _
-      _( )_          _      
-    _(     )_      _( )_
-   (_________)   _(     )_
-     \  \  \    (_________)
-       \  \       \  \ \\
-                    \  \   
-
-                            """)
-
-                if meteo == False:
-
-                    print("""
-           |
-     \     |     /
-       \       /
-         ,d8b,      
- - --- - 88888 --- -
-         '98P'      
-       /       \    
-     /     |     \\
-           |
-                        """)
-
-                print('[START]', *pista, '[GOAL]')
-                print("""
- OOO   U   U   CCCC  H   H  [] []
-O   O  U   U  C      H   H  || ||
-O   O  U   U  C      HHHHH  [] []
-O   O  U   U  C      H   H  
- OOO   UUUUU   CCCC  H   H  [] []""")
-                print('\n')
-
         if terreno and giocata > 1 and controllo == False:
 
             if posizione_tartaruga > posizione_lepre:
@@ -658,7 +587,7 @@ O   O  U   U  C      H   H
                 if iterazionitot%5 == 0:
 
                     terreno.pop(0)
-                    terreno.append(random.choice([".", ",", "Y", "YY", ".", ",", ",", "."]))
+                    terreno.append(random.choice([".", ",", "Y", "YY", ".", ",", ",", "@"]))
 
                 print(*terreno, sep= ".")
                 print('\n' * 4)
@@ -667,7 +596,7 @@ O   O  U   U  C      H   H
 
                 terreno.pop(0)
                 
-                terreno.append(random.choice([".", ",", "Y", "YY"]))
+                terreno.append(random.choice([".", ",", "Y", "YY", ".", ".", ",", "@"]))
                 
                 print(*terreno, sep= ".")
                 print('\n' * 4)
