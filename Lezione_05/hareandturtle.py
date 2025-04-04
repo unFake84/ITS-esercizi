@@ -249,7 +249,7 @@ BBBB  A  A  N   N  GGGGG   MM MM
         print('Giocata n', giocata, '|', 'Tarta mossa', pos_t, '|', 'Lepre mossa', pos_l)
         print(f"1° pos [{t if posizione_tartaruga > posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga > posizione_lepre else posizione_lepre}")
         print(f"2° pos [{t if posizione_tartaruga < posizione_lepre else l}]= {posizione_tartaruga if posizione_tartaruga < posizione_lepre else posizione_lepre}")
-        print(f"Tempo di gara: min 0{minuti}:{(str(0) + str(secondi)) if secondi < 10 else secondi} sec \n")
+        print(f"Tempo di gara: min {(str(0) + str(minuti)) if minuti < 10 else minuti}:{(str(0) + str(secondi)) if secondi < 10 else secondi} sec \n")
         if controllo == False:
 
             if meteo == True:
