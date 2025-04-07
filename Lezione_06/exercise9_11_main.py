@@ -22,6 +22,7 @@ Imported Admin:
 '''
 
 #2.
+
 from exercise9_11_users import *
 
 panco: User = User("Pinco", "Panco", "PancoPinco", "PeP@punco.poc")
@@ -29,5 +30,8 @@ privilegio_panco: Privileges = Privileges("amministatore")
 
 admin_panco = Admin(panco, privilegio_panco)
 
-print(panco.describe_user())
-admin_panco.privilegi.show_privileges()
+# print(panco.describe_user())
+# admin_panco.privilegi.show_privileges()
+
+admin_panco.describe_user()
+admin_panco.show_privileges()

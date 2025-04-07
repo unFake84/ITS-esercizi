@@ -40,7 +40,7 @@ class User:
             f"\tEmail:  {self.email}\n"
         )
 
-        return f"Dettagli Utente:\n{profilo}"
+        return print(f"Dettagli Utente:\n{profilo}")
 
     def greet_user(self) -> None:
 
@@ -50,30 +50,30 @@ class User:
 # 1b.
 class Privileges:
 
-    def __init__(self, lista: list[str] = ["amministratore", "utente", "visitatore"]):
+    def __init__(self, lista: list[str] = []) -> list:
 
         self.lista = lista
 
     def show_privileges(self) -> list:
 
-        indice = 1
-        ruolo = []
+        return print(f"Ruolo Utente: {self.lista}")
 
-        for privilegio in self.lista:
 
-            # print(f"\t{indice}: {privilegio}")
-            indice += 1
-            ruolo.append(privilegio)
-        
-        print("Ruolo Utente:", "\t\n", *ruolo, sep= "")
 
 # 1c.
 class Admin:
 
-    def __init__(self, user: User = User(), privilegi: Privileges = Privileges()):
+    def __init__(self, user: User, privilegi: Privileges):
 
         self.user = user
         self.privilegi = privilegi
 
+    def describe_user(self):
+
+        self.user.describe_user()
+
+    def show_privileges(self):
+
+        self.privilegi.show_privileges()
 
 # "Pinco", "Panco", "PancoPinco", "PeP@punco.poc"
