@@ -26,7 +26,7 @@ Imported Admin:
 from exercise9_11_users import *
 
 panco: User = User("Pinco", "Panco", "PancoPinco", "PeP@punco.poc")
-privilegio_panco: Privileges = Privileges("amministatore")
+privilegio_panco: Privileges = Privileges("admin")
 
 admin_panco = Admin(panco, privilegio_panco)
 

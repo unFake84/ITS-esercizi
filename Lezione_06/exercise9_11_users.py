@@ -58,8 +58,6 @@ class Privileges:
 
         return print(f"Ruolo Utente: {self.lista}")
 
-
-
 # 1c.
 class Admin:
 
