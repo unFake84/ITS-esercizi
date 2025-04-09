@@ -25,15 +25,18 @@ class LotteryMachine:
     def randomly(self) -> list:
 
         winning_ticket: list[str, int] = []
- 
-        for _ in range(4):
-
-            drawer: int = random.choice(self.lista)
-            winning_ticket.append(drawer)
+        winning_ticket = random.choices(self.lista, k = 4)
 
         return winning_ticket
 
     # 3.
-    def display(self) -> None:
+    def display(self) -> str:
 
-        print(f"I numeri vincenti sono: {self.randomly()}")
+        print(f"I numeri vincenti sono: {', '.join(map(str, self.randomly()))}")
+
+if __name__ == "__main__":
+
+    prova: LotteryMachine = LotteryMachine()
+
+    prova.randomly()
+    prova.display()
