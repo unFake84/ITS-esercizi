@@ -54,3 +54,33 @@ class LotteryMachine:
     def display(self) -> str:
 
         print(f"I numeri vincenti sono: {', '.join(map(str, self.randomly()))}")
+
+    # 1.
+    def simulate_until_win(self, my_ticket: list[str, int] = [1, 7, "a", 8]):
+
+        # 1a.
+
+        if len(my_ticket) != 4:
+
+            print(f"Biglietto non valido.")
+
+            return 0
+        
+        # 1c.
+        contatore: int = 0
+
+        # 1b.
+        while True:
+
+            if my_ticket != self.randomly():
+
+                print(f"Nulla, riprova.")
+                contatore += 1
+
+            else:
+
+                winner = self.randomly() # salvo i numeri vincenti in una variabile a parte
+                contatore += 1
+                # 1d.
+                print(f"Vittoria!\nHai tentato {contatore} volte!\nNumero vincente: {winner}")
+                break
