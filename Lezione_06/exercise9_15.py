@@ -62,9 +62,7 @@ class LotteryMachine:
 
         if len(my_ticket) != 4:
 
-            print(f"Biglietto non valido.")
-
-            return 0
+            return "Biglietto non valido."
         
         # 1c.
         contatore: int = 0
@@ -79,7 +77,7 @@ class LotteryMachine:
 
             else:
 
-                winner = self.randomly() # salvo i numeri vincenti in una variabile a parte
+                winner = self.randomly() # salvo il numero vincente in una variabile a parte
                 contatore += 1
                 # 1d.
                 print(f"Vittoria!\nHai tentato {contatore} volte!\nNumero vincente: {winner}")
