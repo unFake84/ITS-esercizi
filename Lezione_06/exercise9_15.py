@@ -70,15 +70,25 @@ class LotteryMachine:
         # 1b.
         while True:
 
-            if my_ticket != self.randomly():
+            win_ticket = self.randomly()
+
+            if my_ticket != win_ticket:
 
                 print(f"Nulla, riprova.")
                 contatore += 1
 
             else:
 
-                winner = self.randomly() # salvo il numero vincente in una variabile a parte
                 contatore += 1
-                # 1d.
-                print(f"Vittoria!\nHai tentato {contatore} volte!\nNumero vincente: {winner}")
+                # 1d. + 4a.b.c.
+                print(f"Vittoria!\nHai tentato {contatore} volte!\nNumero vincente: {win_ticket}")
                 break
+
+if __name__ == "__main__":
+
+    # 2.
+    slot: LotteryMachine = LotteryMachine()
+    my_ticket: list[str, int] = [9, 2, "a", "e"]
+    
+    # 3.
+    slot.simulate_until_win(my_ticket)
