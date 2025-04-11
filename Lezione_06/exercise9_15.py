@@ -37,16 +37,17 @@ Lottery Analysis: Extend the LotteryMachine class you created in Exercise 9-14.
 '''
 
 import random
+from typing import Any
 
 class LotteryMachine:
 
-    def __init__(self, lista: list[str, int] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "a", "e", "i", "o", "u"]):
+    def __init__(self, lista: list[Any] = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, "a", "e", "i", "o", "u"]):
 
         self.lista = lista
 
     def randomly(self) -> list:
 
-        winning_ticket: list[str, int] = []
+        winning_ticket: list[Any] = []
         winning_ticket = random.choices(self.lista, k = 4)
 
         return winning_ticket
@@ -56,7 +57,7 @@ class LotteryMachine:
         print(f"I numeri vincenti sono: {', '.join(map(str, self.randomly()))}")
 
     # 1.
-    def simulate_until_win(self, my_ticket: list[str, int] = [1, 7, "a", 8]):
+    def simulate_until_win(self, my_ticket: list[Any] = [1, 7, "a", 8]):
 
         # 1a.
 
@@ -88,7 +89,7 @@ if __name__ == "__main__":
 
     # 2.
     slot: LotteryMachine = LotteryMachine()
-    my_ticket: list[str, int] = [9, 2, "a", "e"]
+    my_ticket: list[Any] = [9, 2, "a", "e"]
     
     # 3.
     slot.simulate_until_win(my_ticket)
