@@ -27,12 +27,17 @@ def validate_password(password: str):
 
     uppercase: int = 0
 
+    if len(password) < 20:
+
+        print("Error, the password must be minimum lenght of 20 characters.")
+
+    # 2.
     for char in password:
 
-        if char.upper() in password:
+        if char.isupper():
 
             uppercase += 1
 
-    if len(password) > 20:
+    if uppercase < 3:
 
-        print("Errore, the password must be minimum lenght of 20 characters")
+        print("Error, the password must be lower three uppercase letters.")
