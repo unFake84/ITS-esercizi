@@ -2,18 +2,15 @@
 
 Verifica se una stringa è un numero intero
 
-1.
-    Scrivi una funzione is_integer(s) che restituisce True
-    se la stringa è un numero intero (positivo o negativo),
-    
-2.
-    False altrimenti.
+Scrivi una funzione is_integer(s) che restituisce True
+se la stringa è un numero intero (positivo o negativo),
+False altrimenti.
 
-                            Esempio:
+Esempio:
 
-                            is_integer("123")      # True
-                            is_integer("-456")     # True
-                            is_integer("12.3")     # False
+is_integer("123")      # True
+is_integer("-456")     # True
+is_integer("12.3")     # False
 
 '''
 

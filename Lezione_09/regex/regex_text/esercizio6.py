@@ -11,7 +11,7 @@ Svolgimento:
 
     Esercizio 6.1:
 
-        ^[A-Z]{5}-\d{4}-[A-Z]{2}$
+        ^[A-Z]{4}-\d{4}-[A-Z]{2}$
 
     Esercizio 6.2:
 
