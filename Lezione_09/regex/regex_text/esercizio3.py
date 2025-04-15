@@ -15,6 +15,6 @@ Esercizio 3.1:
 
 Esercizio 3.2:
 
-    ^\w+@\w+(\.[a-z]{2,3})+$
+    ^\w+@\w+(\.[a-zA-Z]{2,})+$   -> versione rob. ^\b[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}\b$
 
 '''
