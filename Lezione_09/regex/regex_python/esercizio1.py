@@ -14,13 +14,9 @@ is_integer("12.3")     # False
 
 '''
 
-import sys
+import re
 
 def is_integer(s: str) -> bool:
-
-    if 're' not in sys.modules:
-
-        import re
 
     if re.fullmatch('-?\d+', s) == None:
 
@@ -32,3 +28,9 @@ def is_integer(s: str) -> bool:
     
     # return False if re.fullmatch('-?\d+', s) == None else True
     # return re.fullmatch('-?\d+', s) is not None
+
+if __name__ == "__main__":
+
+    print(is_integer("123"))      # True
+    print(is_integer("-456"))     # True
+    print(is_integer("12.3"))     # False

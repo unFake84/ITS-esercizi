@@ -19,5 +19,6 @@ def mask_numbers(text: str) -> str:
     
     return changer
 
+if __name__ == "__main__":
 
-print(mask_numbers("Il codice è 12345 e la data è 2025."))
+    print(mask_numbers("Il codice è 12345 e la data è 2025."))

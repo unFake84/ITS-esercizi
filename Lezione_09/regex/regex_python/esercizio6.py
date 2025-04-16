@@ -22,6 +22,8 @@ def check_product_code(code: str) -> bool:
     else:
 
         return True
-    
-print(check_product_code("PROD-9876-ZX"))
-print(check_product_code("PROD-99-ZX"))
+
+if __name__ == "__main__":
+
+    print(check_product_code("PROD-9876-ZX"))
+    print(check_product_code("PROD-99-ZX"))

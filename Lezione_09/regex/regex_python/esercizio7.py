@@ -24,7 +24,9 @@ def is_valid_name(name: str) -> bool:
     else:
 
         return True
-    
-print(is_valid_name("Marco"))
-print(is_valid_name("marco"))
-print(is_valid_name("Ma"))
+
+if __name__ == "__main__":
+
+    print(is_valid_name("Marco"))
+    print(is_valid_name("marco"))
+    print(is_valid_name("Ma"))

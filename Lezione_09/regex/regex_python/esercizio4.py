@@ -22,6 +22,8 @@ def is_valid_cap(cap: str) -> bool:
     else:
 
         return True
-    
-print(is_valid_cap("70124"))
-print(is_valid_cap("A0123"))
+
+if __name__ == "__main__":
+
+    print(is_valid_cap("70124"))
+    print(is_valid_cap("A0123"))

@@ -19,4 +19,6 @@ def find_dates(text: str) -> list[str]:
 
     return dates
 
-print(find_dates("Le date importanti sono 09/04/2025 e 15/08/2023."))
+if __name__ == "__main__":
+
+    print(find_dates("Le date importanti sono 09/04/2025 e 15/08/2023."))
