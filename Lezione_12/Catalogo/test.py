@@ -1,10 +1,10 @@
 # dal modulo esercizio.py importare la classe MovieCatalog
 from esercizio import MovieCatalog
 
-# creare un oggetto della MovieCatalog
+# creare un oggetto della classe MovieCatalog
 catalog: MovieCatalog = MovieCatalog()
 
-# aggiungiamo un regista e dei film la catalogo
+# aggiungiamo un regista e dei film al catalogo
 catalog.add_movie("Steven Spielberg", ["Casper", "Ritorno al futuro"])
 
 # visualizziamo il catalogo

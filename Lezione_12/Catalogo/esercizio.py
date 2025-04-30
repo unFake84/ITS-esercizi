@@ -10,6 +10,20 @@ class MovieCatalog:
         
         self.setCatalog()
 
+    # metodi setter:
+
+    # metodo che imposta il valore dell'attributo self.catalog
+    def setCatalog(self) -> None:
+
+        self.catalog: dict[str, list[str]] = {}
+
+    # metodo getter
+
+    # metodo che ritorna un valore dell'attributo self.catalog
+    def getCatalog(self) -> dict[str, list[str]]:
+
+        return self.catalog
+
     # metodo str
 
     def __str__(self) -> str: # DA SISTEMARE
@@ -22,21 +36,7 @@ class MovieCatalog:
 
         return string
 
-    # metodi setter
-
-    # metodo che imposta il valore dell'attrivuto self.catalog
-    def setCatalog(self) -> None:
-
-        self.catalog: dict[str, list[str]] = {}
-
-    # metodo getter
-
-    # metodo che ritorna un valore dell'attributo self.catalog
-    def getCatalog(self) -> dict[str, list[str]]:
-
-        return self.catalog
-    
-    # metodi della classe MovieCatalog
+    # metodi della classe MovieCatalog:
 
     # metodo che aggiunge una lista di film al catalogo
     def add_movie(self, director_name: str, movies: list[str]) -> None:
@@ -64,12 +64,12 @@ class MovieCatalog:
                     # self.catalog[director_name] è la lista dei film prodotti dal regista director_name
                     # dove self.catalog è un dizionario
                     # director_name è la chiave
-                    # self.catalog[director_name è il valore corrispondente alla chiave directory_name
+                    # self.catalog[director_name] è il valore corrispondente alla chiave directory_name
                     if movie in self.catalog[director_name]:
 
                         print(f"Il film {movie} è gia presente nel catalogo")
 
-                    # un film della lista movies non è già presente nelcatalogo
+                    # un film della lista movies non è già presente nel catalogo
                     else:
 
                         # aggiungere il film al catalogo
