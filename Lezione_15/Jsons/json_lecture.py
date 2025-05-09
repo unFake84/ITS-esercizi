@@ -1,6 +1,6 @@
 import json
 
-PATH: str = "Lezione_15/Jsons/config.json" # SELEZIONARE NOME DA MODIFICARE/CREARE
+PATH: str = "Lezione_15/Jsons/db.json" # SELEZIONARE NOME DA MODIFICARE/CREARE
 mode: str = "r"
 encoding: str = "utf-8"
 
