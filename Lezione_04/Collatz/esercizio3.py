@@ -6,15 +6,19 @@ lista di num int disordinata restituisce una lista di interi ordinata dal piu pi
 
 def ordinalista(lista: list[int]) -> list[int]:
 
-    lista_ordinata: list[int] = []
+    # il suo valore è: 9(lista) - 1 = 8
+    lung_lista: list[int] = len(lista) - 1 # print 8
 
-    for i in range(len(lista)):
+    #i=0 range0-8   ->  9 elementi(lista)
+    for i in range(lung_lista):
 
-        for j in range(lista[i]):
+        for j in range(lung_lista - i):
 
-            lista_ordinata.append(i)
+            if lista[j] > lista[j+1]:
 
-    return lista_ordinata
+                lista[j], lista[j+1] = lista[j+1], lista[j]
+
+    return lista
 
 if __name__ == "__main__":
 
