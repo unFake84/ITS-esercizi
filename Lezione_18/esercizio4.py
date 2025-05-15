@@ -58,7 +58,7 @@ class Date:
 class Database:
 
     # prende una data
-    def __init__(self, dates = None):
+    def __init__(self, dates = None):  # -> None: permette anche di non ricevere 'date'
 
         # inizializzo una lista vuota
         self.personal_db: list[Date] = []
@@ -66,7 +66,7 @@ class Database:
         # <se1> l'input avviene
         if dates is not None:
 
-            # <se2> è una lista
+            # <se2> l' input è una lista
             if isinstance(dates, list):
 
                 # <per> ogni chiave+elemento nella lista
@@ -77,63 +77,86 @@ class Database:
 
                         # aggiungo con .append l' elemento(la data) nella lista
                         self.personal_db.append(elem)
+                        print(f"Added: -{elem}-")
 
                     # </se3> allora lancio un errore dicendo in quale chiave il valore non è corretto
                     else:
 
-                        raise Exception(f"The value: {elem}: in '{key}' position is not a valid date")
+                        raise Exception(
+                            f"The value: [ '{elem}' ] in '{key}' position is not a valid date.\n"
+                            f"Expected: \"dd.mm.aaaa\"\n"
+                            f"Your try: \"{elem}\"\n"
+                            f"If the date is similiar to: dd.mm.aaaa,\n"
+                            f"have you tried to object them? es. -> variablename: Date = Date(\"{datetime.now().strftime('%d/%m/%Y')}\")"
+                            )
                 # </per>
 
-            # <se2> altrimenti non è una lista, ma è un dato valido
+            # <se2> altrimenti l'input non è una lista, ma è cmq un dato valido(Date)
             elif isinstance(dates, Date):
 
-                # .append per inizializzare una lista vuota / .extend richiede una lista non vuota / evita errore
+                # .append per inizializzare anche una lista vuota / .extend richiede una lista non vuota <- evita errore
+                # se lista esiste -> aggiunge alla lista
                 self.personal_db.append(dates)
 
-            # </se2> non è una lista ma non è neanche un dato valido
+# -----> serie di controlli superflui dato che la classe Date gestisce anticipatamente questi tipi di errori.
+
+            # </se2> non è una lista e neanche un dato valido
             else:
 
+                # # inserire un raise per gestire l'errore
                 print("Insert a valid date")
 
         # </se1> non inserisce nulla
         else:
 
+            # # inserire un raise per gestire l'errore
             print("Nothing inserted")
 
+    # metodo str per 'permettere di mostrare' i dati inseriti nella ->
     def __str__(self):
 
-        # lista per vedere le date inserite
+        # -> lista(listone) le date inserite
         listone = []
 
-        # per ogni data nella lista
+        # per ogni data nella lista, ->
         for date in self.personal_db:
 
-            # aggiungi le date presenti
-            listone.append(str(date))
+            # -> aggiungi le date presenti
+            listone.append(str(date)) # <- casting di 'date' e <appende> la data nella "lista display" {listone}
 
         # ritorno la "lista di visualizzazione delle date"
-        return f" List of dates: {str(listone)}"
+        return f"List of final dates: {listone}"
         # return f"List of dates: {[str(date) for date in self.personal_db]}"
 
-#_______________________________________________________________^^CORRETTO.
+#_______________________________________________________________^^CORRETTO. (spero!)
 
-
-    def newdate(self, new: Date) -> str:
+    def newdate(self, new: Date) -> None:
 
         # se inserita data
         if new:
 
-            # aggiunge data
-            #print(self.personal_db)
-            return self.personal_db.append(new)
+            # e se non è già presente nella lista
+            if new not in self.personal_db:
 
+                # aggiunge data
+                self.personal_db.append(new)
+                print(f"Added: -{new}-")
+
+            # per ora stampo che è impossibile aggiungere visto che già esiste tale data
+            else:
+
+                print(f"Impossible to insert '{new}', allready exists")
+
+        # altrimenti
+        # se non inserito.. <- la classe Date effettua già questo controllo
         else:
 
-            # altrimenti messaggio di errore
+            # messaggio di errore da far diventare un raise
             print("Cannot be empty")
 
     def deldate(self, delete: Date) -> None:
 
+        # <se1> inserita una data da cancellare
         if delete:
 
             # var boolena per avvisarmi se è stato trovata una data esistente
@@ -150,7 +173,7 @@ class Database:
                     # interrompo il ciclo una volta trovato, non ce bisono di proseguire, se trovato
                     found = True
                     self.personal_db.remove(delete)
-                    print(f"Removed: --")
+                    print(f"Removed: -{delete}-")
                     #print(f"{self.personal_db}")
                     break
 
@@ -159,7 +182,7 @@ class Database:
 
                 print("Not found")
 
-        # se lasciato vuoto
+        # </se1>se non è stata inserita nessuna data da cancellare
         else:
 
             print("Cannot be empty")
@@ -174,11 +197,14 @@ if __name__ == "__main__":
     data1: Date = Date("31.10.1984")
     data2: Date = Date("30.10.1984")
     data3: Date = Date("29.10.1984")
-    prova: Database = Database(data1)
+    data4: Date = Date("01.10.1980")
+    data5: Date = Date("09.03.1987")
+    #data6: Date = Date("")
+    prova: Database = Database([data1, data4, data5])
     prova.newdate(data2)
     prova.newdate(data3)
     #prova.newdate(data1)
-    #prova.deldate(data2)
-    #prova.newdate(data1)
+    prova.deldate(data2)
+    #prova.newdate()
 
     print(prova)
