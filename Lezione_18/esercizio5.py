@@ -25,7 +25,7 @@ class FormulaError(Exception):
 #                                                                            * l'operatore deve essere: + o -
 def sum_OR_sub(operation: str) -> float:
 
-    # <se> l'input è di tipo stringa
+    # se l'input è di tipo stringa
     if isinstance(operation, str):
 
         '''
@@ -78,7 +78,7 @@ def sum_OR_sub(operation: str) -> float:
             # non è presente il + oppure il -
             raise FormulaError(
                 f"The operator {index1} is not valid\n"
-                "Must be: + or -"
+                " Must be: + or -"
                 )
         
     # se invece è di un altro tipo es: int, float
@@ -92,50 +92,55 @@ def sum_OR_sub(operation: str) -> float:
 # isoliamo il personal test, senza UniTest
 if __name__ == "__main__":
 
+    # Simuliamo un app:
+
     cleaner: int = 0
     result: float = None
     user: str = ""
-
-    # Simuliamo un app:
+    gui: str = "|\t\t\tWelcome\t\t\t\t\t|\n|\t\tAn interactive calculator\t\t\t|\n|\t\t\t\t\t\t\t\t|\n"\
+               "|Write an expression in this format: 1 + 2 or 1 - 2 to results  |\n"\
+               "|\t\t\t\t\t\t\t\t|\n|type quit to exit\t\t\t\t\t\t|\n|\t\t\t\t\t\t\t\t|"
 
     os.system("clear")
-    print("\t\t\tWelcome\n\t\tAn interactive calculator\n")
-    print(
-        "Write an expression in this format: 1 + 2 or 1 - 2 to results\n"\
-        "type quit to exit\n"
-    )
+    print(gui)
 
     while True:
 
         if cleaner == 2:
 
             os.system("clear")
-            print("\t\t\tWelcome\n\t\tAn interactive calculator\n")
-            print(
-                "Write an expression in this format: 1 + 2 or 1 - 2 to results\n"\
-                "type quit to exit\n"
-            )
+            print(gui)
             if result is None:
-                print(f"Insert an expression: {user}\nResult =", "Error type again for more info")
+                print(f"|Insert an expression: {user}\t\t\t\t\t|\n|Result =", f"Error: type again -> {user} <- for more info or")
             else:
-                print(f"Insert an expression: {user}\nResult =", result)
+                print(f"|Insert an expression: {user}\t\t\t\t\t|\n|Result = {result}\t\t\t\t\t\t\t|")
             cleaner = 0
 
         cleaner += 1
 
-        user = input("Insert an expression: ")
+        user = input("|Insert an expression: ")
 
         if user == "quit":
 
-            print("Closing")
+            print("|Closing")
+            print("""
+            /  
+        _--/   
+    Made  ||   
+    by         
+    Dioni      
+    ®2025.     
+  ||__         
+  /--          
+""")
             break
 
         try:
 
             result = sum_OR_sub(user)
-            print("Result =", result)
+            print("|Result =", result, "\t\t\t\t\t\t\t|")
 
         except FormulaError as show_err:
 
             result = None
-            print("Result =", show_err)
+            print("|Result =", show_err)

@@ -60,7 +60,7 @@ class Database:
     # puo prendere: una data, una lista di date oppure nessuna data 
     def __init__(self, dates = None):  # -> None: permette anche di non ricevere 'date'
 
-        # inizializzo una lista vuota
+        # inizializzo una lista vuota che fa da database
         self.personal_db: list[Date] = []
 
         # <se1> l'input avviene
@@ -79,7 +79,8 @@ class Database:
                         self.personal_db.append(elem)
                         print(f"Added:\t\t\t-{elem}-")
 
-                    # </se3> allora lancio un errore dicendo in quale chiave il valore non è corretto
+                    # </se3> non rispetta il tipo
+                    # allora lancio un errore dicendo in quale chiave il valore non è corretto
                     else:
 
                         raise Exception(
@@ -122,7 +123,7 @@ class Database:
         for date in self.personal_db:
 
             # -> aggiungi le date presenti
-            listone.append(str(date)) # <- casting di 'date' e <appende> la data nella "lista display" {listone}
+            listone.append(str(date)) # <- casting [str] su 'date' e <appende> le date nella "lista display" {listone}
 
         # ritorno la "lista di visualizzazione delle date"     -provv-
         return f"{('*************************************'*3)}\n"\
@@ -208,7 +209,7 @@ class Database:
             # se lasciato vuoto
             if delete is None:
 
-                print("Cannot be empty:\t-not deleted-")
+                print("Can not be empty:\t-not deleted-")
 
             # altrimenti mostro cosa è andato storto
             else:
@@ -248,7 +249,7 @@ class Database:
                         # altrimenti se la data già esiste
                         else:
 
-                            print(f"Can not modified:\t-{new}-\texisting date\t\t-{value}-")
+                            print(f"Not modified:\t\t-{new}-\texisting date\t\t-{value}-")
                             break
 
             # </se2> se la data da modificare non è presente nel database
@@ -262,7 +263,7 @@ class Database:
             # </se1a> è solo la data nuova ad essere tipo Date
             if isinstance(new, Date):
 
-                print("Invalid date:\t\t-can not find-\tinvalid date type\t-not modified-")
+                print("Invalid date:\t\t-not find-\tinvalid date type\t-not modified-")
 
             # </se1b> invece è la data vecchia ad essere tipo Date
             elif isinstance(old, Date):
@@ -356,4 +357,5 @@ if __name__ == "__main__":
     prova.query(data9)
     prova.query(12)
     prova.query(data4)
+    prova.query(data1)
     print(prova)
