@@ -38,7 +38,7 @@ class Fraction:
 
                 numeratore: str = str(key[0])
                 denominatore: str = str(key[1])
-                content: str = f"Frazione {i + 1}: {numeratore}/{denominatore} - {value}"
+                content: str = f"Original fraction {i + 1}: {numeratore}/{denominatore} - {value}"
                 display.append(content)
         
         if self.semplificate:
@@ -47,12 +47,12 @@ class Fraction:
 
                 numeratore: str = str(key[0])
                 denominatore: str = str(key[1])
-                content: str = f"Frazione semplificata {i + 1}: {numeratore}/{denominatore} - {value}"
+                content: str = f"Simplified fraction {i + 1}: {numeratore}/{denominatore} - {value}"
                 display.append(content)
         
         else:
 
-            display.append("No fractions in database")
+            display.append("No simplified fractions found.")
         
         return "\n".join(display)
 
@@ -78,12 +78,12 @@ class Fraction:
 
             if frazione not in self.frazioni.keys() and frazione not in self.semplificate.keys():
 
-                self.frazioni[frazione] = "Fraction to be simplified"
+                self.frazioni[frazione] = "not yet simplified -> try @simplify()"
                 self.simplify()
 
             else:
 
-                raise FractionErrors("Same fraction allready exist")
+                raise FractionErrors(f"Fraction {frazione[0]}/{frazione[1]} already exists.")
 
         else:
 
@@ -122,14 +122,17 @@ class Fraction:
 
         if semplificata not in self.semplificate:
 
-            if semplificata in self.frazioni:
+            if self.numeratore == numeratore_semplificato and self.denominatore == denominatore_semplificato:#semplificata in self.frazioni:
 
-                return f"{self.numeratore}/{self.denominatore} it's allready a simply fraction"
+                self.semplificate[semplificata] = f"{self.numeratore}/{self.denominatore} fraction is already simplified."
+                return semplificata
+                #return f"{self.numeratore}/{self.denominatore} it's already a simply fraction "
+                #return "This simplified fraction has already been inserted.", None # <- potrei sostituire con -semplificata- se mi serve da tenere traccia
 
             else:
 
                 # # da modificare stringa se modifico il codice "in-place" (salvare anticipatamente le variabili)
-                self.semplificate[semplificata] = f"fraction simplied from: {self.numeratore}/{self.denominatore}"
+                self.semplificate[semplificata] = f"Fraction simplified from: {self.numeratore}/{self.denominatore}"
 
         else:
 
@@ -143,5 +146,5 @@ if __name__ == "__main__":
     prova2: Fraction = Fraction(5, 10)
     prova3: Fraction = Fraction(7, 3)
     prova4: Fraction = Fraction(100, 10)
-    #prova3.simplify()# <----gestire 7/3 se rimanere su frazioni o passare in semplificate
+    prova3.simplify()# <----gestire 7/3 se rimanere su frazioni o passare in semplificate
     print(prova3)
