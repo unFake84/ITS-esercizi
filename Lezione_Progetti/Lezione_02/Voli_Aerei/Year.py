@@ -1,7 +1,7 @@
 import re
 from re import Match
 
-class Age:
+class Year:
     check: str
 
     def __init__(self, check: str) -> None:

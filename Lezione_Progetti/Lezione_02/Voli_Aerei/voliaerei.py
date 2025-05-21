@@ -1,6 +1,6 @@
 from FlightCode import FlightCode
 from IATACode import IATACode
-from Age import Age
+from Year import Year
 from FlightTime import FlightTime
 
 class PersonalRaises(Exception):    
@@ -49,15 +49,15 @@ class Aeroporto:
             
 class Compagnia:
 
-    def __init__(self, company_name: str, foundation_age: Age) -> None:
+    def __init__(self, company_name: str, foundation_age: Year) -> None:
         if not isinstance(company_name, str):
             raise PersonalRaises("The company name must be of string type.")
 
         try:
-            if not isinstance(foundation_age, Age):
+            if not isinstance(foundation_age, Year):
                 raise ValueError("Not an Age type")
 
-            self.foundation_age: Age = foundation_age
+            self.foundation_age: Year = foundation_age
 
         except ValueError as unknow:
             raise PersonalRaises(f"Error in Age type: {str(unknow)}.")
