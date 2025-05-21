@@ -8,7 +8,7 @@ class Age:
         pre_check: Match = re.fullmatch(r"^19\d\d$|2[0-1]\d\d$", check)
 
         if pre_check is None:
-            raise ValueError("Invalid date")
+            raise ValueError("Invalid foundation date")
         
         self.check = pre_check.group(0)
 

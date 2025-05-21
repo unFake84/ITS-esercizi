@@ -8,7 +8,7 @@ class IATACode:
         pre_check: Match = re.fullmatch(r"^[A-Z]{3}$", check)
 
         if pre_check is None:
-            raise ValueError("Invalid Code")
+            raise ValueError("Invalid IATACode")
         
         self.check = pre_check.group(0)
 

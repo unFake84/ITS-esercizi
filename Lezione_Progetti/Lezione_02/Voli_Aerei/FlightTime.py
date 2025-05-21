@@ -18,7 +18,7 @@ class FlightTime:
         if minutes < 0 or minutes > 59:
             raise ValueError(f"Invalid Minutes: Minutes must be between 00 and 59. Provided: {minutes:02}")
         
-        self.check = f"{hour:02}:{minutes:02}"
+        self.check = f"{hour:02}h:{minutes:02}m"
 
     def __str__(self):
         return self.check

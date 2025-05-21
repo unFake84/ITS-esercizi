@@ -22,3 +22,26 @@ class PartitaIva(str):
         return str.__new__(cls, iva)
     
     # new si utilizza "soltanto" quando si eredita un tipo di dato base
+
+class NomeClasse:
+    def __init__(self, attrib):
+        # Costruttore
+        ...
+
+    def __str__(self):
+        # Rappresentazione leggibile (per print, str(), f-string)
+        ...
+
+    def __repr__(self):
+        # Rappresentazione per debugging (opzionale)
+        ...
+
+    def __eq__(self, other):
+        # Confronto per uguaglianza
+        ...
+
+    def __hash__(self):
+        # Hash per set, dict, ecc.
+        ...
+
+    # Altri metodi...
