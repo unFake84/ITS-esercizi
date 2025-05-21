@@ -4,10 +4,13 @@ from re import Match
 class Age:
     check: str
 
-    def __init__(self, check) -> None:
-        pre_check: Match = re.search(r"^19\d\d$|2[0-1]\d\d$")
+    def __init__(self, check: str) -> None:
+        pre_check: Match = re.fullmatch(r"^19\d\d$|2[0-1]\d\d$", check)
 
         if pre_check is None:
             raise ValueError("Invalid date")
         
-        self.check: str = pre_check.group(0)
+        self.check = pre_check.group(0)
+
+    def __str__(self):
+        return self.check

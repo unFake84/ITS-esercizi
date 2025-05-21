@@ -1,49 +1,24 @@
-import importlib
-import CodiceVolo
-import IATACode
-import Age
-
-importlib.invalidate_caches()
-importlib.reload(CodiceVolo)
-importlib.reload(IATACode)
-importlib.reload(Age)
-
-from CodiceVolo import CodiceVolo
-from IATACode import IATACode
-from Age import Age
+import FlightCode, IATACode, Age, FlightTime
 
 class PersonalRaises(Exception):    
     pass
 
 class Volo:
     def __eq__(self, other: "Volo"):        
-        return self.codice_volo == other.codice_volo    
+        return self.flightcode == other.flightcode    
     def __hash__(self):        
-        return hash(self.codice_volo)
+        return hash(self.flightcode)
 
-    def __init__(self, codice_volo: CodiceVolo, durata_min: int) -> None:
-
-        if isinstance(codice_volo, CodiceVolo) and isinstance(durata_min, int):
-
-            if durata_min <= 0:
-
-                raise PersonalRaises("Minutes must be greater than 0.")
-
-            self.codice_volo = codice_volo
-            self.durata_min = durata_min
-
-        else:
-
-            if not isinstance(durata_min, int):
-
-                raise PersonalRaises(f"The type must be an integer.")
-            
-            elif not isinstance(codice_volo, CodiceVolo):
-
-                raise PersonalRaises(f"The type must be a string.")
+    def __init__(self, flightcode: FlightCode, flighttime: FlightTime) -> None:
+        if not isinstance(flightcode, FlightCode):
+            raise PersonalRaises("The type must be a FlightCode type.")
+        if not isinstance(flighttime, FlightTime):
+            raise ValueError("The type must be a FlightTime type")
+        
+        self.flightcode: FlightCode = flightcode
+        self.flighttime: FlightTime = flighttime
             
 class Aeroporto:
-
     def __eq__(self, other: "Aeroporto") -> bool:        
         return self.iata_code == other.iata_code and self.port_name == other.port_name
 
@@ -61,7 +36,7 @@ class Aeroporto:
             self.port_name: str = port_name
 
         except ValueError as unknow:
-            raise PersonalRaises("The airport code must be a type string.")
+            raise PersonalRaises(f"Error in airport type: {unknow}.")
 
         self.iata_code = iata_code
             
@@ -90,15 +65,12 @@ class Compagnia:
 class Citta:
 
     def __eq__(self, other: "Citta"):
-
         return self.nazione_citta == other.nazione_citta and self.nome_citta == other.nome_citta
 
-    def __init__(self, nome_citta: str, abitanti: int = 0, nazione_citta: "Nazione" = None): # >= 0
-
+    def __init__(self, nome_citta: str, abitanti: int = 0, nazione_citta: "Nazione" = None):
         if isinstance(nome_citta, str) and isinstance(abitanti, int) and nazione_citta is not None:
 
             if abitanti < 0:
-
                 raise PersonalRaises("The value per inhabitant cannot be less than 0.")
             
             self.nome_citta = nome_citta
@@ -107,35 +79,26 @@ class Citta:
             
 
         elif not isinstance(nome_citta, str):
-
             raise PersonalRaises("The city must be of type string.")
 
         elif not isinstance(abitanti, int):
-
             raise PersonalRaises("The number of inhabitants must be of integer type.")
         
         elif nazione_citta is None:
-
             raise PersonalRaises("The country must be entered.")
         
 class Nazione:
-
-    def __eq__(self, other: "Nazione"):
-        
+    def __eq__(self, other: "Nazione"):        
         return self.nome_nazione == other.nome_nazione
     
-    def __hash__(self):
-        
+    def __hash__(self):        
         return hash(self.nome_nazione)
 
     def __init__(self, nome_nazione: str):
-
         if isinstance(nome_nazione, str):
-
             self.nome_nazione = nome_nazione
 
         else:
-
             raise PersonalRaises("The country must be of type string.")
         
 if __name__ == "__main__":
