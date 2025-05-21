@@ -1,7 +1,18 @@
-from Voli_Aerei import CodiceVolo, IATACode, Age
+import importlib
+import CodiceVolo
+import IATACode
+import Age
 
-class PersonalRaises(Exception):
-    
+importlib.invalidate_caches()
+importlib.reload(CodiceVolo)
+importlib.reload(IATACode)
+importlib.reload(Age)
+
+from CodiceVolo import CodiceVolo
+from IATACode import IATACode
+from Age import Age
+
+class PersonalRaises(Exception):    
     pass
 
 class Volo:
