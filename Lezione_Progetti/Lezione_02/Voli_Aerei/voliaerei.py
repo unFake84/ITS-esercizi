@@ -28,7 +28,7 @@ class Volo:
     def __str__(self) -> str:
         return f"Code: {self.flightcode}\nDuration: {self.flighttime}"
 
-    # metodo per confrontare due istanze oggetto, se vero restituisce True, altrimenti False
+    # metodo per confrontare due istanze oggetto, se sono simili restituisce True, altrimenti False
     def __eq__(self, other: "Volo") -> bool:        
         return self.flightcode == other.flightcode
 
@@ -48,7 +48,7 @@ class Aeroporto:
             raise PersonalRaises("The airport code must be of IATACode type.")
 
         self.port_name: str = port_name
-        self.iata_code = iata_code
+        self.iata_code: IATACode = iata_code
 
     def __str__(self) -> str:
         return f"IATA Code: {self.iata_code}\nPort name: {self.port_name}"
@@ -71,7 +71,7 @@ class Compagnia:
             raise PersonalRaises("The foundation year must be of Year type.")
 
         self.foundation_year: Year = foundation_year
-        self.company_name = company_name
+        self.company_name: str = company_name
 
     def __str__(self) -> str:
         return f"Company name: {self.company_name}\nFounded in: {self.foundation_year}"
@@ -92,9 +92,9 @@ class Citta:
             if population <= 0:
                 raise PersonalRaises("The population cannot be less than or equal to zero.")
 
-            self.city_name = city_name
-            self.population = population
-            self.nation_city = nation_city            
+            self.city_name: str = city_name
+            self.population: int = population
+            self.nation_city: Nazione = nation_city            
 
         elif not isinstance(city_name, str):
             raise PersonalRaises("The city must be of string type.")
@@ -123,7 +123,7 @@ class Nazione:
         if not isinstance(nation_name, str):
             raise PersonalRaises("The country name must be a string type.")
 
-        self.nation_name = nation_name
+        self.nation_name: str = nation_name
 
     def __str__(self) -> str:
         return f"Nazione: {self.nation_name}"
