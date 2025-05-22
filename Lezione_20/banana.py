@@ -21,7 +21,7 @@ class PartitaIva(str):
 
         return str.__new__(cls, iva)
     
-    # new si utilizza "soltanto" quando si eredita un tipo di dato base
+    # new si utilizza "soltanto" quando si eredita un "tipo di dato base"
 
 class NomeClasse:
     def __init__(self, attrib):
