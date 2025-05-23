@@ -17,7 +17,7 @@ class PartitaIva(str):
 
     def __new__(cls, iva: str):
 
-        # check
+        # check                                                      <--- DA PRENDERE CON LE PINZE!!!!
 
         return str.__new__(cls, iva)
     
