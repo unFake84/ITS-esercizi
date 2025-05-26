@@ -44,10 +44,10 @@ class Impiegato:
     def get_cognome(self) -> str:
         return self._cognome
 
-    def get_nascita(self):
+    def get_nascita(self) -> date:
         return self._nascita
 
-    def set_stipendio(self, new_stipendio: RealGEZ):
+    def set_stipendio(self, new_stipendio: RealGEZ) -> RealGEZ:
         self._stipendio = new_stipendio
 
     def get_stipendio(self) -> RealGEZ:
