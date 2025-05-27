@@ -124,9 +124,9 @@ class Dipartimento:
             raise ValueError("Cannot be emtpy.")
 
         for check in newtel:
-            if not isinstance(check, str):
+            if not isinstance(check, str) or check == "":
 
-                raise ValueError(f"{check} not supported")
+                raise ValueError(f"{check} not supported" if check != "" else "Cannot be empty")
 
         self._telefoni = newtel
 
@@ -138,7 +138,15 @@ class Dipartimento:
         self._telefoni.add(add)
 
     def remove_telefono(self, remove: str) -> None:
-        self._telefoni.remove(remove)
+        if remove not in self.set_telefono():
+            raise RuntimeError(f"{remove} is not in database.")
+        
+        elif len(self.get_telefono()) == 1:
+            raise RuntimeError("Cannot be empty.")
+        
+        elif len(self.set_telefono()) > 1:
+
+            self._telefoni.remove(remove)
 
     def set_indirizzo(self, newaddr: Indirizzo|None) -> None:
         if newaddr is None:
