@@ -8,7 +8,7 @@ class Impiegato:
     _nascita: date
     _stipendio: RealGEZ
 
-    def __init__(self, nome: str, cognome: str, nascita: Date, stipendio: RealGEZ) -> None:
+    def __init__(self, nome: str, cognome: str, nascita: date, stipendio: RealGEZ) -> None:
         if not isinstance(nome, str) or not isinstance(cognome, str) or not isinstance(nascita, Date) or not isinstance(stipendio, RealGEZ):
 
             raise TypeError("The type entered is incorrect.")
@@ -26,11 +26,11 @@ class Impiegato:
             f"Salary: {self._stipendio}\n"
             )
     
-    def __eq__(self, other: Self) -> bool:        
-        return (self._nome == other._nome and
-            self._cognome == other._cognome and
-            self._nascita == other._nascita and
-            self._stipendio == other._stipendio)
+    # def __eq__(self, other: Self) -> bool:        
+    #     return (self._nome == other._nome and
+    #         self._cognome == other._cognome and
+    #         self._nascita == other._nascita and
+    #         self._stipendio == other._stipendio)
 
     def __hash__(self) -> int:
         return hash((self._nome, self._cognome, self._nascita, self._stipendio))
@@ -47,7 +47,7 @@ class Impiegato:
     def get_cognome(self) -> str:
         return self._cognome
 
-    def get_nascita(self) -> Date:
+    def get_nascita(self) -> date:
         return self._nascita
 
     def set_stipendio(self, new_stipendio: RealGEZ) -> None:
@@ -59,15 +59,16 @@ class Impiegato:
 class Dipartimento:
 
     _nome: str
-    _telefono: list[str]
+    _telefoni: set[str]
     _indirizzo: Indirizzo
 
-    def __init__(self, nome: str, telefono: list[str], indirizzo: Indirizzo|None) -> None:
-        if not isinstance(nome, str) or not isinstance(telefono, list) or indirizzo is not None and not isinstance(indirizzo, Indirizzo):
+    def __init__(self, nome: str, telefono: set[str], indirizzo: Indirizzo|None) -> None:
+        if not isinstance(nome, str) or not isinstance(telefono, set) or indirizzo is not None and not isinstance(indirizzo, Indirizzo):
 
             raise TypeError("The type entered is incorrect.")
         
         self.set_name(nome)
+        self._telefoni = set()
         self.set_telefono(telefono)
         self.set_indirizzo(indirizzo)
 
@@ -75,32 +76,32 @@ class Dipartimento:
 
         return (
             f"Name: {self._nome}\n"
-            f"Tel: {self._telefono}\n"
+            f"Tel: {self._telefoni}\n"
             f"Address: {self._indirizzo}\n"
         )
     
-    def __eq__(self, other: Self) -> bool:
-        if self._indirizzo and other._indirizzo:
+    # def __eq__(self, other: Self) -> bool:
+    #     if self._indirizzo and other._indirizzo:
 
-            return (self._nome == other._nome and
-                    self._telefono == other._telefono and
-                    self._indirizzo == other._indirizzo)
+    #         return (self._nome == other._nome and
+    #                 self._telefoni == other._telefoni and
+    #                 self._indirizzo == other._indirizzo)
 
-        else:
+    #     else:
 
-            return (self._nome == other._nome and
-                    self._telefono == other._telefono)
+    #         return (self._nome == other._nome and
+    #                 self._telefoni == other._telefoni)
 
-    def __hash__(self):
-        telefoni_tuple: tuple = tuple(self._telefono)
+    # def __hash__(self):
+    #     telefoni_tuple: tuple = tuple(self._telefoni)
 
-        if self._indirizzo:
+    #     if self._indirizzo:
 
-            return hash((self._nome, telefoni_tuple, self._indirizzo))
+    #         return hash((self._nome, telefoni_tuple, self._indirizzo))
         
-        else:
+    #     else:
 
-            return hash((self._nome, telefoni_tuple))
+    #         return hash((self._nome, telefoni_tuple))
 
     def set_name(self, newname2: str) -> None:
         if not isinstance(newname2, str):
@@ -113,12 +114,12 @@ class Dipartimento:
 
         return self._nome
 
-    def set_telefono(self, newtel: list[str]) -> None:
-        if not isinstance(newtel, list):
+    def set_telefono(self, newtel: set[str]) -> None:
+        if not isinstance(newtel, set):
 
             raise ValueError("The type entered is incorrect.")
         
-        elif newtel == []:
+        elif newtel == {}:
 
             raise ValueError("Cannot be emtpy.")
 
@@ -127,11 +128,17 @@ class Dipartimento:
 
                 raise ValueError(f"{check} not supported")
 
-        self._telefono = newtel
+        self._telefoni = newtel
 
-    def get_telefono(self) -> list[str]:
+    def get_telefono(self) -> frozenset[str]:
 
-        return self._telefono
+        return frozenset(self._telefoni)
+
+    def add_telefono(self, add: str) -> None:
+        self._telefoni.add(add)
+
+    def remove_telefono(self, remove: str) -> None:
+        self._telefoni.remove(remove)
 
     def set_indirizzo(self, newaddr: Indirizzo|None) -> None:
         if newaddr is None:

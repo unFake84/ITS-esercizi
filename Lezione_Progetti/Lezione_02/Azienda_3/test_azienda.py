@@ -7,7 +7,7 @@ print("• Impiegato:\n", prova1)
 
 print("\t", "-"*10, "[Dipartimento Class]", "-"*10)
 indirizzo: Indirizzo = Indirizzo("Via suinis 10", CAP("00135"))
-prova2: Dipartimento = Dipartimento("Purina #17", ["06-1234567"], indirizzo)
+prova2: Dipartimento = Dipartimento("Purina #17", {"06-1234567"}, indirizzo)
 print("• Sede:\n", prova2)
 
 print("\t", "-"*10, "[Progetto Class]", "-"*10)
