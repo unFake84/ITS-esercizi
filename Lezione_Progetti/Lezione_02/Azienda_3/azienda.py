@@ -66,7 +66,7 @@ class Dipartimento:
         if not isinstance(nome, str) or not isinstance(telefono, set) or indirizzo is not None and not isinstance(indirizzo, Indirizzo):
 
             raise TypeError("The type entered is incorrect.")
-        
+
         self.set_name(nome)
         self._telefoni = set()
         self.set_telefono(telefono)
@@ -79,7 +79,7 @@ class Dipartimento:
             f"Tel: {self._telefoni}\n"
             f"Address: {self._indirizzo}\n"
         )
-    
+
     # def __eq__(self, other: Self) -> bool:
     #     if self._indirizzo and other._indirizzo:
 
@@ -98,7 +98,7 @@ class Dipartimento:
     #     if self._indirizzo:
 
     #         return hash((self._nome, telefoni_tuple, self._indirizzo))
-        
+
     #     else:
 
     #         return hash((self._nome, telefoni_tuple))
@@ -118,7 +118,7 @@ class Dipartimento:
         if not isinstance(newtel, set):
 
             raise ValueError("The type entered is incorrect.")
-        
+
         elif newtel == {}:
 
             raise ValueError("Cannot be emtpy.")
@@ -140,10 +140,10 @@ class Dipartimento:
     def remove_telefono(self, remove: str) -> None:
         if remove not in self.set_telefono():
             raise RuntimeError(f"{remove} is not in database.")
-        
+
         elif len(self.get_telefono()) == 1:
             raise RuntimeError("Cannot be empty.")
-        
+
         elif len(self.set_telefono()) > 1:
 
             self._telefoni.remove(remove)
