@@ -6,11 +6,11 @@ c) 30, 25, 20, 15, 10, 5, 0
 d) 5, 15, 25, 35, 45
 '''
 
-for i in range(2, 15, 1):
+for i in range(2, 15, 2):
     print(i)
-for i in range(1, 15, 3):
-    print(i)
-for i in range(30, 0, -5):
-    print(i)
-for i in range(5, 50, 10):
-    print(i)
+# for i in range(1, 15, 3):
+#     print(i)
+# for i in range(30, 0, -5):
+#     print(i)
+# for i in range(5, 50, 10):
+#     print(i)

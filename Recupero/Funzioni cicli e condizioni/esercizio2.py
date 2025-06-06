@@ -22,6 +22,6 @@ print(moltiplica(lista_di_numeri, 10))
 def fattoriale(n):
     # if n == 1:
     #     return 1
-    
+
     # return n*fattoriale(n-1)
     return fattoriale(n-1) * n if n != 1 else 1
