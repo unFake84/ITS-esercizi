@@ -1,12 +1,3 @@
-'''
-Metodi:
-
-
-
-
-
-'''
-
 class Movie:
     '''
     Classe Movie:
@@ -23,6 +14,14 @@ class Movie:
         self.title = title
         self.director = director
         self.is_rented = is_rented
+
+    def __str__(self) -> str:
+        return (
+            f"ID: {self.movie_id}\n"
+            f"Titolo: {self.title}\n"
+            f"Regista: {self.director}\n"
+            f"Affittato: {'Si' if self.is_rented else 'No'}"
+            )
 
     def rent(self) -> None:
         '''
@@ -63,6 +62,23 @@ class Customer:
         self.customer_id = customer_id
         self.name = name
         self.rented_movies: list[Movie] = []
+
+    def __str__(self) -> str:
+        lista_di_film: list[str] = []
+        contatore_films: int = 0
+        for i, film in enumerate(self.rented_movies, 1):
+            lista_di_film.append(f"\nFilm n° {i}:\n{str(film)}")
+            contatore_films += 1
+
+        if lista_di_film:
+            lista_di_film.append("-"*30)
+
+        return (
+            f"ID: {self.customer_id}\n"
+            f"Nome: {self.name}\n"
+            f"Film attualmente in affitto: {contatore_films}\n"
+            f"{'\n'.join(lista_di_film) if lista_di_film else "Nessun film attualmente in affitto"}"
+        )
 
     def rent_movie(self, movie: Movie) -> None:
 
@@ -106,6 +122,38 @@ class VideoRentalStore:
     def __init__(self, movies: dict[str, Movie] = {}, customers: dict[str, Customer] = {}) -> None:
         self.movies = movies
         self.customers = customers
+
+    def __str__(self) -> str:
+        movies: list[str] = []
+        customer: list[str] = []
+        contatore_film: int = 0
+        contatore_clienti: int = 0
+
+        if self.movies:
+            for value in self.movies.values():
+                stringa_movies: str = f"\n{str(value)}\n"
+                movies.append(stringa_movies)
+                contatore_film += 1
+
+        else:
+            movies.append("Nessun film attualmente in affitto")
+
+        if self.customers:
+            for value in self.customers.values():
+                string_customers: str = f"\n{str(value)}\n"
+                customer.append(string_customers)
+                contatore_clienti += 1
+        
+        else:
+            customer.append("Nessun cliente registrato ancora")
+
+        return (
+            f"\nFilm:\n"
+            f"\nFilm totali: {contatore_film}\n"
+            f"\n{'\n'.join(movies)}\n{'-'*30}\n"
+            f"\nCliente:\n"
+            f"\nClienti totali: {contatore_clienti}\n"
+            f"\n{'\n'.join(customer) if customer else 'Nessun film attualmente in affitto'}\n")
 
     def add_movie(self, movie_id: str, title: str, director: str) -> None:
         '''
@@ -186,3 +234,4 @@ class VideoRentalStore:
         Intera lista di film noleggiati
         Ritorna la lista di film che sono stati dati dal videonoleggio a tutti i clienti
         '''
+        print(f"{self.movies} # {self.customers}")
