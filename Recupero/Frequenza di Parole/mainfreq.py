@@ -31,28 +31,28 @@ def count_unique_words(text: str) -> dict[str, int]:
     frase: str = ""
     lista_di_parole: list[str] = []
     dizio: dict[str, int] = {}
-    cont: int = 1
 
     for indice in text.lower():
 
         if indice in a__z:
             frase += indice
+
         if indice not in a__z:
             lista_di_parole.append(frase)
             frase = ""
+
         if "" in lista_di_parole:
             lista_di_parole.remove("")
 
     for parola in lista_di_parole:
 
         if parola not in dizio:
-            dizio[parola] = cont
+            dizio[parola] = 1
 
         elif parola in dizio:
             dizio[parola] += 1
 
     return dizio
-
 
 print(count_unique_words("  ciao come stai? CIao! tutto bene  ciao ciaooo !##@ @ @ ciao tutto ciao @   beLL/aaa   ahaha aaa bene! 23ò12à3ò"))
 print(count_unique_words("Hello, world! Hello... PYTHON? world."))
