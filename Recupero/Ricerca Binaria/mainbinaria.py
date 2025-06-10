@@ -32,4 +32,34 @@ lista_di_test: list[int] = [
     31, 34, 38, 41, 45, 48, 52, 56, 59, 63,
     67, 71, 75, 78, 82, 86, 89, 93, 97, 100
     ]
-print(ricerca(lista_di_test, 48))
+lista_di_test2: list[int] = [2, 5, 8, 12, 16 ,23, 38, 45, 56, 72, 91]
+print(ricerca(lista_di_test2, 72))
+
+# PROF va fuori range con lista di test2
+def bin_search(x, y):
+
+    # i, j = 0, -1
+    # mid = len(x)//2
+
+    # if x[mid] == y:
+    #     return True
+
+    # if x[mid] > y:
+    #     j = mid
+
+    #     bin_search(x[i:j], y)
+
+    # else:
+    #     i = mid +1
+
+    #     bin_search(x[i:j], y)
+    j = -1
+    mid = len(x)//2
+    
+    if x[mid] == y:
+        return True
+
+    else:
+        return bin_search(x[mid:j], y) if x[mid] > y else bin_search(x[mid+1:j], y)
+
+print(bin_search(lista_di_test2, 72))
