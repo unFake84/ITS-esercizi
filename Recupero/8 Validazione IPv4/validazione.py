@@ -22,14 +22,9 @@ is_valid_ipv4("192.168.1") # False (solo 3 parti)
 is_valid_ipv4("192.168.1.a") # False (parte non numerica)
 '''
 
-import string
-from string import ascii_lowercase, ascii_uppercase
 
 def is_valid_ipv4(address: str) -> bool:
 
-    a_z_lower: str = ascii_lowercase
-    a_z_upper: str = ascii_uppercase
-    car_special: str = string.punctuation
     check_len: int = len(address)
     check_point: int = 0
     char_isint: int = 0
@@ -45,29 +40,26 @@ def is_valid_ipv4(address: str) -> bool:
 
         if char == ".":
 
-            if pre_check == "":
+            check_point += 1
+
+            try:
+                char_isint = int(pre_check)
+            except ValueError:
                 return False
 
-            check_point += 1
-            char_isint = int(pre_check)
             pre_check = ""
 
             if char_isint < 0 or char_isint > 255:
                 return False
 
-        if char in a_z_lower or char in a_z_upper:
-            return False
-
-        if char in car_special and char != ".":
-            return False
-
-        # pre_check: int | str
-        # pre_check = int(char) if char != '.' else "controlla"
-
         if char != ".":
             pre_check += char
 
-    char_isint = int(pre_check)
+    try:
+        char_isint = int(pre_check)
+    except ValueError:
+        return False
+
     if char_isint < 0 or char_isint > 255:
         return False
 
@@ -79,4 +71,72 @@ if __name__ == "__main__":
     print("Risultato atteso: True\nOttenuto: ", is_valid_ipv4("255.255.255.255"), "\n") # True
     print("Risultato atteso: False\nOttenuto: ", is_valid_ipv4("256.100.10.1"), "(256 è fuori range)", "\n") # False (256 è fuori range)
     print("Risultato atteso: False\nOttenuto: ", is_valid_ipv4("192.168.1"), "(solo 3 parti)", "\n") # False (solo 3 parti)
-    print("Risultato atteso: False\nOttenuto: ", is_valid_ipv4("192.168.1.a"), "(parte non numerica)", "\n") # False (parte non numerica)
+    print("Risultato atteso: False\nOttenuto: ", is_valid_ipv4("192.168.1.a\n"), "(parte non numerica)", "\n") # False (parte non numerica)
+
+
+
+
+
+
+
+
+
+    import string
+# from string import ascii_lowercase, ascii_uppercase
+
+# def is_valid_ipv4(address: str) -> bool:
+
+#     # a_z_lower: str = ascii_lowercase
+#     # a_z_upper: str = ascii_uppercase
+#     # car_special: str = string.punctuation
+#     check_len: int = len(address)
+#     check_point: int = 0
+#     char_isint: int = 0
+#     pre_check: str = ""
+
+#     if check_len > 15:
+#         return False
+
+#     for char in address:
+
+#         if check_point > 3:
+#             return False
+
+#         if char == ".":
+
+#             # if pre_check == "":
+#             #     return False
+
+#             check_point += 1
+
+#             try:
+#                 char_isint = int(pre_check)
+#             except ValueError:
+#                 return False
+
+#             pre_check = ""
+
+#             if char_isint < 0 or char_isint > 255:
+#                 return False
+
+#         # if char in a_z_lower or char in a_z_upper:
+#         #     return False
+
+#         # if char in car_special and char != ".":
+#         #     return False
+
+#         # # pre_check: int | str
+#         # # pre_check = int(char) if char != '.' else "controlla"
+
+#         if char != ".":
+#             pre_check += char
+
+#     try:
+#         char_isint = int(pre_check)
+#     except ValueError:
+#         return False
+
+#     if char_isint < 0 or char_isint > 255:
+#         return False
+
+#     return True if check_point == 3 else False
