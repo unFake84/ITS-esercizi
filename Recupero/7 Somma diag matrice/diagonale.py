@@ -42,6 +42,7 @@ def sum_secondary_diagonal(matrix: list[list[int]]) -> int:
     return sommatore
 
 if __name__ == "__main__":
+
     mat1 = [
     [1, 2, 3, 4],
     [5, 6, 7, 8],
@@ -49,8 +50,13 @@ if __name__ == "__main__":
     [13, 14, 15, 16]
     ]
 
-    print(sum_primary_diagonal(mat1))
-    print(sum_secondary_diagonal(mat1))
+    primaria = [mat1[i][i] for i in range(len(mat1))]
+    secondaria = [mat1[i][len(mat1) -1 -i] for i in range(len(mat1))]
+
+    print("Matrice:\n\n",*[str(lista)+"\n" for lista in mat1])
+
+    print(f"Risultato di {primaria} = {sum_primary_diagonal(mat1)}")
+    print(f"Risultato di {secondaria} = {sum_secondary_diagonal(mat1)}")
 
 
 
@@ -58,9 +64,9 @@ if __name__ == "__main__":
 
 
 
-
-
-
+    #   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
+    #   @ provafor = [indice for indice in mat1] @
+    #   @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
 
 
 

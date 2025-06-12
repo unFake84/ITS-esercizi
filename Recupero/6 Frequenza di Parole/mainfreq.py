@@ -23,33 +23,18 @@ output = count_unique_words(text)
 ● # output == {'hello': 2, 'world': 2, 'python': 1}
 '''
 
-from string import ascii_lowercase
+import re
 
 def count_unique_words(text: str) -> dict[str, int]:
 
-    a__z: str = ascii_lowercase
-    frase: str = ""
-    lista_di_parole: list[str] = []
+    lista_di_parole: list[str] = re.findall(r"\b[^\W\d_]+\b", text.lower())
     dizio: dict[str, int] = {}
-
-    for indice in text.lower():
-
-        if indice in a__z:
-            frase += indice
-
-        if indice not in a__z:
-            lista_di_parole.append(frase)
-            frase = ""
-
-        if "" in lista_di_parole:
-            lista_di_parole.remove("")
 
     for parola in lista_di_parole:
 
         if parola not in dizio:
             dizio[parola] = 1
-
-        elif parola in dizio:
+        else:
             dizio[parola] += 1
 
     return dizio
@@ -68,9 +53,35 @@ print(count_unique_words("Hello, world! Hello... PYTHON? world."))
 
 
 
+# from string import ascii_lowercase
 
 
+    # a__z: str = ascii_lowercase
+    # frase: str = ""
+    # lista_di_parole: list[str] = []
+    # dizio: dict[str, int] = {}
 
+    # for indice in text.lower():
+
+    #     if indice in a__z:
+    #         frase += indice
+
+    #     if indice not in a__z:
+    #         lista_di_parole.append(frase)
+    #         frase = ""
+
+    #     if "" in lista_di_parole:
+    #         lista_di_parole.remove("")
+
+    # for parola in lista_di_parole:
+
+    #     if parola not in dizio:
+    #         dizio[parola] = 1
+
+    #     elif parola in dizio:
+    #         dizio[parola] += 1
+
+    # return dizio
 
 
 

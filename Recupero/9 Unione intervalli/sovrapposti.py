@@ -27,14 +27,16 @@ merge_intervals(intervals) # restituisce [[1, 5]]
 
 def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
 
-
     check_intervals: list[list[int]] = []
+
     for check in intervals:
+
         if len(check) != 2 \
             or not isinstance(check[0], int) \
             or not isinstance(check[1], int) \
             or check[0] > check[1]:
             continue
+
         check_intervals.append(check)
 
     order_intervals: list[list[int]] = sorted(check_intervals)
@@ -55,7 +57,7 @@ def merge_intervals(intervals: list[list[int]]) -> list[list[int]]:
 
 if __name__ == "__main__":
     
-    intervals = [[3, 1], [4, 5]]                        # restituisce [[1, 5]]
+    intervals = [[1, 4], [4, 5]]                        # restituisce [[1, 5]]
     intervals2 = [[1, 3], [2, 6], [8, 10], [15, 18]]    # restituisce [[1, 6], [8, 10], [15,18]]
     intervals3 = [[15, 18], [2, 6], [18, 10], [1, 3], [10, 18], [15, 18, 10], [1], ["a", 4]]
     print(merge_intervals(intervals))

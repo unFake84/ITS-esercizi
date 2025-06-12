@@ -86,18 +86,6 @@ def caesar_cypher_decrypt(s, key) -> str:
 
     return stringa_decriptata
 
-# PROF caso semplice
-def cesare(x, k):
-    stringa = ""
-    for c in x:
-        index = ascii_lowercase.index(c)
-        index += k
-        new_index = (index + k) % 26
-        new_char = ascii_lowercase[new_index]
-        stringa += new_char
-
-
-
 if __name__ == "__main__":
 
     print(caesar_cypher_encrypt("ahiaAh@1a!!#", 28))
@@ -124,6 +112,16 @@ if __name__ == "__main__":
 
 
 
+
+# # PROF caso semplice
+# def cesare(x, k):
+#     stringa = ""
+#     for c in x:
+#         index = ascii_lowercase.index(c)
+#         index += k
+#         new_index = (index + k) % 26
+#         new_char = ascii_lowercase[new_index]
+#         stringa += new_char
 
 
 

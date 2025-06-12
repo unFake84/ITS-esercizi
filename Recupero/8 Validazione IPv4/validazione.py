@@ -25,45 +25,22 @@ is_valid_ipv4("192.168.1.a") # False (parte non numerica)
 
 def is_valid_ipv4(address: str) -> bool:
 
-    check_len: int = len(address)
-    check_point: int = 0
-    char_isint: int = 0
-    pre_check: str = ""
+    checker: list[str] = address.split(".")
 
-    if check_len > 15:
+    if len(checker) != 4:
         return False
 
-    for char in address:
+    for octet in checker:
 
-        if check_point > 3:
+        if not octet.isdigit():
             return False
 
-        if char == ".":
+        isint: int = int(octet)
 
-            check_point += 1
-
-            try:
-                char_isint = int(pre_check)
-            except ValueError:
+        if isint < 0 or isint > 255:
                 return False
 
-            pre_check = ""
-
-            if char_isint < 0 or char_isint > 255:
-                return False
-
-        if char != ".":
-            pre_check += char
-
-    try:
-        char_isint = int(pre_check)
-    except ValueError:
-        return False
-
-    if char_isint < 0 or char_isint > 255:
-        return False
-
-    return True if check_point == 3 else False
+    return True
 
 if __name__ == "__main__":
 
@@ -81,7 +58,68 @@ if __name__ == "__main__":
 
 
 
-    import string
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    # check_len: int = len(address)
+    # check_point: int = 0
+    # char_isint: int = 0
+    # pre_check: str = ""
+
+    # if check_len > 15:
+    #     return False
+
+    # for char in address:
+
+    #     if check_point > 3:
+    #         return False
+
+    #     if char == ".":
+
+    #         check_point += 1
+
+    #         try:
+    #             char_isint = int(pre_check)
+    #         except ValueError:
+    #             return False
+
+    #         pre_check = ""
+
+    #         if char_isint < 0 or char_isint > 255:
+    #             return False
+
+    #     if char != ".":
+    #         pre_check += char
+
+    # try:
+    #     char_isint = int(pre_check)
+    # except ValueError:
+    #     return False
+
+    # if char_isint < 0 or char_isint > 255:
+    #     return False
+
+    # return True if check_point == 3 else False
+
+
+
+
+
+# import string
 # from string import ascii_lowercase, ascii_uppercase
 
 # def is_valid_ipv4(address: str) -> bool:
@@ -140,3 +178,37 @@ if __name__ == "__main__":
 #         return False
 
 #     return True if check_point == 3 else False
+
+
+# def isdigit_valid_ipv4(address: str) -> bool:
+#     points: int = 0
+#     i_ottetto: str = ""
+#     ii_ottetto: str = ""
+#     iii_ottetto: str = ""
+#     iv_ottetto: str = ""
+#     for index in range(len(address)):
+#         if address[index] == ".":
+#             if points in (0,1,2,3):
+#                 points += 1
+#             else:
+#                 False
+#         elif address[index] != ".":
+#             if points == 0:
+#                 i_ottetto += address[index]
+#             elif points == 1:
+#                 ii_ottetto += address[index]
+#             elif points == 2:
+#                 iii_ottetto += address[index]
+#             elif points == 3:
+#                 iv_ottetto += address[index]
+#     try:
+#         i: int = int(i_ottetto)
+#         ii: int = int(ii_ottetto)
+#         iii: int = int(iii_ottetto)
+#         iv: int = int(iv_ottetto)
+#     except ValueError:
+#         return False
+    
+#     return True
+#         # print()
+#         # print(i_ottetto, ii_ottetto, iii_ottetto, iv_ottetto)

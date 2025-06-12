@@ -23,6 +23,9 @@ class Movie:
             f"Affittato: {'Si' if self.is_rented else 'No'}"
             )
 
+    def __repr__(self):
+        return f"||FilmID = {self.movie_id} |Titolo = {self.title} |Direttore = {self.director} |Affittato: '{'Si' if self.is_rented else 'No'}'||\n"
+
     def rent(self) -> None:
         '''
         ● rent(): Contrassegna il film come noleggiato se non è già noleggiato. Se il film
@@ -66,6 +69,7 @@ class Customer:
     def __str__(self) -> str:
         lista_di_film: list[str] = []
         contatore_films: int = 0
+
         for i, film in enumerate(self.rented_movies, 1):
             lista_di_film.append(f"\nFilm n° {i}:\n{str(film)}")
             contatore_films += 1
@@ -73,12 +77,17 @@ class Customer:
         if lista_di_film:
             lista_di_film.append("-"*30)
 
+        mostra_film: str = '\n'.join(lista_di_film) if lista_di_film else 'Nessun film attualmente in affitto'
+
         return (
             f"ID: {self.customer_id}\n"
             f"Nome: {self.name}\n"
             f"Film attualmente in affitto: {contatore_films}\n"
-            f"{'\n'.join(lista_di_film) if lista_di_film else "Nessun film attualmente in affitto"}"
+            f"{mostra_film}"
         )
+
+    def __repr__(self):
+        return f"ClienteID = {self.customer_id} Nome = {self.name}\n"
 
     def rent_movie(self, movie: Movie) -> None:
 
@@ -147,13 +156,20 @@ class VideoRentalStore:
         else:
             customer.append("Nessun cliente registrato ancora")
 
+        mostra_movies: str = '\n'.join(movies)
+        mostra_clienti: str = '\n'.join(customer) if customer else 'Nessun film attualmente in affitto'
+
         return (
             f"\nFilm:\n"
             f"\nFilm totali: {contatore_film}\n"
-            f"\n{'\n'.join(movies)}\n{'-'*30}\n"
+            f"\n{mostra_movies}\n{'-'*30}\n"
             f"\nCliente:\n"
             f"\nClienti totali: {contatore_clienti}\n"
-            f"\n{'\n'.join(customer) if customer else 'Nessun film attualmente in affitto'}\n")
+            f"{mostra_clienti}"
+            )
+
+    def __repr__(self):
+        return f"Customers: {self.customers} Movies: {self.movies}\n"
 
     def add_movie(self, movie_id: str, title: str, director: str) -> None:
         '''
@@ -234,4 +250,22 @@ class VideoRentalStore:
         Intera lista di film noleggiati
         Ritorna la lista di film che sono stati dati dal videonoleggio a tutti i clienti
         '''
-        print(f"{self.movies} # {self.customers}")
+        lista_generale: list[Movie] = []
+
+        for cliente in self.customers.values():
+            lista_generale.extend(cliente.rented_movies)
+
+        return lista_generale
+        # #--------------------------------------------------------------------------
+        # for utente in self.customers.values():
+        #     lista_personale: list[str] = []
+        #     lista_personale.append(str(utente.customer_id))
+        #     lista_personale.append(str(utente.name))
+        #     lista_personale.append([str(movie)for movie in utente.rented_movies])
+        #     lista_generale.append(lista_personale)
+        # return lista_generale
+        # #--------------------------------------------------------------------------
+
+
+        #print(f"{self.movies} # {self.customers}")
+        #provafor = [indice for indice in mat1]
