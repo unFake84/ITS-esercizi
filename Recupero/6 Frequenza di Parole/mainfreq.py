@@ -39,8 +39,33 @@ def count_unique_words(text: str) -> dict[str, int]:
 
     return dizio
 
-print(count_unique_words("  ciao come stai? CIao! tutto bene  ciao ciaooo !##@ @ @ ciao tutto ciao @   beLL/aaa   ahaha aaa bene! 23ò12à3ò"))
-print(count_unique_words("Hello, world! Hello... PYTHON? world."))
+
+
+
+
+
+
+# ES PROF 13/06/25
+from string import punctuation
+def words(text: str) -> dict[str, int]:
+    d=dict[str, int] = {}
+    text = text.lower()
+    tokens: list[str] = text.split(" ")
+    for token in tokens:
+        token = token.strip(punctuation)
+        if not token:
+            continue
+        if token not in d:
+            d[token] = 1
+        else:
+            d[token] += 1
+
+
+
+if __name__ == "__main__":
+
+    print(count_unique_words("  ciao come stai? CIao! tutto bene  ciao ciaooo !##@ @ @ ciao tutto ciao @   beLL/aaa   ahaha aaa bene! 23ò12à3ò"))
+    print(count_unique_words("Hello, world! Hello... PYTHON? world."))
 
 
 

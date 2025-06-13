@@ -42,6 +42,24 @@ def is_valid_ipv4(address: str) -> bool:
 
     return True
 
+
+
+
+
+def check_ipv4(ip: str) -> bool:
+    ip = ip.split()
+    if len(ip) != 4:
+        return False # 4 punti
+    for blocco in ip:
+        if not blocco.isdigit():
+            return False # carr alfabetico
+        if not (0 <= int(blocco) <= 255):
+            return False # !no 0<n<255
+    return True
+
+
+
+
 if __name__ == "__main__":
 
     print("Risultato atteso: True\nOttenuto: ", is_valid_ipv4("192.168.0.1"), "\n") # True

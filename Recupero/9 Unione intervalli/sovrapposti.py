@@ -64,6 +64,26 @@ if __name__ == "__main__":
     print(merge_intervals(intervals2))
     print(merge_intervals(intervals3))
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # #-----------------------------------------------------------------------------------------------------------------
 
 #     ordered_intervals: list[list[int]] = []
