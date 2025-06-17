@@ -1,7 +1,5 @@
 '''
-Esercizio 1.
- 
-8.A Si Scriva in Python in un file frazioni.py una classe Frazione,
+Si Scriva in Python in un file frazioni.py una classe Frazione,
 i cui attributi privati siano rispettivamente numeratore e denominatore.
 
 Si definiscano i metodi __init__, setter, getter, __str__, value.
@@ -23,12 +21,13 @@ In particolare:
 Suggerimento: per verificare che il numeratore ed il denominatore siano numeri interi, usare la funzione is_integer().
 '''
 
+# [A]
 class Frazione:
 
     _numeratore: int
     _denominatore: int
 
-    def __init__(self, numeratore: int, denominatore: int) -> int:
+    def __init__(self, numeratore: int, denominatore: int) -> None:
         if not isinstance(numeratore, int):
             numeratore = 13
 
@@ -40,6 +39,9 @@ class Frazione:
 
     def __str__(self):
         return f"{self._numeratore} / {self._denominatore}"
+    
+    def __repr__(self):
+        return self.__str__()
 
     def set_numeratore(self, new_num: int = 13) -> None:
         if not isinstance(new_num, int):

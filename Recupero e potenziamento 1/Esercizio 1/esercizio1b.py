@@ -26,34 +26,57 @@ trovare una soluzione che generalizzi l'esempio proposto e che tenga conto dei c
 per evitare di replicare righe di codice.
 '''
 
-def mcd(x: int, y: int) -> float:
+def mcd(x: int, y: int) -> int:
+
     numero_maggiore: int = max(x, y)
-    numeri_x: list[int] = []
-    numeri_y: list[int]= []
-    j: int = 0
-    k: int = 0
-    mcd: int = 0
 
     while numero_maggiore >= 1:
 
-        if x%numero_maggiore == 0:
-            j = x // numero_maggiore
-            numeri_x.append(j)
-            print(j, "\n")
-
-        if y%numero_maggiore == 0:
-            k = y // numero_maggiore
-            numeri_y.append(k)
-            print(k)
-
-        if j == k:
-            mcd += j
-            print(mcd, "mcd")
-
+        if x%numero_maggiore == 0 and y%numero_maggiore == 0:
+            return numero_maggiore
         numero_maggiore -= 1
 
-    print(numeri_x, numeri_y)
+    else:
+        return 1
 
 if __name__== "__main__":
 
-    prova: mcd = mcd(28, 48)
+    print(mcd(12, 18))
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        # if x%numero_maggiore == 0:
+        #     j = x // numero_maggiore
+        #     numeri_x.append(j)
+        #     print(j, "\n")
+
+        # if y%numero_maggiore == 0:
+        #     k = y // numero_maggiore
+        #     numeri_y.append(k)
+        #     print(k)
+
+        # if j == k:
+        #     mcd += j
+        #     print(mcd, "mcd")
+
+        # numero_maggiore -= 1
+
+    # print(numeri_x, numeri_y)
