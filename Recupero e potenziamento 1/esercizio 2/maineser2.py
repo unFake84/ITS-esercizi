@@ -31,10 +31,23 @@ il programma dovra' scrivere in output:
 
     La somma dei valori della sequenza diversi da 3 e' 26
 '''
+
+import os
+
 class FormulaError(Exception):
     pass
 
-import os
+def checkX(x: str) -> bool:
+
+    xint: int
+
+    if isinstance(x, str):
+        try:
+            xint = int(x)
+        except ValueError:
+            return False
+
+    return True
 
 numeroX: int = 0
 

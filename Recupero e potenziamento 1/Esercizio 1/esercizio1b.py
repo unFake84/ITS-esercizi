@@ -28,7 +28,7 @@ per evitare di replicare righe di codice.
 
 def mcd(x: int, y: int) -> int:
 
-    numero_maggiore: int = max(x, y)
+    numero_maggiore: int = min(x, y)
 
     while numero_maggiore >= 1:
 
