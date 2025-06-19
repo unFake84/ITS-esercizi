@@ -213,29 +213,34 @@ class Alieno(Creatura):
     __contAlien: int = 0
     __matricola: int = 0
     __munizioni: list[int] = []
+
     def __init__(self, nome: str = "Robot-"):
         super().__init__(nome)
-        self.setMatricola()
-        self.setMunizioni()
+        self.__setMatricola()
+        self.__setMunizioni()
+
         if nome == "Robot-":
             #self._Creatura__nome = nome + str(self.__matricola)
             nomeCorretto: str = nome + str(self.__matricola)
             self.setNome(nomeCorretto)
             Alieno.__contAlien += 1
+
         else:
             print(
                 "Attenzione! Tutti gli Alieni devono avere il nome \"Robot\" seguito dal numero di matricola!\n"
                     "Reimpostazione nome Alieno in Corso!"
             )
+
             nomeReimpostato: str = "Robot-" + str(self.__matricola)
             self.setNome(nomeReimpostato)
             Alieno.__contAlien += 1
     
-    def setMatricola(self) -> None:
+    def __setMatricola(self) -> None:
         self.__matricola = random.randint(10000, 90000)
 
-    def setMunizioni(self) -> None:
+    def __setMunizioni(self) -> None:
         self.__munizioni = [n**2 for n in range(15)]
+
     def __str__(self):
         # return str([str(m) for m in self.__munizioni])
         Alieno.__contAlienStp += 1
