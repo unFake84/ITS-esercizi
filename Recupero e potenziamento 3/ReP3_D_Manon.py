@@ -1,33 +1,7 @@
 '''
 Mostri Contro Alieni
 
-    proclamaVincitore(c: Creatura). Questo metodo stampa a schermo se hanno vinto gli alieni o i mostri ( a seconda dell'oggetto c) e , mostra il vincitore all'interno di un rettangolo con contorno di * come nell'esempio.
 
-
-*****************************
-
-*                           *
-
-*    Alieno: Robot-25855    *
-
-*                           *
-
-*****************************
-
-*************************
-
-*                       *
-
-*    Mostro: gOrThOr    *
-
-*                       *
-
-*************************
-
-Suggerimento: stampare prima il rettangolo vuoto, le cui dimensioni sono altezza 5 e lunghezza = lunghezza di c.__str__() + 10
-poi, modificare il codice in questo modo:
-quando si arriva alla riga centrale del rettangolo (ovvero i=2), si deve stampare il nome del vincitore al centro del rettangolo.
-per far questo si deve imporre la condizione i=2 e j =5. Se la condizione è verificata, stampare la creatura c (print(c), end=""), stampare 5 spazi vuoti e un * (print(     *), end="") e poi interrompere l'iterazione corrente.
 
     combattimento(a: Alieno, m: Mostro). Questo metodo riceve in input un oggetto della classe Alieno ed un oggetto della classe Mostro. Il metodo deve controllare la validità di a e la validità di m. Se a non è un Alieno o se m non è un Mostro, il combattimento deve essere interrotto, mostrare un opportuno messaggio e ritornare None. Altrimenti, se a e m sono oggetti validi, il metodo deve simulare il combattimento tra Mostro e Alieno, restituendo la creatura vincitrice. Il combattimento consiste nell'applicare la funzione pariUguali() alle munizioni dell'Alieno e all'assalto del Mostro. Se la lista prodotta in output dal pariUguali() ha più di 4 elementi con valore 1, allora il vincitore è il mostro. Altrimenti, il vincitore è l'alieno. Se vince il mostro, sullo schermo viene stampato per 3 volte l'urlo della vittoria, altrimenti viene stampato il gemito della sconfitta.
 
@@ -327,6 +301,15 @@ class Mostro(Creatura):
     def getTotMostri(self) -> int:
         return Mostro.__contMostro
 
+    def getAssalto(self) -> list[int]:
+        return self.__assalto
+
+    def getVittoria(self) -> str:
+        return self.__vittoria
+
+    def getSconfitta(self) -> str:
+        return self.__sconfitta
+
 def pariUguali(a: list[int], b: list[int]) -> list[int]:
     '''
     Definire la seguente funzione:
@@ -357,6 +340,60 @@ def combattimento(a: Alieno, m: Mostro) -> str|None:
         Se vince il mostro, sullo schermo viene stampato per 3 volte l'urlo della vittoria,
         altrimenti viene stampato il gemito della sconfitta.
     '''
+    if not isinstance(a, Alieno)\
+        or not isinstance(m, Mostro):
+        print(
+            "Devono essere inseriti un Alieno e un Mostro,\n"
+            "in questo ordine:\n"
+            "combattimento(Alieno, Mostro)\n"
+            )
+        return None
+    
+    munizioniAlieno: list[int] = Alieno.getMunizioni(a)
+    assaltoMostro: list[int] = Mostro.getAssalto(m)
+    risultato: list[int] = pariUguali(munizioniAlieno, assaltoMostro)
+    checkMostro: int = 0
+
+    for uno in risultato:
+        if uno == 1:
+            checkMostro += 1
+
+    if checkMostro > 4:
+        return f"IL MOSTRO {Mostro.getNome(m)} WIN!! e dice:\n" + '\n'.join([Mostro.getVittoria(m)]*3)
+
+    else:
+        return f"L'ALIENO {Alieno.getNome(a)} WIN!!\n"\
+            f"Il mostro {Mostro.getNome(m)} grugnisce '{Mostro.getSconfitta(m)}'"
+
+def proclamaVincitore(c: Creatura) -> None:
+    '''
+    proclamaVincitore(c: Creatura).
+    Questo metodo stampa a schermo se hanno vinto gli alieni o i mostri ( a seconda dell'oggetto c) e ,
+    mostra il vincitore all'interno di un rettangolo con contorno di * come nell'esempio.
+
+
+    *****************************
+    *                           *
+    *    Alieno: Robot-25855    *
+    *                           *
+    *****************************
+
+    *************************
+    *                       *
+    *    Mostro: gOrThOr    *
+    *                       *
+    *************************
+
+    Suggerimento:
+        stampare prima il rettangolo vuoto, le cui dimensioni sono altezza 5 e lunghezza = lunghezza di c.__str__() + 10
+        poi, modificare il codice in questo modo:
+        quando si arriva alla riga centrale del rettangolo (ovvero i=2),
+        si deve stampare il nome del vincitore al centro del rettangolo.
+
+    per far questo si deve imporre la condizione i=2 e j=5. Se la condizione è verificata, stampare la creatura c (print(c), end=""),
+    stampare 5 spazi vuoti e un * (print(     *), end="") e poi interrompere l'iterazione corrente.
+    '''
+    pass    
 
 if __name__ == "__main__":
 
@@ -395,6 +432,10 @@ if __name__ == "__main__":
     # [LISTE]
     print(pariUguali([12, 43, 44, 26], [74, 95, 101, 88]))
     # [/LISTE]
+    print("")
+    # [TEST COMBATTIMENTO]
+    print(combattimento(alieno1, mostro1))
+    # [/TEST COMBATTIMENTO]
     print("")
     # [SOMMARIO CREATURE]
     print(
