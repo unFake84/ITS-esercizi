@@ -136,34 +136,35 @@ class Creatura:
     il metodo __str__ deve mostrare in output: "Creatura: nome creatura"
     '''
     __nome: str
-    __totCreatGen: int = 0
-    __totCreat: int = 0
-    __contStr: int = 0
+    __numCreatGeneriche: int = 0
+    __numCreat: int = 0
+    __numIdCreat: int = 0
 
     def __init__(self, nome: str) -> None:
         __nomeAssegnato: bool = False
 
         if not isinstance(nome, str):
-            Creatura.__totCreatGen += 1
-            self.__nome, nome = f"Creatura Generica n°{Creatura.__totCreatGen}", f"Creatura Generica n°{Creatura.__totCreatGen}"
+            Creatura.__numCreatGeneriche += 1
+            self.__nome, nome = f"Creatura Generica n°{Creatura.__numCreatGeneriche}", f"Creatura Generica n°{Creatura.__numCreatGeneriche}"
             __nomeAssegnato = True
 
         if not __nomeAssegnato:
             for lettera in nome:
 
                 if lettera in ascii_letters:
-                    Creatura.__totCreat += 1
                     self.__nome = nome
                     __nomeAssegnato = True
                     break
 
             else:
-                Creatura.__totCreatGen += 1
-                self.__nome = f"Creatura Generica n°{Creatura.__totCreatGen}"
+                Creatura.__numCreatGeneriche += 1
+                self.__nome = f"Creatura Generica n°{Creatura.__numCreatGeneriche}"
+
+        Creatura.__numCreat += 1
+        self.__numIdCreat = Creatura.__numCreat
 
     def __str__(self) -> str:
-        Creatura.__contStr += 1
-        return f"Creatura n°{Creatura.__contStr}: {self.__nome}"
+        return f"Creatura n°{self.__numIdCreat}: {self.getNome()}"
     
     def setNome(self, nuovoNome: str) -> None:
         if not isinstance(nuovoNome, str):
@@ -181,7 +182,13 @@ class Creatura:
 
     def getNome(self) -> str:
         return self.__nome
-    
+
+    def getTotCreat(self) -> int:
+        return Creatura.__numCreat
+
+    def getTotGeneriche(self) -> int:
+        return Creatura.__numCreatGeneriche
+
 class Alieno(Creatura):
     '''
     Definire le seguenti classi con attributi privati:
@@ -209,21 +216,18 @@ class Alieno(Creatura):
 
     il metodo __str__ deve mostrare in output: "Alieno: nome alieno" (ad esempio: Alieno: Robot-16326)
     '''
-    __contAlienStp: int = 0
-    __contAlien: int = 0
-    __matricola: int = 0
-    __munizioni: list[int] = []
+    __numIdAlien: int = 0
+    __contAlieni: int = 0
 
-    def __init__(self, nome: str = "Robot-"):
+    def __init__(self, nome: str = "Robot"):
         super().__init__(nome)
+
         self.__setMatricola()
         self.__setMunizioni()
 
-        if nome == "Robot-":
-            #self._Creatura__nome = nome + str(self.__matricola)
-            nomeCorretto: str = nome + str(self.__matricola)
+        if nome == "Robot":
+            nomeCorretto: str = nome + "-" + str(self.__matricola)
             self.setNome(nomeCorretto)
-            Alieno.__contAlien += 1
 
         else:
             print(
@@ -233,37 +237,58 @@ class Alieno(Creatura):
 
             nomeReimpostato: str = "Robot-" + str(self.__matricola)
             self.setNome(nomeReimpostato)
-            Alieno.__contAlien += 1
-    
+
+        Alieno.__contAlieni += 1
+        self.__numIdAlien = Alieno.__contAlieni
+
+    def __str__(self):
+        return f"{super().__str__()} - Alieno n°{self.__numIdAlien}: {self.getNome()} con {max(self.getMunizioni())} munizioni"
+
     def __setMatricola(self) -> None:
         self.__matricola = random.randint(10000, 90000)
 
     def __setMunizioni(self) -> None:
         self.__munizioni = [n**2 for n in range(15)]
 
-    def __str__(self):
-        # return str([str(m) for m in self.__munizioni])
-        Alieno.__contAlienStp += 1
-        return f"Alieno n°{self.__contAlienStp}: {self.getNome()}"
+    def getMatricola(self) -> int:
+        return self.__matricola
+
+    def getMunizioni(self) -> list[int]:
+        return self.__munizioni
+
+    def getTotAlieni(self) -> int:
+        return Alieno.__contAlieni
 
 if __name__ == "__main__":
 
     # [TEST CREATURA]------------------------------
-    provaNome: Creatura = Creatura("Creatura 99#")
-    provaNome2: Creatura = Creatura(125)
-    provaNome3: Creatura = Creatura("Creatura-98#")
-    provaNome4: Creatura = Creatura(521)
-    provaNome5: Creatura = Creatura("Creatura!")
-    print(provaNome)
-    print(provaNome2)
-    print(provaNome3)
-    print(provaNome4)
-    print(provaNome5)
+    print("CREATURE:")
+    creatura1: Creatura = Creatura("Creatura 99#")
+    creatura2: Creatura = Creatura(125)
+    creatura3: Creatura = Creatura("Creatura-98#")
+    creatura4: Creatura = Creatura(521)
+    creatura5: Creatura = Creatura("Creatura!")
+    print(creatura1)
+    print(creatura2)
+    print(creatura3)
+    print(creatura4)
+    print(creatura5)
     # [/TEST CREATURA]-----------------------------
-
+    print("")
     # [TEST ALIENO]------------------------------
-    alieno1: Alieno = Alieno("Roboto-")
-    alieno2: Alieno = Alieno("Robot-")
+    print("ALIENI:")
+    alieno1: Alieno = Alieno("Roboto")
+    alieno2: Alieno = Alieno("Robot")
     print(alieno1)
     print(alieno2)
     # [/TEST ALIENO]------------------------------
+    print("")
+    # [SOMMARIO]
+    print(
+        "CREATURE:\n"
+        f"Creature: {creatura5.getTotCreat() - creatura5.getTotGeneriche()}\n"
+        f"Creature generiche: {creatura4.getTotGeneriche()}\n"
+        f"Alieni: {alieno2.getTotAlieni()}\n"
+        f"Creature totali {creatura5.getTotCreat()}"
+    )
+    # [/SOMMARIO]
