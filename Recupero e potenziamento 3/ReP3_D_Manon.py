@@ -53,12 +53,12 @@ class Creatura:
 
     def __str__(self) -> str:
         return f"Creatura n°{self.__numIdCreat}: {self.getNome()}"
-    
+
     def setNome(self, nuovoNome: str) -> None:
         if not isinstance(nuovoNome, str):
             Creatura.__numCreatGeneriche += 1
             self.__nome, nuovoNome = f"Creatura Generica n°{Creatura.__numCreatGeneriche}", "Creatura Generica"
-        
+
         if nuovoNome != "Creatura Generica":
             for nuovaLettera in nuovoNome:
 
@@ -215,24 +215,24 @@ class Mostro(Creatura):
 
             if caratt in ascii_letters:
                 checkUrloCaratt = True
-        
+
         if not checkUrloCaratt:
             self.__vittoria = "GRAAAHHH"
 
         else:
             self.__vittoria = checkUrlo
-    
+
     def __setSconfitta(self, checkGemito: str) -> None:
         if not isinstance(checkGemito, str):
             checkGemito = "Uuurghhh"
-        
+
         checkGCaratt: bool = False
 
         for caratt in checkGemito:
 
             if caratt in ascii_letters:
                 checkGCaratt = True
-        
+
         if not checkGCaratt:
             self.__sconfitta = "Uuurghhh"
 
@@ -298,7 +298,7 @@ def combattimento(a: Alieno, m: Mostro) -> str|None:
             "combattimento(Alieno, Mostro)\n"
             )
         return None
-    
+
     munizioniAlieno: list[int] = Alieno.getMunizioni(a)
     assaltoMostro: list[int] = Mostro.getAssalto(m)
     risultato: list[int] = pariUguali(munizioniAlieno, assaltoMostro)
@@ -409,7 +409,7 @@ if __name__ == "__main__":
 
     alien_lista: list[int] = alieno.getMunizioni()
     mOnSt3r_lista: list[int] = mostro.getAssalto()
-    alienascii: str = """
+    alienAscii: str = """
        .--------.
      .'  _     _  `.       
     /     \   /     \     
@@ -422,7 +422,7 @@ if __name__ == "__main__":
    |||||||| ALIEN GUN ON >>>=======:::::::::::🔥   = BANG!BANG!BANG!
         \_____/                                   \\
 """
-    alienasciiWIN: str = """
+    alienAsciiWIN: str = """
        .--------.
      .'  _     _  `.       
     /     \   /     \     
@@ -435,7 +435,7 @@ if __name__ == "__main__":
    |||||||| ALIEN GUN OFF >>>=======::::::::::: ~ ~
         \_____/  
 """
-    mosterascii: str = """
+    mosterAscii: str = """
  <>=======() 
 (/\___   /|\\\          ()==========<>_
       \_/ | \\\        //|\   ______/ \)
@@ -445,14 +445,14 @@ if __name__ == "__main__":
           //_/\_\/ /  |
          @@/  |=\  \  |
               \_=\_ \ |
-      O         \==\ \|\_ 
-    O O      __(\===\(  )\\
-   O O      (((~) __(_/   |
- O O O           (((~) \  /
+      🔥        \==\ \|\_ 
+    🔥 🔥    __(\===\(  )\\
+   🔥 🔥    (((~) __(_/   |
+ 🔥 🔥 🔥        (((~) \  /
                  ______/ /
                  '------'
 """
-    mosterasciiWIN: str = """
+    mosterAsciiWIN: str = """
  <>=======() 
 (/\___   /|\\\ 
       \_/ | \\\ 
@@ -471,8 +471,8 @@ if __name__ == "__main__":
 """
     pre_incontro: list[int] = [1 if j%2 == 0 and k%2 == 0 else 0 for j, k in zip(alien_lista, mOnSt3r_lista)]
     scontro: list[int] = []
-    totalieno: int = 0
-    totatmonster: int = 0
+    totAlien: int = 0
+    totMonster: int = 0
 
     os.system('clear')
     print(
@@ -480,7 +480,7 @@ if __name__ == "__main__":
         f"Munizioni: {alieno.getMunizioni()}\n\n\n"
         f"{mostro}\n"\
         f"Assalto: {mostro.getAssalto()}\n\n"\
-        f"Combattimento\n"
+        f" Combattimento in inizializzazione ...\n"
         )
     time.sleep(1)
 
@@ -489,40 +489,52 @@ if __name__ == "__main__":
         while True:
             time.sleep(1)
             os.system('clear')
-            print(
-                f"\n{alieno}\n"\
-                f"Munizioni: {alien_lista}\n\n\n"
-                f"{mostro}\n"\
-                f"Assalto: {mOnSt3r_lista}\n\n"\
-                f"Combattimento\n"
-                )
-            
+
             scontro.append(pre_incontro[0]) if pre_incontro != [] else scontro.append("FINE")
             pre_incontro.pop(0) if pre_incontro != [] else pre_incontro.append("FINE")
+
             print(
-                f"Esito combattimento ...\n\n"\
-                f"\t\t\tMossa attuale = {scontro[-1] if scontro != [] else 'GO'}\n"\
-                f"\nPunteggio Alieno: {totalieno}"\
-                f"\nPunteggio Mostro: {totatmonster}\n"
+                f"\n{alieno}\n"\
+                f"Munizioni: {alien_lista}\n\n\n"\
+                f"{mostro}\n"\
+                f"Assalto: {mOnSt3r_lista}\n\n",\
+                f"Combattimento ingaggiato\n" if scontro[-1] != 'FINE' else f"Combattimento terminato\n"
+                )
+            print(
+                f"Esito combattimento ...\n\n" if scontro[-1] != "FINE" else f"Esito combattimento ...TERMINATO\n\n",\
+                f"\nPunteggio Alieno: {totAlien/10:.2f} - {f'Colpi effettuati: {totAlien}' if scontro[-1] != 'FINE' else f'Tot colpi sferrati: {totAlien}'}"\
+                f"\nPunteggio Mostro: {totMonster/5:.2f} - {f'Colpi effettuati: {totMonster}' if scontro[-1] != 'FINE' else f'Tot colpi sferrati: {totMonster}'}\n"
                 )
 
             if scontro[-1] == "FINE":
                 break
 
             if scontro[-1] == 1:
-                totatmonster += 1
-                print(mosterascii)
+                totMonster += 1
+                print(f"Round: {totAlien+totMonster}/15\t\tMossa attuale = [{scontro[-1] if scontro != [] else 'GO'}]\n\n",\
+                         "⚔️ Il Mostro colpisce! ⚔️\n", mosterAscii, "\n")
 
             elif scontro[-1] == 0:
-                totalieno += 1
-                print(alienascii)
+                totAlien += 1
+                print(f"Round: {totAlien+totMonster}/15\t\tMossa attuale = [{scontro[-1] if scontro != [] else 'GO'}]\n\n",\
+                     "🔫 L'Alieno colpisce! 🔫\n", alienAscii, "\n")
 
             print("\n")
 
         print(esito+"\n" if '\n' in esito else mostro.getSconfitta()+"\n")
         print('I mostri hanno vinto!\n' if '\n' in esito else 'Gli alieni hanno vinto!\n')
+
+        if totMonster == 0 or totAlien == 0:
+            print("\n!!SUPREME VICTORY!!\n")
+
+        verA: float = totMonster/5
+        verM: float = totAlien/10
+
+        if round(verA, 3) == round(verM, 3):
+            print("Stesso punteggio ma la spunta comunque il Mostro!")
+
         proclamaVincitore(mostro if '\n' in esito else alieno)
-        print(mosterasciiWIN if '\n' in esito else alienasciiWIN)
+        print(mosterAsciiWIN if '\n' in esito else alienAsciiWIN)
 
     else:
         print("Combattimento annullato")
