@@ -21,43 +21,38 @@ Suggerimento: Leggere bene la traccia dell'intero esercizio per capire come impl
 Inserire in modo adeguato le seguenti frazioni nella lista l.
 '''
 
+from esercizio1a import Frazione
 from esercizio1b import mcd
 
-def semplifica(f: list[list[int]]) -> list[list[int]]:
+def semplifica(f: list[Frazione]) -> list[Frazione]:
 
-    lista_irriducibili: list[list[int]] = []
+    lista_irriducibili: list[Frazione] = []
 
     for frazione in f:
 
-        divisore: int = mcd(frazione[0], frazione[1])
+        num: int = int(frazione.get_numeratore())
+        den: int = int(frazione.get_denominatore())
+
+        divisore: int = mcd(num, den)
 
         if divisore == 1:
-            lista_irriducibili.append([frazione[0], frazione[1]])
+            lista_irriducibili.append(frazione)
 
         elif divisore > 1:
-            numeratore: int = frazione[0] // divisore
-            denominatore: int = frazione[1] // divisore
-            lista_irriducibili.append([numeratore, denominatore])
+            numeratore: int = num // divisore
+            denominatore: int = den // divisore
+            lista_irriducibili.append(Frazione(numeratore, denominatore))
 
     return lista_irriducibili
 
 if __name__ == "__main__":
 
-    print(semplifica([[6, 8], [5, 10], [7, 3]]))
+    f1: Frazione = Frazione(6, 8)
+    f2: Frazione = Frazione(5, 10)
+    f3: Frazione = Frazione(7, 3)
+    l: list[Frazione] = [f1, f2, f3]
 
-
-
-
-
-
-
-
-
-
-
-
-
-
+    print(semplifica(l))
 
 
 

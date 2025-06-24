@@ -117,7 +117,7 @@ class Frazione:
         self._denominatore = denominatore            
 
     def __str__(self):
-        return f"{self._numeratore} / {self._denominatore}"
+        return f"{self._numeratore}/{self._denominatore}"
 
     def __repr__(self):
         return self.__str__()
@@ -160,40 +160,38 @@ def mcd(x: int, y: int) -> int:
         return 1
 
 # [C]
-def semplifica(f: list[list[int]]) -> list[list[int]]:
+def semplifica(f: list[Frazione]) -> list[Frazione]:
 
-    lista_irriducibili: list[list[int]] = []
+    lista_irriducibili: list[Frazione] = []
 
     for frazione in f:
 
-        divisore: int = mcd(frazione[0], frazione[1])
+        num: int = int(frazione.get_numeratore())
+        den: int = int(frazione.get_denominatore())
+
+        divisore: int = mcd(num, den)
 
         if divisore == 1:
-            lista_irriducibili.append([frazione[0], frazione[1]])
+            lista_irriducibili.append(frazione)
 
         elif divisore > 1:
-            numeratore: int = frazione[0] // divisore
-            denominatore: int = frazione[1] // divisore
-            lista_irriducibili.append([numeratore, denominatore])
+            numeratore: int = num // divisore
+            denominatore: int = den // divisore
+            lista_irriducibili.append(Frazione(numeratore, denominatore))
 
     return lista_irriducibili
 
 # [D]
-def fractionCompare(l: list[list[int]]) -> str:
+def fractionCompare(orig: list[Frazione], sempl: list[Frazione]) -> str:
 
-    f: list[int] = semplifica(l)
     stampaConfronti: str = ""
-    stringaLunga: str = ""
 
-    for i in range(len(l)):
+    for i in range(len(orig)):
 
-        risultato_normale: Frazione = Frazione(l[i][0], l[i][1]).value()
-        risultato_semplificato: Frazione = Frazione(f[i][0], f[i][1]).value()
-
-        stringaLunga = f"Valore frazione originale {l[i][0]}/{l[i][1]}: {risultato_normale} --- "\
-                        f"Valore frazione ridotta {f[i][0]}/{f[i][1]}: {risultato_semplificato}\n"
-
-        stampaConfronti += stringaLunga
+        risultato_normale: float = orig[i].value()
+        risultato_semplificato: float = sempl[i].value()
+        stampaConfronti += f"Valore frazione originale {orig[i]}: {risultato_normale} --- "\
+                        f"Valore frazione ridotta {sempl[i]}: {risultato_semplificato}\n"
 
     return stampaConfronti
 
@@ -230,9 +228,9 @@ if __name__ == "__main__":
         frazione13
         ]
 
-    l_s: list[list[int]] = [[f.get_numeratore(), f.get_denominatore()] for f in l]
+    l_s: list[Frazione] = [s for s in semplifica(l)]
 
-    print("Lista originale: \n", *[str(f)+"\n" for f in l])
-    print("Lista semplificata \n", *[str(g[0])+" / "+str(g[1])+"\n" for g in semplifica(l_s)])
+    print("Lista originale: \n", *[str(o)+"\n" for o in l])
+    print("Lista semplificata \n", *[str(s)+"\n" for s in semplifica(l)])
     print("Comparazioni: ")
-    print(fractionCompare(l_s))
+    print(fractionCompare(l, l_s))

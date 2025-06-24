@@ -38,7 +38,7 @@ class Frazione:
         self._denominatore = denominatore            
 
     def __str__(self):
-        return f"{self._numeratore} / {self._denominatore}"
+        return f"{self._numeratore}/{self._denominatore}"
     
     def __repr__(self):
         return self.__str__()

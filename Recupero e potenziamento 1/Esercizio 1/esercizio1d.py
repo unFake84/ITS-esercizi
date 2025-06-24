@@ -15,27 +15,32 @@ from esercizio1a import Frazione
 from esercizio1b import mcd
 from esercizio1c import semplifica
 
-def fractionCompare(l: list[list[int]]) -> str:
+def fractionCompare(orig: list[Frazione], sempl: list[Frazione]) -> str:
 
-    f: list[int] = semplifica(l)
     stampaConfronti: str = ""
-    stringaLunga: str = ""
 
-    for i in range(len(l)):
+    for i in range(len(orig)):
 
-        risultato_normale: Frazione = Frazione(l[i][0], l[i][1]).value()
-        risultato_semplificato: Frazione = Frazione(f[i][0], f[i][1]).value()
-
-        stringaLunga = f"Valore frazione originale {l[i][0]}/{l[i][1]}: {risultato_normale} --- "\
-                        f"Valore frazione ridotta {f[i][0]}/{f[i][1]}: {risultato_semplificato}\n"
-
-        stampaConfronti += stringaLunga
+        risultato_normale: float = orig[i].value()
+        risultato_semplificato: float = sempl[i].value()
+        stampaConfronti += f"Valore frazione originale {orig[i]}: {risultato_normale} --- "\
+                        f"Valore frazione ridotta {sempl[i]}: {risultato_semplificato}\n"
 
     return stampaConfronti
 
 if __name__ == "__main__":
 
-    print(fractionCompare([[6, 8], [5, 10], [7, 3]]))
+    fr_orig1: Frazione = Frazione(6, 8)
+    fr_orig2: Frazione = Frazione(5, 10)
+    fr_orig3: Frazione = Frazione(7, 3)
+    l_originale: list[Frazione] = [fr_orig1, fr_orig2, fr_orig3]
+
+    fr_sempl1: Frazione = Frazione(3, 4)
+    fr_sempl2: Frazione = Frazione(1, 2)
+    fr_sempl3: Frazione = Frazione(7, 3)
+    l_semplificate: list[Frazione] = [fr_sempl1, fr_sempl2, fr_sempl3]
+
+    print(fractionCompare(l_originale, l_semplificate))
 
 
 
@@ -49,6 +54,36 @@ if __name__ == "__main__":
 
 
 
+
+
+
+
+
+    # orig: list[str] = [o.value() for o in orig]
+    # sempl: list[str] = [s.value() for s in sempl]
+    #print(*orig, *sempl)
+    #return f"Valore frazione originale: 0.538 --- Valore frazione ridotta: 0.538"
+    #return f"{[str(o.value()) for o in orig]}{[str(s.value()) for s in sempl]}"
+
+
+
+    # def fractionCompare(l: list[list[int]]) -> str:
+
+#     f: list[int] = semplifica(l)
+#     stampaConfronti: str = ""
+#     stringaLunga: str = ""
+
+#     for i in range(len(l)):
+
+#         risultato_normale: Frazione = Frazione(l[i][0], l[i][1]).value()
+#         risultato_semplificato: Frazione = Frazione(f[i][0], f[i][1]).value()
+
+#         stringaLunga = f"Valore frazione originale {l[i][0]}/{l[i][1]}: {risultato_normale} --- "\
+#                         f"Valore frazione ridotta {f[i][0]}/{f[i][1]}: {risultato_semplificato}\n"
+
+#         stampaConfronti += stringaLunga
+
+#     return stampaConfronti
 
 
 
