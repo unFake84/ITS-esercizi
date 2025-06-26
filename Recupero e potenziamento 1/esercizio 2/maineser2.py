@@ -39,13 +39,14 @@ class PersonalError(Exception):
 
 
 def isIntPositive(x: str) -> bool:
+
     try:
         x: int = int(x)
+        return x > 0
+
     except ValueError:
-        raise PersonalError("Il numero X non è un intero positivo")
-    if x < 0:
         return False
-    return True
+
 
 def esegui(x: int, lista: list[int]) -> str:
 
@@ -55,7 +56,7 @@ def esegui(x: int, lista: list[int]) -> str:
     somma_noX: int = 0
     sequenza: str = '; '.join([str(n) for n in lista])
     stampami: str = ""
-    stampami += sequenza + '\n'
+    stampami += sequenza + '\n\n'
 
     for trovami in lista:
 
@@ -69,10 +70,10 @@ def esegui(x: int, lista: list[int]) -> str:
         if trovami != x:
             somma_noX += trovami
 
-    if primoX == 0 or trovati == 0: 
+    if not trovato_primoX: 
         stampami += f"Il numero {x} non è presente nella lista\n"
 
-    elif primoX != 0 or trovati != 0:
+    else: # elif primoX != 0 or trovati != 0:
         stampami += f"Il numero {x} compare {trovati} {'volta' if trovati == 1 else 'volte'} nella sequenza\n"
         stampami += f"Il numero {x} compare per la prima volta in posizione {primoX} nella sequenza\n"
 
@@ -87,46 +88,133 @@ def esegui(x: int, lista: list[int]) -> str:
 
 if __name__ == "__main__":
 
+    erroreX: str = "inizia"
+    erroreL: str = ""
     x: str = ""
-    controlla_user: bool = False
-
+    l: str = ""
+    lista_di_l: list[int] = []
+    controlla_x: bool = False
+    controlla_l: bool = False
+    trovato_x: bool = False
+    conta_l: int = 0
+    risultato: str = ""
 
     while True:
 
         os.system("clear")
         gui: str = f"""
 
-                                    Istruzioni:                         _________________________________________________________
-                                                                        |                                                       |
-1) Inserire un numero intero positivo.                                  | Valore X: {str(x)+" "*helpGUI1+"|" if x else 'Da inserire'+" "*33+"|"}
-        Verra chiamato il numero X                                      |                                                       |
-                                                                        |                                                       |
-2) Inserire una sequenza di numeri.                                     |                                                       |
-        Determinato il numero x e la sequenza di interi positivi:       |                                                       |
-        a - verra stampato in output la sequenza                        |                                                       |
-        b - Il numero occ di occorrenze di x,                           |                                                       |
-            ovvero  il numero di volte in cui appare x nella sequenza.  |                                                       |
-        c - La posizione pos del primo valore uguale a x.               |                                                       |
-        d - La somma di tutti i valori diversi da x.                    |                                                       |
-                                                                        |                                                       |
-3) Premere 0 in qualsiasi momento,                                      |                                                       |
-    per terminare il programma.                                         |_______________________________________________________|
-{controlla_user if controlla_user else 'Inizia'}
+Istruzioni:
+
+1) Inserire un numero intero positivo.
+        Verra chiamato il numero X
+
+2) Inserire una sequenza di numeri.
+        Determinato il numero x e la sequenza di interi positivi:
+        a - verra stampato in output la sequenza
+        b - Il numero occ di occorrenze di x,
+            ovvero  il numero di volte in cui appare x nella sequenza.
+        c - La posizione pos del primo valore uguale a x.
+        d - La somma di tutti i valori diversi da x.
+
+3) Premere 0 in qualsiasi momento,
+    per terminare il programma.\n
+{f'numero valido, hai inserito {x} come numero X, procedere con la lista:' if controlla_x is True else erroreX}
+{erroreL if controlla_l is False else ''}\n
+{lista_di_l if len(lista_di_l) < 15 else ''}
 """
         print(gui)
-        
-        x = input("Inserire un numero intero positivo: ").strip()
-        if x == '0':
+
+        if len(lista_di_l) == 15:
+            risultato = esegui(x, lista_di_l)
+            print(risultato)
             print("bYe")
             break
-        helpGUI1: int = 44 - len(x)
-        try:
-            controlla_user = isIntPositive(x)
-        except PersonalError as tenta:
-            print(f"Hai inserito {tenta}, non valido")
 
-        
-        
+        if not controlla_x:
+            x = input("Inserire il valore X: " ).strip()
+
+        else:
+            print(f"{conta_l}/15")
+            l = input("Inserire un numero intero positivo: ").strip()
+
+        if x == '0' or l == '0':
+            risultato = esegui(x, lista_di_l)
+            print(risultato)
+            print("bYe")
+            break
+
+        controlla_l = False
+        try:
+            controlla_x = isIntPositive(x)
+            controlla_l = isIntPositive(l)
+            
+        except PersonalError:
+            if not controlla_x:
+                controlla_x = False
+            elif not controlla_l:
+                controlla_l = False
+
+        if not controlla_x:
+            erroreX = f"Hai inserito >> {str(x) if x not in ('', ' ') else 'vuoto'}\nnon valido"
+
+        if not controlla_l and trovato_x:
+            erroreL = f"Hai inserito >> {str(l) if l not in ('', ' ') else 'vuoto'}\nnon valido"
+
+        if controlla_x:
+            x = int(x)
+            trovato_x = True
+
+        if controlla_l:
+            l = int(l)
+            conta_l += 1
+            lista_di_l.append(l)
+
+#################################################################################################################à
+
+
+
+
+
+
+
+
+
+
+#         gui: str = f"""
+
+#                                     Istruzioni:                         _________________________________________________________
+#                                                                         |                                                       |
+# 1) Inserire un numero intero positivo.                                  | Valore X: {str(x)+" "*helpGUI1+"|" if x else 'Da inserire'+" "*33+"|"}
+#         Verra chiamato il numero X                                      |                                                       |
+#                                                                         |                                                       |
+# 2) Inserire una sequenza di numeri.                                     |                                                       |
+#         Determinato il numero x e la sequenza di interi positivi:       |                                                       |
+#         a - verra stampato in output la sequenza                        |                                                       |
+#         b - Il numero occ di occorrenze di x,                           |                                                       |
+#             ovvero  il numero di volte in cui appare x nella sequenza.  |                                                       |
+#         c - La posizione pos del primo valore uguale a x.               |                                                       |
+#         d - La somma di tutti i valori diversi da x.                    |                                                       |
+#                                                                         |                                                       |
+# 3) Premere 0 in qualsiasi momento,                                      |                                                       |
+#     per terminare il programma.                                         |_______________________________________________________|
+# {controlla_user if controlla_user else 'Inizia'}
+# """
+#         print(gui)
+
+#         helpGUI1: int = 44 - len(x)
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     #print(esegui(3, [7, 5, 1, 3, 3, 3, 11, 2, 3, 3]))
