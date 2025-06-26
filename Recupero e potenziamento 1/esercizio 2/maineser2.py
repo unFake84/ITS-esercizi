@@ -38,11 +38,13 @@ class PersonalError(Exception):
     pass
 
 
-def isIntPositive(x: int) -> bool:
-
-    if not isinstance(x, int) or x < 0:
+def isIntPositive(x: str) -> bool:
+    try:
+        x: int = int(x)
+    except ValueError:
+        raise PersonalError("Il numero X non è un intero positivo")
+    if x < 0:
         return False
-
     return True
 
 def esegui(x: int, lista: list[int]) -> str:
@@ -86,12 +88,12 @@ def esegui(x: int, lista: list[int]) -> str:
 if __name__ == "__main__":
 
     x: str = ""
+    controlla_user: bool = False
 
 
     while True:
 
         os.system("clear")
-        controlla_user: bool = False
         gui: str = f"""
 
                                     Istruzioni:                         _________________________________________________________
@@ -109,7 +111,7 @@ if __name__ == "__main__":
                                                                         |                                                       |
 3) Premere 0 in qualsiasi momento,                                      |                                                       |
     per terminare il programma.                                         |_______________________________________________________|
-{controlla_user}
+{controlla_user if controlla_user else 'Inizia'}
 """
         print(gui)
         
@@ -118,8 +120,11 @@ if __name__ == "__main__":
             print("bYe")
             break
         helpGUI1: int = 44 - len(x)
+        try:
+            controlla_user = isIntPositive(x)
+        except PersonalError as tenta:
+            print(f"Hai inserito {tenta}, non valido")
 
-        controlla_user = isIntPositive(x)
         
         
 
