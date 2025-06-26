@@ -58,13 +58,13 @@ def esegui(x: int, lista: list[int]) -> str:
     stampami: str = ""
     stampami += sequenza + '\n\n'
 
-    for trovami in lista:
+    for i, trovami in enumerate(lista):
 
         if trovami == x:
             trovati += 1
 
             if trovato_primoX == False:
-                primoX = lista.index(trovami)
+                primoX = i
                 trovato_primoX = True
 
         if trovami != x:
@@ -118,9 +118,11 @@ Istruzioni:
         d - La somma di tutti i valori diversi da x.
 
 3) Premere 0 in qualsiasi momento,
-    per terminare il programma.\n
+    per terminare il programma.
+
 {f'numero valido, hai inserito {x} come numero X, procedere con la lista:' if controlla_x is True else erroreX}
-{erroreL if controlla_l is False else ''}\n
+{erroreL if controlla_l is False else ''}
+
 {lista_di_l if len(lista_di_l) < 15 else ''}
 """
         print(gui)
