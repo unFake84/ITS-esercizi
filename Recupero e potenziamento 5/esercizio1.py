@@ -21,13 +21,6 @@ c(3,3) = 0
 
 Implementare i seguenti punti in python: 
 
-    1.D Scrivere una funzione caricoNullo(),
-        che data in input una matrice,
-        restituisce una lista di tuple,
-        dove ogni tupla rappresenta una coppia di indici (r,c) per cui il carico della matrice è nullo.
-        Ovvero, dovete trovare tutte le righe r e le colonne c per cui il carico della matrice k(r,c)=0
-        e memorizzare ogni coppia (tupla) in una lista.
-
     1.E Scrivere una funzione caricoMax(),
         che data in input una matrice restituisce una tupla di indici r e c
         per i quali si ha il carico massimo della matrice.
@@ -131,7 +124,19 @@ def calcolaCarico(mat: list[list[int]], r: int, c: int) -> int:
 
     return sommaR - sommaC
 
+def caricoNullo(mat: list[list[int]]) -> list[tuple[int, int]]:
+    '''
+    1.D Scrivere una funzione caricoNullo(),
+    che data in input una matrice,
+    restituisce una lista di tuple,
+    dove ogni tupla rappresenta una coppia di indici (r,c) per cui il carico della matrice è nullo.
+    Ovvero, dovete trovare tutte le righe r e le colonne c per cui il carico della matrice k(r,c)=0
+    e memorizzare ogni coppia (tupla) in una lista.
+    '''
+    tupla_singola: tuple[int, int] = ()
+    pass
+
 if __name__ == "__main__":
     Matrice = genera(5)
     printMAT(Matrice)
-    print(calcolaCarico(Matrice, 2 ,2))
+    print(f"Il carico della matrice è: {calcolaCarico(Matrice, 2 ,2)}")
