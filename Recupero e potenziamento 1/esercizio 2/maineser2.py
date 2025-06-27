@@ -37,7 +37,6 @@ import os
 class PersonalError(Exception):
     pass
 
-
 def isIntPositive(x: str) -> bool:
 
     try:
@@ -46,7 +45,6 @@ def isIntPositive(x: str) -> bool:
 
     except ValueError:
         return False
-
 
 def esegui(x: int, lista: list[int]) -> str:
 
@@ -85,7 +83,6 @@ def esegui(x: int, lista: list[int]) -> str:
 
     return stampami
 
-
 if __name__ == "__main__":
 
     erroreX: str = "inizia"
@@ -122,25 +119,19 @@ Istruzioni:
 
 {f'numero valido, hai inserito {x} come numero X, procedere con la lista:' if controlla_x is True else erroreX}
 {erroreL if controlla_l is False else ''}
-
-{lista_di_l if len(lista_di_l) < 15 else ''}
 """
         print(gui)
-
-        if len(lista_di_l) == 15:
-            risultato = esegui(x, lista_di_l)
-            print(risultato)
-            print("bYe")
-            break
+        print(lista_di_l if len(lista_di_l) != 0 else '', '\n')
 
         if not controlla_x:
             x = input("Inserire il valore X: " ).strip()
 
         else:
-            print(f"{conta_l}/15")
-            l = input("Inserire un numero intero positivo: ").strip()
+            l = input(f"inserire un intero positivo nella posizione n° {conta_l}: ").strip()
 
         if x == '0' or l == '0':
+            os.system("clear")
+            print(gui)
             risultato = esegui(x, lista_di_l)
             print(risultato)
             print("bYe")
@@ -150,7 +141,7 @@ Istruzioni:
         try:
             controlla_x = isIntPositive(x)
             controlla_l = isIntPositive(l)
-            
+
         except PersonalError:
             if not controlla_x:
                 controlla_x = False
@@ -158,10 +149,10 @@ Istruzioni:
                 controlla_l = False
 
         if not controlla_x:
-            erroreX = f"Hai inserito >> {str(x) if x not in ('', ' ') else 'vuoto'}\nnon valido"
+            erroreX = f"Hai inserito >> {str(x) if x not in ('', ' ') else 'vuoto'}\nNon valido"
 
         if not controlla_l and trovato_x:
-            erroreL = f"Hai inserito >> {str(l) if l not in ('', ' ') else 'vuoto'}\nnon valido"
+            erroreL = f"Hai inserito >> {str(l) if l not in ('', ' ') else 'vuoto'}\nNon valido"
 
         if controlla_x:
             x = int(x)
@@ -173,6 +164,24 @@ Istruzioni:
             lista_di_l.append(l)
 
 #################################################################################################################à
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
