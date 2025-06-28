@@ -34,9 +34,6 @@ il programma dovra' scrivere in output:
 
 import os
 
-class PersonalError(Exception):
-    pass
-
 def isIntPositive(x: str) -> bool:
 
     try:
@@ -136,17 +133,9 @@ Istruzioni:
             print(risultato)
             print("bYe")
             break
-
-        controlla_l = False
-        try:
-            controlla_x = isIntPositive(x)
-            controlla_l = isIntPositive(l)
-
-        except PersonalError:
-            if not controlla_x:
-                controlla_x = False
-            elif not controlla_l:
-                controlla_l = False
+        
+        controlla_x = isIntPositive(x)
+        controlla_l = isIntPositive(l)
 
         if not controlla_x:
             erroreX = f"Hai inserito >> {str(x) if x not in ('', ' ') else 'vuoto'}\nNon valido"
