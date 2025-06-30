@@ -133,9 +133,12 @@ Istruzioni:
             print(risultato)
             print("bYe")
             break
-        
-        controlla_x = isIntPositive(x)
-        controlla_l = isIntPositive(l)
+
+        if not controlla_x:
+            controlla_x = isIntPositive(x)
+
+        else:
+            controlla_l = isIntPositive(l)
 
         if not controlla_x:
             erroreX = f"Hai inserito >> {str(x) if x not in ('', ' ') else 'vuoto'}\nNon valido"
