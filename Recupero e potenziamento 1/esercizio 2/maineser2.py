@@ -146,7 +146,7 @@ Istruzioni:
         if not controlla_l and trovato_x:
             erroreL = f"Hai inserito >> {str(l) if l not in ('', ' ') else 'vuoto'}\nNon valido"
 
-        if controlla_x:
+        if controlla_x and not controlla_l:
             x = int(x)
             trovato_x = True
 
