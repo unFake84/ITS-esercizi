@@ -7,15 +7,18 @@ Classe:             Parametro/i:            ?Eredetarietà:
 
 - CAP               cap                     <-str
 - CODICEFISCALE     cf                      <-str
-- CONTINENTE        auto()                  <-strenum
+- CONTINENTE        auto()                  <-StrSnum
 - DENARO            imp, val(Valuta)
 - EMAIL             v                       <-str
 - FLOATDENARO       imp, val                <-float
-- GENERE            auto()                  <-strenum
+- GENERE            auto()                  <-StrEnum
 - INDIRIZZO         via civ cap
 - INDIRIZZO2        via civ
 - INTGE1900         v                       <-int
+- INTGEZ            v						<-int
+- POSIZIONEMILITARE -						<-StrEnum
 - REALGEZ           v                       <-float
+- RUOLO				-						<-StrEnum
 - TELEFONO          tel                     <-str
 - VALUTA            v                       <-str
 - VOTO              v                       <-int
@@ -139,7 +142,7 @@ class FloatDenaro(float):
 		"""
 		if self.valuta() != other.valuta():
 			raise ValueError(f"Non posso sommare importi di valute diverse: '{self.valuta()}' e '{other.valuta()}'")
-		
+
 		somma: float = self.importo() + other.importo()
 		return FloatDenaro(somma, self.valuta())
 
@@ -157,14 +160,14 @@ class Indirizzo:
 	_cap: CAP
 
 	def __init__(self, via:str, civico:str, cap:CAP) -> None:
-		
+
 		self._via:str = via
 
 		if not re.search("^[0-9]+[a-zA-Z]*$", civico):
 			raise ValueError(f"value for civico '{civico}' not allowed")
 		self._civico:str = civico
 		self._cap = cap
-	
+
 	def via(self)->str:
 		return self._via
 	def civico(self)->str:
@@ -189,7 +192,7 @@ class Indirizzo:
 				hash(self) != hash(other):
 			return False
 		return (self.via(), self.civico(), self.cap()) == (other.via(), other.civico(), other.cap())
-	
+
 class Indirizzo2:
 
     _via: str
@@ -230,6 +233,22 @@ class IntGE1900(int):
 
 		raise ValueError(f"Il valore {n} è minore di 1900!")
 
+class IntGez(int):
+	# Tipo di dato specializzato Intero >= 0
+	def __new__(cls, v:int | float | str | bool | Self) -> Self:
+		n: int = int.__new__(cls, v) # prova a convertire v in un int
+
+		if n >= 0:
+			return n
+		
+		raise ValueError(f"Il valore {n} è negativo!")
+	
+class PosizioneMilitare(StrEnum):
+	GENERALE = "Generale"
+	COLONELLO = "Colonello"
+	SERGENTE = "Sergente"
+	SOLDATO = "Soldato"
+
 class RealGEZ(float):
 	# Tipo di dato specializzato Reale >= 0
 	def __new__(cls, v: float|int|str|bool|Self) -> Self:
@@ -239,6 +258,11 @@ class RealGEZ(float):
 			return n
 
 		raise ValueError(f"Il valore {n} è negativo!")
+	
+class Ruolo(StrEnum):
+	SEGRETARIO = auto()
+	DIRETTORE = auto()
+	PROGETTISTA = auto()
 
 class Telefono(str):
 	def __new__(cls, tel: str | Self) -> Self:
