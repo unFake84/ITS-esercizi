@@ -1,21 +1,8 @@
 '''
 Testi Digitali
-
-### Test con UnitTest
-
-Utilizzando il modulo unittest, definire i seguenti test per le classi Documento, Email e File.
- 
-I test devono includere:
-
-    Verifica dei metodi getText() e setText() nella classe Documento.
-    Verifica del metodo isInText() nella classe Documento.
-    Verifica del metodo getText() nella classe Email.
-    Verifica del metodo writeToFile() nella classe Email.
-    Verifica del metodo isInText() nella classe Email.
-    Verifica del metodo getText() nella classe File.
-    Verifica del metodo isInText() nella classe File.
-
 '''
+
+import unittest
 
 class Documento:
     '''
@@ -179,11 +166,39 @@ if __name__ == "__main__":
     print(f"E\'stato creato l'oggetto email -> {email.getText()}")
     print(file.getText())
     print("\nCreato(o sovrascritto) file emai1.txt\n")
+
     email.writeToFile()
 
+    print(email.isInText("come"))
     print(email.isInText("incontrarci"))
 
+    '''
+    ### Test con UnitTest
+
+    Utilizzando il modulo unittest, definire i seguenti test per le classi Documento, Email e File.
     
+    I test devono includere:
+
+        Verifica dei metodi getText() e setText() nella classe Documento.
+        Verifica del metodo isInText() nella classe Documento.
+        Verifica del metodo getText() nella classe Email.
+        Verifica del metodo writeToFile() nella classe Email.
+        Verifica del metodo isInText() nella classe Email.
+        Verifica del metodo getText() nella classe File.
+        Verifica del metodo isInText() nella classe File.
+    '''
+
+    class TestDocumento(unittest.TestCase):
+
+        def test_getText(self):
+            test = Email("Ciao come va?", "uccio@uccia.it", "uccia@uccio.it", "Ucciamo?")
+            self.assertEqual(test.getText(), "\nDa: uccio@uccia.it, A: uccia@uccio.it\nTitolo: Ucciamo?\nMessaggio: Ciao come va?\n")
+
+        # def test_setText(self):
+        #     settest = Email("bellaa")
+        #     self.assertEqual(settest.setText(), "\nDa: uccio@uccia.it, A: uccia@uccio.it\nTitolo: Ucciamo?\nMessaggio: bellaa\n")
+    
+    unittest.main()
 
 
     # TEST GENERALI
