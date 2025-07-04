@@ -68,23 +68,3 @@ if __name__ == "__main__":
         print(f"{i + 1:<10} {cars[i]:<10} {t:<.2f}")
 
     print(f"{'TOTAL':<10} {sum(cars):<10} {total:<10}")
-
-
-
-
-
-
-    
-
-
-
-    # print(
-    #     f'''
-    # Car         Hours           Charge
-    # 1                  1.5             {p1} $
-    # 2                 4.0             {p2} $
-    # 3               5.50             {p3} $
-    # 4               24.0           {p4} $
-    # TOTAL      35.0           {total} $
-    #     '''
-    # )
