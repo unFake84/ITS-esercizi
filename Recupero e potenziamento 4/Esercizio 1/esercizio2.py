@@ -13,23 +13,36 @@ stampi ogni lista in ordine inverso sfruttando la funzione ricorsiva implementat
 
     lista2: "Armatura", "Bravura", "Cane", "Diamante", "Elefante", "Furfante"
 '''
+from typing import Any
+def printListBackward(l: list[Any]) -> None:
 
-def printListBackward(lista: list) -> list[int]:
+    if not l:
+        return
 
-    lista_inv: list[int] = []
-
-    if lista == []:
-        return 
-    
-    print(lista[-1])
-    lista_inv.append(lista[-1])
-    lista.pop()
-    printListBackward(lista)
+    printListBackward(l[1:])
+    print(l[0])
 
 if __name__ == "__main__":
 
     lista1: list[int] = [1, 2, 3, 4, 5]
     lista2: list[str] = ["Armatura", "Bravura", "Cane", "Diamante", "Elefante", "Furfante"]
 
-    print(printListBackward(lista1))
-    print(printListBackward(lista2))
+    printListBackward(lista1)
+    printListBackward(lista2)
+
+
+
+
+
+
+# def printListBackward(lista: list) -> list[int]:
+
+#     lista_inv: list[int] = []
+
+#     if lista == []:
+#         return 
+    
+#     print(lista[-1])
+#     lista_inv.append(lista[-1])
+#     lista.pop()
+#     printListBackward(lista)
