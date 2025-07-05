@@ -20,6 +20,12 @@ from datetime import date
 
 class Persona:
     _nome: str
+    _cognome: str
+    _cf: CodiceFiscale
+    _nascita: date
+    _maternita: IntGez
+    _genere: Genere
+    _posMil: PosizioneMilitare
     
     ##########################################################################
     #INIT#########################################################################
@@ -50,10 +56,10 @@ class Persona:
         if not isinstance(nNome, str):
             raise ValueError("Non è una stringa!")
 
-        self.nome = nNome
+        self._nome = nNome
 
     def getNome(self) -> str:
-        return self.nome
+        return self._nome
 
     #COGNOME#########################################################################
 
@@ -61,18 +67,18 @@ class Persona:
         if not isinstance(nCognome, str):
             raise ValueError("Non è una stringa!")
 
-        self.cognome = nCognome
+        self._cognome = nCognome
 
     def getCognome(self) -> str:
-        return self.cognome
+        return self._cognome
 
     #CF#########################################################################
 
     def setCF(self, cf: CodiceFiscale) -> None:
-        self.cf = cf
+        self._cf = cf
 
     def getCF(self) -> CodiceFiscale:
-        return self.cf
+        return self._cf
 
     #NASCITA#########################################################################
 
@@ -82,30 +88,33 @@ class Persona:
     #MATERNITA#########################################################################
 
     def getMaternita(self) -> IntGez |None:
-        return self.maternita if self.maternita else None
+        return self._maternita if self._maternita else None
     
     def addMaternita(self) -> None:
-        self.maternita += 1
+        self._maternita += 1
 
     #GENERE#########################################################################
 
-    def setGenere(self, genere: Genere, maternita: IntGez|None, posMil:PosizioneMilitare|None ) -> None:
+    def setGenere(self, genere: Genere, maternita: IntGez|None, nposMil:PosizioneMilitare|None ) -> None:
         if genere == Genere.donna and maternita is None\
             or genere == Genere.uomo and posMil is None:
             raise ValueError("Errato, deve essere conosciuta la maternità o la posizione militare")
         
         if genere == Genere.donna:
             posMil = None
-            self.maternita = maternita
+            self._maternita = maternita
 
         if genere == Genere.uomo:
-            self.maternita = None
-            self.posmil = posMil
+            self._maternita = None
+            self._posmil = nposMil
 
     def getGenere(self) -> Genere:
-        return Genere.donna if self.maternita is not None else Genere.uomo
+        return Genere.donna if self._maternita is not None else Genere.uomo
 
     #POSMIL#########################################################################
 
-    def setPosMil(self, posmil: PosizioneMilitare) -> None:
-        self.posmil = posmil
+    def setPosMil(self, nposmil: PosizioneMilitare) -> None:
+        self._posmil = nposmil
+
+    def getPosMil(self) -> PosizioneMilitare | str:
+        return self._posMil if self._posMil else "Nessuna posizione registrata"
