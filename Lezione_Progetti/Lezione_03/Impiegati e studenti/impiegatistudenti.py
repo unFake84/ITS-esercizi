@@ -15,7 +15,7 @@
 # IntGez
 # RealGez
 
-from all_my_types import CodiceFiscale, Genere, IntGez, PosizioneMilitare, Ruolo
+from progetti_types import CodiceFiscale, Genere, IntGez, PosizioneMilitare, Ruolo
 from datetime import date
 
 class Persona:
