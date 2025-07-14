@@ -45,9 +45,9 @@ l: list[Frazione] = [
     frazione13
     ]
 
-l_s: list[list[int]] = [[f.get_numeratore(), f.get_denominatore()] for f in l]
+# l_s: list[list[int]] = [[f.get_numeratore(), f.get_denominatore()] for f in l]
 
-print("Lista originale: \n", *[str(f)+"\n" for f in l])
-print("Lista semplificata \n", *[str(g[0])+" / "+str(g[1])+"\n" for g in semplifica(l_s)])
-print("Comparazioni: ")
-print(fractionCompare(l_s))
+# print("Lista originale: \n", *[str(f)+"\n" for f in l])
+# print("Lista semplificata \n", *[str(g[0])+" / "+str(g[1])+"\n" for g in semplifica(l_s)])
+# print("Comparazioni: ")
+# print(fractionCompare(l_s))

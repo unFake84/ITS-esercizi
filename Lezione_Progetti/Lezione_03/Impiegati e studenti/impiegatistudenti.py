@@ -26,7 +26,7 @@ class Persona:
     _maternita: IntGez
     _genere: Genere
     _posMil: PosizioneMilitare
-    
+
     ##########################################################################
     #INIT#########################################################################
 
@@ -48,7 +48,6 @@ class Persona:
         self.setCF(cf)
         self._nascita = nascita
         self.setGenere(genere, maternita, posMil)
-        
 
     #NOME#########################################################################
 
@@ -89,7 +88,7 @@ class Persona:
 
     def getMaternita(self) -> IntGez |None:
         return self._maternita if self._maternita else None
-    
+
     def addMaternita(self) -> None:
         self._maternita += 1
 
@@ -99,7 +98,7 @@ class Persona:
         if genere == Genere.donna and maternita is None\
             or genere == Genere.uomo and posMil is None:
             raise ValueError("Errato, deve essere conosciuta la maternità o la posizione militare")
-        
+
         if genere == Genere.donna:
             posMil = None
             self._maternita = maternita
