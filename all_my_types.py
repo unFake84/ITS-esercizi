@@ -17,7 +17,8 @@ Classe:             Parametro/i:            ?Eredetarietà:
 - INTGE1900         v                       <-int
 - INTGEZ            v						<-int
 - POSIZIONEMILITARE -						<-StrEnum
-- REALGEZ           v                       <-float
+- REALGEZ           v                       <-float ( >= )
+- REALGZ            v                       <-float ( > )
 - RUOLO				-						<-StrEnum
 - TELEFONO          tel                     <-str
 - VALUTA            v                       <-str
@@ -255,6 +256,16 @@ class RealGEZ(float):
 		n: float = float.__new__(cls, v) # prova a convertire v in un float
 
 		if n >= 0:
+			return n
+
+		raise ValueError(f"Il valore {n} è negativo!")
+	
+class RealGZ(float):
+	# Tipo di dato specializzato Reale >= 0
+	def __new__(cls, v: float|int|str|bool|Self) -> Self:
+		n: float = float.__new__(cls, v) # prova a convertire v in un float
+
+		if n > 0:
 			return n
 
 		raise ValueError(f"Il valore {n} è negativo!")
