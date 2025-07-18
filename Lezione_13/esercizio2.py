@@ -28,7 +28,7 @@ def compoundInterest( m: float, t: int,r: float = 1.005 ) -> float | None:
 
 if __name__ == "__main__":
 
-    result: float | None = compoundInterest( 5223, 5 )
+    result: float | None = compoundInterest( 5224, 5 )
 
     if result is not None:
         print( f"{ round( result ) } €" )
