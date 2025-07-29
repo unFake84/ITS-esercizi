@@ -24,3 +24,5 @@ La funzione non dovrebbe considerare palindrome le seguenti stringhe:
 
 Suggerimento: usare la funzione replace() per sostituire gli spazi con una stringa vuota.
 '''
+
+# proviamo a pullare
