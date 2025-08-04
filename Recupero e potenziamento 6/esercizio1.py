@@ -25,4 +25,23 @@ La funzione non dovrebbe considerare palindrome le seguenti stringhe:
 Suggerimento: usare la funzione replace() per sostituire gli spazi con una stringa vuota.
 '''
 
-# proviamo a pullare
+def recursivePalindrome( s:str ) -> bool | None:
+
+    if not isinstance( s,str ):
+        print( f"{ s } <- Not a string" )
+        return None
+
+    s = s.replace( " ","" ).lower()
+
+    if s == "" or len( s ) <= 1:
+        return True
+
+    if s[ 0 ] != s[ -1 ]:
+        return False
+
+    else:
+        return recursivePalindrome( s[ 1:-1 ] )
+
+if __name__ == "__main__":
+
+    print( recursivePalindrome( " I topi non avevano nipoti" ) )
