@@ -16,4 +16,5 @@ def charDuplicator( s: str ) -> str | None:
     return ( s[ 0 ] * 2 ) + charDuplicator( s[ 1: ] ) if s != "" else ""
 
 if __name__ == "__main__":
+
     print( charDuplicator( "libro" ) )

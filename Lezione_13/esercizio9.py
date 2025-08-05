@@ -23,4 +23,5 @@ def vowelRemover( s: str ) -> str | None:
         return vowelRemover( s[ 1: ] )
 
 if __name__ == "__main__":
+
     print( vowelRemover( "Stringa" ) )
