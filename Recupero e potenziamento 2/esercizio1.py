@@ -93,7 +93,7 @@ def fusionDNA( s1:str , s2:str ) -> str:
         slicer_s1 -= 1
         slicer_s2 += 1
 
-    final_string: str = f"{ s1[ :slicer_s1 ] }{ s1[ slicer_s1: ] }\n"\
+    final_string: str = f"\n{ s1[ :slicer_s1 ] }{ s1[ slicer_s1: ] }\n"\
                         f"{' ' * len( s1[ max_length: ] ) }"\
                         f"{ s2[ slicer_s2: ] }{ s2[ :slicer_s2 ] }\n"\
                         f"La massima lunghezza di sovrapposizione è: { max_length }.\n"
@@ -139,6 +139,35 @@ def testDNA() -> None:
     print( fusionDNA( dna_1f, dna_2f ) , "-" * 50 ) # F
     print( fusionDNA( dna_1g, dna_2g ) , "-" * 50 ) # G
 
+def dnaMain() -> None:
+    user: str = ""
+    sequences: list[ str ] = []
+    checker: bool = False
+
+    print( "Enter two valid DNA sequences (consisting only of A, C, G, T)." )
+
+    while True:
+
+        user = input( f"Insert { 'first' if len( sequences ) == 0 else 'second' } fragment of Dna: " ).upper()
+        checker = isDNA( user )
+
+        if not checker:
+            print( "The portion of fragment is incorrect, please try again." )
+            continue
+
+        if checker:
+            sequences.append( user )
+
+            if len( sequences ) == 2:
+                break
+
+    print( fusionDNA( sequences[ 0 ], sequences[ 1 ] ) )
+        
+
 if __name__ == "__main__":
 
-    testDNA()
+    #        val1 if cond1 else val2 if cond2 else val3
+
+    choice: str = input( ">> 'test' or 'run' program?: " ).lower().strip()
+    testDNA() if choice == 'test' else dnaMain() if choice == 'run' else print( "Choice not valid." )
+    print( "Closing." )
