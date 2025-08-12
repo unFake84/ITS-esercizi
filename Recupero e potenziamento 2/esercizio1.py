@@ -93,10 +93,10 @@ def fusionDNA( s1:str , s2:str ) -> str:
         slicer_s1 -= 1
         slicer_s2 += 1
 
-    final_string: str = f"\n{ s1[ :slicer_s1 ] }{ s1[ slicer_s1: ] }\n"\
+    final_string: str = f"\n{ s1 }\n"\
                         f"{' ' * len( s1[ max_length: ] ) }"\
-                        f"{ s2[ slicer_s2: ] }{ s2[ :slicer_s2 ] }\n"\
-                        f"La massima lunghezza di sovrapposizione è: { max_length }.\n"
+                        f"{ s2 }\n"\
+                        f"The maximum overlap length is: { max_length }.\n"
 
     return final_string
 
