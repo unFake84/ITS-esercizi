@@ -1,11 +1,14 @@
 '''
-Create a function that defines a product with a name, price, and quantity.
-Create functions that manage the shopping cart, allowing the user to
-add, remove, and view products in the cart.
-Create a function that calculates the cart total and apply any discounts or taxes.
-Create a funciton to print a detailed summary of the cart including products and totals.
-Implement a for loop to iterate over the items in the cart and print detailed information about
-each product and the total.
+E-commerce Shopping Cart:
+
+    Create a function that defines a product with a name, price, and quantity.
+    Create functions that manage the shopping cart, allowing the user to
+    add, remove, and view products in the cart.
+    Create a function that calculates the cart total and apply any discounts or taxes.
+    Create a funciton to print a detailed summary of the cart including products and totals.
+    Implement a for loop to iterate over the items in the cart and print detailed information about
+    each product and the total.
+
 '''
 
 def product(name: str, price: float, quantity: int) -> dict[str, list[float|int]]:
