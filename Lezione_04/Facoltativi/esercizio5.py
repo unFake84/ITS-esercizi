@@ -9,9 +9,10 @@ Inventory Management System:
 '''
 
 def item(code: int, name: str, quantity: int, price: float) -> dict[int, dict[str,str|int|float]]:
+
     d: dict[int, dict[str, str | int | float]] = {
         code: {
-            "name": name,
+            "name": name, # if len(name) <= 10 else name[:7] +"...", # <- se modificare il nome in modo permanentemente
             "quantity": quantity, 
             "price": price
         }
@@ -93,12 +94,47 @@ def searchItem(inventory: list[dict[int, dict[str, str|int|float]]], id: int) ->
     if not founded:
         return f"Key: {id}, not found."
 
-    overView: str = f"Key: {id}, founded - overview:\n"\
-                    f"{'Name':<10} {'Quantity':<10} {'price/unit':<10}\n"\
-                    f"{name:<10} {quantity:<10} {price:<10}\n"\
-                    f"Total price: {price*quantity}"
+    overview: str = f"Key: {id}, founded - overview:\n"\
+                    f"+{'-' * 32}+\n"\
+                    f"|{'Name':<10} {'Quantity':<10} {'price/unit':<10}|\n"\
+                    f"|{name if len(name) <= 10 else name[:7]+'...':<10} {quantity:<10} {price:<10.2f}|\n"\
+                    f"+{'-' * 32}+\n"\
+                    f"|Total price: {price*quantity:<19.2f}|\n"\
+                    f"+{'-' * 32}+"
 
-    return overView
+    return overview
+
+def updateItem(
+        inventory: list[dict[int, dict[str, str|int|float]]],
+        id: int,
+        key: str,
+        value: str|int|float
+) -> None:
+
+    for i, item in enumerate(inventory):
+
+        if id in item:
+            if key == "name":
+                inventory[i][id]["name"] = value
+                print(f"Key: {id} founded, name changed successfully.")
+                break
+
+            elif key == "quantity":
+                inventory[i][id]["quantity"] = value
+                print(f"Key: {id} founded, quantity changed successfully.")
+                break
+            
+            elif key == "price":
+                inventory[i][id]["price"] = value
+                print(f"Key: {id} founded, value changed successfully.")
+                break
+
+            else:
+                print(f"Key: {id} founded, unable to change invalid key: \"{key}\"")
+                break
+        
+    else:
+        print(f"Key: {id}, not found.")
 
 if __name__ == "__main__":
 
@@ -114,17 +150,39 @@ if __name__ == "__main__":
     # inventory.append(i2)
 
     i3: dict[int, dict[str, str|int|float]] = item(102, "Printer", 1, 90)
+    i4: dict[int, dict[str, str|int|float]] = item(103, "Ventilatore", 20, 32.99)
+    i5: dict[int, dict[str, str|int|float]] = item(104, "Powerbank Multi", 20, 32.99)
+
     addItem(inventory, i1)
     addItem(inventory, i1)
     addItem(inventory, i2)
     addItem(inventory, i3)
     addItem(inventory, i2)
+    addItem(inventory, i4)
+    addItem(inventory, i5)
+    # test lunghezza nome + 10 caratteri (7+...)
+    addItem(inventory, i4)
 
     delItem(inventory, 100, 5)
 
-    print(searchItem(inventory, 101))
+    print(searchItem(inventory, 103))
+    print(searchItem(inventory, 102))
+    print(searchItem(inventory, 105))
+    print(searchItem(inventory, 104))
+
+
+    updateItem(inventory, 103, "name", "Fun")
+    updateItem(inventory, 103, "quantity", 67)
+    updateItem(inventory, 104, "asdad", 455)
+    print(searchItem(inventory, 103))
+    
+
+    updateItem(inventory, 119, "name", "Torch")
+    addItem(inventory, i1)
+    updateItem(inventory, 100, "quantity", 1000)
+    print(searchItem(inventory, 100))
 
 
 
-    print("INVENTORY RAW VIEW")
-    print(inventory)
+    # print("INVENTORY RAW VIEW")
+    # print(inventory)
