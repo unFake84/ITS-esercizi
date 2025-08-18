@@ -18,8 +18,8 @@ def account(
     fund: int|float
     ) -> tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]:
 
-    now: datetime = datetime.now()
-    operation: tuple[str, int|float, datetime] = ("Deposit", fund, now.strftime("%Y-%m-%d %H:%M:%S"))
+    operation: tuple[str, int|float, datetime] = ("Deposit", fund, datetime.now())
+    # per formattare in stringa leggibile => var = datetime.now() \n var.strftime("%Y-%m-%d %H:%M:%S")
 
     t: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = (
     id,
@@ -52,21 +52,68 @@ def bank(
             database.append(account)
             return database
 
-        if flag:
+        else:
             raise ValueError("Account allready exists")
 
-def atm() -> float:
-    pass
+def atm(
+    database: list[tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]],
+    id: int,
+    selection: str,
+    amount: int = None
+    ) -> None|list[tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]]:
+
+    if selection == "balance":
+        string_1: str = ""
+        for t in database:
+            if id == t[0]:
+                string_1 = f"Account number:   {t[0]}\n"\
+                            f"Account name:     {t[1]} {t[2]}\n"\
+                            f"Current budget:   {t[3]:.2f}"
+                print(string_1)
+
+    elif selection == "deposit":
+        pass
+
+    elif selection == "withdraw":
+        pass
+
+    else:
+        raise ValueError("Selection not valid.")
 
 if __name__ == "__main__":
 
     database: list[tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]] = []
 
-    account_1: tuple[int, str, str, int|float] = account(1, "Mario", "Rossi", 20000)
-    account_2: tuple[int, str, str, int|float] = account(2, "Pino", "Pano", 14000.15)
-    account_3: tuple[int, str, str, int|float] = account(3, "Uccio", "Uccia", 44761)
-    account_4: tuple[int, str, str, int|float] = account(4, "Romualdo", "Latrinini", 9700.86)
-    account_5: tuple[int, str, str, int|float] = account(1, "Mario", "Rossi", 30000)
+    account_1: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
+        1,
+        "Mario",
+        "Rossi",
+        20000
+        )
+    account_2: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
+        2,
+        "Pino",
+        "Pano",
+        14000.15
+        )
+    account_3: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
+        3,
+        "Uccio",
+        "Uccia",
+        44761
+        )
+    account_4: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
+        4,
+        "Romualdo",
+        "Latrinini",
+        9700.86
+    )
+    account_5: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
+        1,
+        "Mario",
+        "Rossi",
+        30000
+        )
 
     
     bank(database, account_1)
@@ -75,7 +122,13 @@ if __name__ == "__main__":
     bank(database, account_4)
     # bank(database, account_5)
     # bank(database, account_2)
-    print(database)
+
+    atm(database, 1, "balance")
+
+
+
+    # for n in database:
+    #     print(n)
 
 
 
