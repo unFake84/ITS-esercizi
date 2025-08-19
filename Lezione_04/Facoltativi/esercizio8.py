@@ -38,6 +38,7 @@ def bank(
 
     if database == []:
         database.append(account)
+
         return database
 
     else:
@@ -50,6 +51,7 @@ def bank(
 
         if not flag:
             database.append(account)
+
             return database
 
         else:
@@ -60,22 +62,81 @@ def atm(
     id: int,
     selection: str,
     amount: int = None
-    ) -> None|list[tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]]:
+    ) -> None|str|list[tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]]]:
 
     if selection == "balance":
         string_1: str = ""
+
         for t in database:
+
             if id == t[0]:
                 string_1 = f"Account number:   {t[0]}\n"\
                             f"Account name:     {t[1]} {t[2]}\n"\
                             f"Current budget:   {t[3]:.2f}"
+
                 print(string_1)
 
+                return string_1
+
     elif selection == "deposit":
-        pass
+        if amount is not None and amount > 0:
+
+            for i, acc in enumerate(database):
+
+                if id == acc[0]:
+                    operation: tuple[str, int|float, datetime] = ("Deposit", amount, datetime.now())
+                    acc[4].append(operation)
+                    new_sum: int|float = acc[3] + amount
+                    repl_tuple: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = (
+                        acc[0],
+                        acc[1],
+                        acc[2],
+                        new_sum,
+                        acc[4]
+                    )
+                    database[i] = repl_tuple
+
+                    return database
+
+            raise ValueError("Account not found")
+
+        elif amount is None:
+            raise ValueError("Amount required")
+
+        else:
+            raise ValueError("A positive amount is required for this transaction.")
 
     elif selection == "withdraw":
-        pass
+        if amount is not None and amount > 0:
+
+            for i, a in enumerate(database):
+
+                if id == a[0]:
+                    check_fund: int|float = a[3] - amount
+
+                    if check_fund < 0:
+                        raise ValueError("This operation is not possible.")
+
+                    operation: tuple[str, int|float, datetime] = ("Withdraw", amount, datetime.now())
+                    a[4].append(operation)
+                    repl_tuple: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = (
+                        a[0],
+                        a[1],
+                        a[2],
+                        check_fund,
+                        a[4]
+                    )
+                    database[i] = repl_tuple
+
+                    return database
+
+            raise ValueError("Account not found.")
+
+        elif amount is None:
+            raise ValueError("Amount required")
+
+        else:
+            raise ValueError("A positive amount is required for this transaction.")
 
     else:
         raise ValueError("Selection not valid.")
@@ -110,12 +171,12 @@ if __name__ == "__main__":
     )
     account_5: tuple[int, str, str, int|float, list[tuple[str, int|float, datetime]]] = account(
         1,
-        "Mario",
+        "Mario",                            # account di test
         "Rossi",
         30000
         )
 
-    
+
     bank(database, account_1)
     bank(database, account_2)
     bank(database, account_3)
@@ -123,20 +184,21 @@ if __name__ == "__main__":
     # bank(database, account_5)
     # bank(database, account_2)
 
-    atm(database, 1, "balance")
+    atm(database, 4, "deposit", 1700)
+    atm(database, 1, "withdraw", 149.99)
+    # atm(database, 1, "balance")
 
+    print("-"*50)
 
+    for n in database:
 
-    # for n in database:
-    #     print(n)
+        print(f"{'Id':<4} {'Name':<10} {'Lastname':<10} {'Fund':<10}")
+        print(f"{n[0]:<4} {n[1]:<10} {n[2]:<10} {n[3]:<10.2f}")
+        print("\nStatement:")
+        print(f"{'Date':<10} {'Time':<8} {'Amount':<10} {'Operation':<10}")
 
+        for o in n[4]:
 
+            print(f"{o[2].strftime('%Y-%m-%d %H:%M:%S'):<10} {o[1]:<10.2f} {o[0]:<10}")
 
-
-
-
-# for i, a in enumerate(database):
-#     if a[0] == account[0]:
-#         sum_ab: int|float = a[3] + account[3]
-#         temp_tuple: tuple[int, str, str, int|float] = (account[0], account[1], account[2], sum_ab)
-#         database[i] = temp_tuple
+        print("-"*50)
