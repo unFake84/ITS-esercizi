@@ -8,15 +8,30 @@ Caesar Cipher Encryption/Decryption
 
 '''
 
-from string import ascii_lowercase
+from string import ascii_lowercase, ascii_uppercase
 
-def encrypt(text: str, key: int) -> str:
-    text: list[str] = list(text.strip())
-    print(text)
+def enOrDecrypt(text: str, key: int, decr: bool = None) -> str:
 
-    for i, l in enumerate(ascii_lowercase):
+    chars: list[str] = list(text.strip())
+    en_de_crypted: str = ""
 
-        pass
+    for char in chars:
+
+        if char in ascii_lowercase or char in ascii_uppercase:
+            for i2, l2 in enumerate(ascii_lowercase):
+
+                if char == l2 or char == ascii_uppercase[i2]:
+
+                    en_de_crypted += ascii_lowercase[(i2 + key)%26 if decr is None else (i2 - key)%26]\
+                        if char in ascii_lowercase else\
+                            ascii_uppercase[(i2 + key)%26 if decr is None else (i2 - key)%26]
+
+        else:
+            en_de_crypted += char
+
+    return en_de_crypted
 
 if __name__ == "__main__":
-    encrypt("abcd", 4)
+
+    print(enOrDecrypt("aBcd! aZ", 1))
+    print(enOrDecrypt("bCde! bA", 1, True))
