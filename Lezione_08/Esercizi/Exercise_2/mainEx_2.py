@@ -1,3 +1,10 @@
+'''
+    [2]
+    Finally, write a small driver program to test the functionality of the add and multiply methods.
+    This should involve calling both methods with sample inputs and
+    printing the results to verify that they work correctly.
+'''
+
 from mathop import MathOperations
 
 # # [2] interattivo

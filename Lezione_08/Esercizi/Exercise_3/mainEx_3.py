@@ -1,27 +1,4 @@
 '''
-    Library Management System 
-
-    Create a Book class containing the following attributes: title, author, isbn.
-    The book class must contains the following methods:
-
-        __str__,
-        method to return a string representation of the book.
-
-        from_string,
-        a class method to create a Book instance from a string in the format "title, author, isbn".
-        It means that you must use the class reference cls to create a new object of the Book class using a string.
-
-    Example: 
-
-    book_str: str = "La Divina Commedia, D. Alighieri, 999000666"
-    divina_commedia: Book = Book.from_string(book_str)
-
-    In this case, divina_commedia should be an instance of the Book class with:
-
-        title = "La Divina Commedia"
-        author = "D. Alighieri"
-        isbn = "999000666"
-
     Create a Member class with the following attributes: name, member_id, borrowed_books.
     The member class must contain the following methods:
 

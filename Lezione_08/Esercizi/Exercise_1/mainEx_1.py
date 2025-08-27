@@ -1,3 +1,11 @@
+'''
+    [3]
+    Finally, write a simple driver program (test code) that creates instances of Circle and Rectangle,
+    calls their area and perimeter methods, and prints the results.
+
+    This will help verify that your class hierarchy works as intended.
+'''
+
 from circle import Circle
 from rectangle import Rectangle
 

@@ -1,3 +1,10 @@
+'''
+    [2b]
+    Then, create two concrete subclasses, Circle and Rectangle, that both extend the Shape class.
+    Each of these subclasses must provide their own implementation of the area and perimeter methods,
+    based on the geometric formulas appropriate to their shapes.
+'''
+
 from shape import Shape
 
 # [2b]
