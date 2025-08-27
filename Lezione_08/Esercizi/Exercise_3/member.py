@@ -47,12 +47,12 @@ class Member:
 
         else:
             raise ValueError(f"Member :{self.member_id}: has no book on loan")
-        
+
         if self.borrowed_books == []:
             self.borrowed_books = None
-    
+
     def __str__(self) -> str:
-        final_string: str = f"Member :{self.member_id}: borrowed books:\n"
+        final_string: str = f"\n{'-' * 50}\n{'-' * 50}\nMember :{self.member_id}: borrowed books:\n"
 
         if self.borrowed_books is not None:
             qnti: int = 0
@@ -60,13 +60,15 @@ class Member:
             for book in self.borrowed_books:
                 qnti += 1
                 final_string += f"\n[{qnti}]"
-                final_string += str(book) + "-"*50
-        
+                final_string += str(book) + "-" * 50
+
         elif self.borrowed_books is None:
             final_string += "No borrowed books"
-        
+
+        final_string += '\n' + '-' * 50
+
         return final_string if self.borrowed_books is not None else f"Member :{self.member_id}: has no book on loan"
-    
+
     @classmethod
     def from_string(cls, stringa: str) -> "Member":
         div_stringa: list[str] = stringa.split(", ")
@@ -92,7 +94,7 @@ if __name__ == "__main__":
     libro4: Book = Book.from_string("Il Cliente, J. Chrisman, 889000902")
 
     member_1.borrow_book(libro1)
-    
+
     try:
         member_1.borrow_book(libro1) # solleva un ValueError (giusto)
 
@@ -113,6 +115,6 @@ if __name__ == "__main__":
 
     except ValueError as err:
         print(f"Error: {err}")
-    
+
     member_1.return_book(libro2)
     print(member_1)

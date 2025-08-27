@@ -41,7 +41,6 @@ class Book:
         # oggetto: Book = cls(div_stringa[0].title(), div_stringa[1].title(), div_stringa[2]) <-- senza operatore *
         return oggetto
 
-
 if __name__ == "__main__":
 
     book_str: str = "La Divina Commedia, D. Alighieri, 999000666"

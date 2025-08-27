@@ -34,7 +34,7 @@ class Library:
     def __init__(self) -> None:
         self.books: list[Book] = []
         self.members: list[Member] = []
-    
+
     def add_book(self, book: Book|str) -> None:
         if isinstance(book, str):
             book = Book.from_string(book)
@@ -42,35 +42,35 @@ class Library:
         self.books.append(book)
         Library.total_books += 1
         Library.real_total_books += 1
-    
+
     def remove_book(self, book: Book|str) -> None:
         if isinstance(book, str):
             book = Book.from_string(book)
-        
+
         if book in self.books:
             self.books.remove(book)
             Library.total_books -= 1
 
         else:
             raise ValueError(f":{book}: Not in Database")
-    
+
     def register_member(self, member: Member|str) -> None:
         if isinstance(member, str):
             member = Member.from_string(member)
-        
+
         self.members.append(member)
-    
+
     def lend_book(self, book: Book, member: Member) -> None:
         if member not in self.members:
             raise ValueError(f"Member :{member.member_id}: not registered")
-        
+
         if book not in self.books:
             raise ValueError(f"Book :{book.title}: not in database")
-        
+
         self.books.remove(book)
         member.borrow_book(book)
         Library.total_books -= 1
-    
+
     def __str__(self) -> str:
         catalogo: str = ""
 
@@ -79,7 +79,7 @@ class Library:
 
             for libro in self.books:
                 catalogo += f"{libro.isbn:<8}{libro.title if len(libro.title) <= 20 else libro.title[:17] + '..':<20}{libro.author:<15}\n"
-        
+
         else:
             catalogo += "\nNo books in database\n"
 
@@ -136,7 +136,7 @@ if __name__ == "__main__":
 
     try:
         library.lend_book(book3,member1)
-    
+
     except ValueError as err:
         print(f"{err}")
 
