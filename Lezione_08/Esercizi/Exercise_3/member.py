@@ -42,13 +42,14 @@ class Member:
 
             if book in self.borrowed_books:
                 self.borrowed_books.remove(book)
+
             else:
                 raise ValueError(f":{book.title}: not in member :{self.member_id}: list")
 
         else:
             raise ValueError(f"Member :{self.member_id}: has no book on loan")
 
-        if self.borrowed_books == []:
+        if not self.borrowed_books:
             self.borrowed_books = None
 
     def __str__(self) -> str:

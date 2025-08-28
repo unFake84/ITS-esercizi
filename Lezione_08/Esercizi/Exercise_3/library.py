@@ -98,7 +98,7 @@ class Library:
     def library_statistics(cls) -> None:
         print(
             f"Total numbers of books: {Library.real_total_books}\n"\
-            f"Total numbers of books borrowed: {Library.real_total_books - Library.total_books}"    
+            f"Total numbers of books borrowed: {Library.real_total_books - Library.total_books}"
             )
 
 if __name__ == "__main__":

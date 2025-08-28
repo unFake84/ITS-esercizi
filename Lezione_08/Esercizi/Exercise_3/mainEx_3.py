@@ -27,7 +27,7 @@ import random
 library: Library = Library()
 print(library)
 
-books_list = [
+books_list: list[Book] = [
     Book.from_string("Il nome della rosa, Umberto Eco, 100001"),
     Book.from_string("1984, George Orwell, 100002"),
     Book.from_string("Orgoglio e pregiudizio, Jane Austen, 100003"),
@@ -70,12 +70,14 @@ for member in members_list:
     library.register_member(member)
 
 for _ in range(random.randint(1, 20)):
+
     book: Book = random.choice(books_list)
     member: Member = random.choice(members_list)
 
     try:
         library.lend_book(book, member)
         print(f":{book.title}: lent to :{member.member_id}:")
+
     except ValueError as err:
         print(f"Can not lent :{book.title}: to :{member.member_id}: {err}")
 
