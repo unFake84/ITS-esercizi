@@ -18,6 +18,8 @@
 from __future__ import annotations
 from person import Person
 
+#from course import Course
+
 class Professor(Person):
 
     def __init__(self, name, age, professor_id: str, department: Department) -> None:
@@ -31,11 +33,15 @@ class Professor(Person):
         return "Professor"
 
     def assign_to_course(self, course: Course) -> None:
-        if course not in self.courses:
-            self.courses.append(course)
+        if course.professor is not None:
+            err_str: str = f"Can not add professor {self.name} to course {course.course_name}.\n"\
+                            f"Professor {course.professor.name} already assigned to this course: {course.course_name}"
+            raise ValueError(err_str)
+            
 
         else:
-            raise ValueError(f"Professor {self.name} already assigned to this the course: {course}")
+            self.courses.append(course)
+            course.professor = self
 
     def set_department(self, depart: Department) -> None:
         if depart != self.department:

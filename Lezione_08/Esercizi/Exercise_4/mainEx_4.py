@@ -1,19 +1,4 @@
 '''
-    [6]
-    Create a class University:
-
-    Attributes:
-
-        name
-        departments (list of Department instances)
-        students (list of Student instances)
-
-    Methods:
-
-        add_department, to add a department to the university.
-        add_student, to add a student to the university.
-        __str__, method to return a string representation of the university.
-
     [7]
     Finally, write a simple driver program.
     After creating a University, you should begin by creating instances of the main components that
@@ -40,4 +25,5 @@
             A list of courses with assigned professors.
             Which students are enrolled in which courses.
             A breakdown of departments and the courses they offer.
+
 '''

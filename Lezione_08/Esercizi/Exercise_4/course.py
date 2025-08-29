@@ -30,9 +30,10 @@ class Course:
     def add_student(self, student: Student) -> None:
         if student not in self.students:
             self.students.append(student)
+            student.enroll(self)
         
         else:
-            raise ValueError(f"The student: {student} is already enrolled in this course: {self.course_name}")
+            raise ValueError(f"The student: {student.name} is already enrolled in this course: {self.course_name}")
     
     def set_professor(self, prof: Professor) -> None:
         if prof != self.professor:
