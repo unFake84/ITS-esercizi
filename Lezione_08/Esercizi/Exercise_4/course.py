@@ -16,6 +16,8 @@
 
 '''
 
+
+from __future__ import annotations
 from student import Student
 from professor import Professor
 
@@ -31,28 +33,31 @@ class Course:
         if student not in self.students:
             self.students.append(student)
             student.enroll(self)
-        
+
         else:
             raise ValueError(f"The student: {student.name} is already enrolled in this course: {self.course_name}")
     
     def set_professor(self, prof: Professor) -> None:
         if prof != self.professor:
+
+            prof.assign_to_course(self)
             self.professor = prof
+            prof.courses.append(self)
 
         else:
             raise ValueError(f"The professor: {prof} is already assigned to this course")
 
     def __str__(self) -> str:
-        prof_str: str = str(self.professor.name) if self.professor else 'Not yet assigned'
-        student_str: str = '\nSTUDENTS OVERVIEW:\n' + "\n" + \
-                            "\n".join([f'[{i}]\n' + str(s) for i, s in enumerate(self.students, 1)]) + \
-                            "\nEND STUDENTS OVERVIEW\n" if self.students else ''
+        prof_str: str = str(self.professor.name) if self.professor else f'{"Not yet assigned":<10}'
+        student_str: str = f'\nSTUDENTS {self.course_name.upper()} OVERVIEW:\n' + "\n" + \
+                            "\n".join([f'{"Student " + "-" * 4} [{i}]\n' + str(s) for i, s in enumerate(self.students, 1)]) + \
+                            f"\nEND STUDENTS {self.course_name.upper()} OVERVIEW\n" if self.students else ''
         student_len: int = len(self.students) if self.students else 0
 
-        return f"Course name: {self.course_name}\n"\
-                f"Course code: {self.course_code}\n"\
-                f"Professor: {prof_str}\n"\
-                f"Students: {student_len}\n{student_str}"
+        return f"{'Course name:':<12} {self.course_name:<10}\n"\
+                f"{'Course code:':<12} {self.course_code:<10}\n"\
+                f"{'Professor:':<12} {prof_str:<10}\n"\
+                f"{'Students:':<12} {student_len:<10}\n{student_str:<10}"
     
 if __name__ == "__main__":
 

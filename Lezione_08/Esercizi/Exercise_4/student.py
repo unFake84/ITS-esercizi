@@ -36,5 +36,5 @@ class Student(Person):
             raise ValueError(f"Student is already enrolled in this course: {n_course}")
     
     def __str__(self):
-        course_str: str = ', '.join([c.course_name for c in self.courses]) if self.courses else "No courses yet"
-        return super().__str__() + f"ID: {self.student_id}\nCourses: {course_str}\n"
+        course_str: str = ', '.join([c.course_name for c in self.courses]) if self.courses else f"{'No courses yet':<10}"
+        return super().__str__() + f"{'ID: ':<12} {self.student_id:<10}\n{'Courses:':<12} {course_str:<10}\n"

@@ -15,6 +15,8 @@
         __str__, method to return a string representation of the university.
 
 '''
+
+from __future__ import annotations
 from person import Person
 from student import Student
 from professor import Professor
@@ -43,24 +45,17 @@ class University:
             raise ValueError(f"Student {student.name} already enrolled at this university")
     
     def __str__(self) -> str:
-        # dep_str: str = '\n'.join([str(d.department_name) for d in self.departments]) if self.departments else f"No departments in this university"
-        # std_str: str = '\n'.join([str(s.name) for s in self.students]) if self.students else f"No students registered"
-
-        #return f"University: {self.name}\n\n\nDepartments:\n{dep_str}\n\nStudents:\n{std_str}"
-
         final_string: str = f"\t\t\tUniversity: {self.name}\n\n"
         if not self.departments:
             final_string += "No departments in this university"
         
         else:
-            final_string += f"\nDepartments: {len(self.departments)}\n\n"
+            final_string += f"\n{'Departments:':<8} {len(self.departments):<10}\n\n"
 
             for i, dptm in enumerate(self.departments, 1):
 
                 final_string += f"[{i}]\n" + str(dptm) + "\n\n"
-                if dptm.courses:
-                    final_string += "\n\nAGGIUNGERE PRIMA DI [] IL TIPO DI OGGETTO CHE SI STA GUARDANDO. ES STUDENT [2] COURSE [3] ETC\n\n"
-        
+
         if not self.students:
             final_string += "\n\nNo students registered"
         
@@ -97,6 +92,13 @@ if __name__ == "__main__":
     course1.add_student(student1)
     course1.add_student(student2)
     course1.add_student(student3)
+    course1.set_professor(professor1)
+
+    # try:
+    #     professor1.assign_to_course(course1)
+
+    # except ValueError as err:
+    #     print(err)
 
     print(university1)
     print("-"*100)

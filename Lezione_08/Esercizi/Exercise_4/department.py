@@ -16,6 +16,7 @@
 
 '''
 
+from __future__ import annotations
 from course import Course
 from professor import Professor
 from student import Student
@@ -42,20 +43,20 @@ class Department:
             raise ValueError(f"Professor {prof} is already present in this department")
 
     def __str__(self) -> str:
-        courses_str: str = '\nCOURSES OVERVIEW:\n' + "\n" + \
-            "\n\n".join([f'[{i}]\n' + str(c) for i, c in enumerate(self.courses, 1)]) + \
-                "\nEND COURSES OVERVIEW\n" if self.courses else 'No courses yet'
+        courses_str: str = f'\nCOURSES {self.department_name.upper()} OVERVIEW:\n' + "\n" + \
+            "\n\n".join([f'{"Course " + "*" * 5} [{i}]\n' + str(c) for i, c in enumerate(self.courses, 1)]) + \
+                f"\nEND COURSES {self.department_name.upper()} OVERVIEW\n" if self.courses else f'{"No courses yet":<10}'
 
-        profs_str: str = 'PROFESSORS OVERVIEW:\n' + "\n" + \
-            "\n\n".join([f'[{i}]\n' + str(p) for i, p in enumerate(self.professors, 1)]) + \
-                 "\nEND PROFESSORS OVERVIEW\n" if self.professors else 'No associate professors'
+        profs_str: str = f'PROFESSORS {self.department_name.upper()} OVERVIEW:\n' + "\n" + \
+            "\n\n".join([f'{"Professor " + "+" * 2} [{i}]\n' + str(p) for i, p in enumerate(self.professors, 1)]) + \
+                 f"\n\nEND PROFESSORS {self.department_name.upper()} OVERVIEW\n" if self.professors else f'{"No associate professors":<10}'
 
         qnti_cors: int = len(self.courses) if self.courses else 0
         qnti_prof: int = len(self.professors) if self.professors else 0
 
-        return f"Department name: {self.department_name}\n"\
-                f"Courses: {qnti_cors}\n"\
-                f"Professors: {qnti_prof}\n{courses_str}\n{profs_str}"
+        return f"{'Department name:':<12} {self.department_name:<10}\n"\
+                f"{'Courses:':<12} {qnti_cors:<10}\n"\
+                f"{'Professors:':<12} {qnti_prof:<10}\n{courses_str:<10}\n{profs_str:<10}"
 
 if __name__ == "__main__":
 

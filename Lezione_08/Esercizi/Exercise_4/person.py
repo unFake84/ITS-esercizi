@@ -26,4 +26,4 @@ class Person(ABC):
         pass
 
     def __str__(self) -> str:
-        return f"Name: {self.name}\nAge: {self.age}\n"
+        return f"{'Name:':<12} {self.name:<10}\n{'Age:':<12} {self.age:<10}\n"

@@ -18,7 +18,6 @@
 from __future__ import annotations
 from person import Person
 
-#from course import Course
 
 class Professor(Person):
 
@@ -37,10 +36,9 @@ class Professor(Person):
             err_str: str = f"Can not add professor {self.name} to course {course.course_name}.\n"\
                             f"Professor {course.professor.name} already assigned to this course: {course.course_name}"
             raise ValueError(err_str)
-            
 
         else:
-            self.courses.append(course)
+            # self.courses.append(course) # per responsabilità doppia
             course.professor = self
 
     def set_department(self, depart: Department) -> None:
@@ -51,7 +49,7 @@ class Professor(Person):
             raise ValueError(f"Professor is already assigned to this department")
 
     def __str__(self):
-        depart_str: str = self.department.department_name if self.department else "Not assigned"
-        courses_str: str = '\n '.join([c.course_name for c in self.courses]) if self.courses else "No courses assigned"
+        depart_str: str = self.department.department_name if self.department else f"{'Not assigned':<10}"
+        courses_str: str = '\n '.join([c.course_name for c in self.courses]) if self.courses else f"{'No courses assigned':<10}"
 
-        return super().__str__() + f"ID: {self.professor_id}\nDepartment: {depart_str}\nCourses: {courses_str}"
+        return super().__str__() + f"{'ID:':<12} {self.professor_id:<10}\n{'Department:':<12} {depart_str:<10}\n{'Courses:':<12} {courses_str:<10}"
