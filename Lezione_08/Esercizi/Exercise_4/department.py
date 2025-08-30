@@ -42,13 +42,20 @@ class Department:
             raise ValueError(f"Professor {prof} is already present in this department")
 
     def __str__(self) -> str:
-        courses_str: str = '\n '.join([c.course_name for c in self.courses]) if self.courses else 'No courses yet'
-        profs_str: str = '\n' + f"\n{'-'*28}\n".join([str(p) for p in self.professors]) if self.professors else 'No associate professors'
+        courses_str: str = '\nCOURSES OVERVIEW:\n' + "\n" + \
+            "\n\n".join([f'[{i}]\n' + str(c) for i, c in enumerate(self.courses, 1)]) + \
+                "\nEND COURSES OVERVIEW\n" if self.courses else 'No courses yet'
+
+        profs_str: str = 'PROFESSORS OVERVIEW:\n' + "\n" + \
+            "\n\n".join([f'[{i}]\n' + str(p) for i, p in enumerate(self.professors, 1)]) + \
+                 "\nEND PROFESSORS OVERVIEW\n" if self.professors else 'No associate professors'
+
+        qnti_cors: int = len(self.courses) if self.courses else 0
         qnti_prof: int = len(self.professors) if self.professors else 0
 
         return f"Department name: {self.department_name}\n"\
-                f"Courses: {courses_str}\n"\
-                f"Professors: {qnti_prof}\n{profs_str}"
+                f"Courses: {qnti_cors}\n"\
+                f"Professors: {qnti_prof}\n{courses_str}\n{profs_str}"
 
 if __name__ == "__main__":
 
@@ -75,10 +82,10 @@ if __name__ == "__main__":
 
     print("DEPARTMENT OVERVIEW\n")
     print(department1)
-    print("-"*30)
+    print("-"*100)
     print("COURSE_1 OVERVIEW\n")
     print(course_1)
-    print("-"*30)
+    print("-"*100)
     print("PROFESSOR_1 OVERVIEW\n")
     print(professor1)
 
@@ -118,9 +125,12 @@ if __name__ == "__main__":
     student2: Student = Student("Pluto", 40, "AH14A")
     student3: Student = Student("Clarabella", 39, "AM02D")
 
-    print("STUDENTS OVERVIEW\n")
+    print("STUDENTS OVERVIEW:\n")
+    print("[1]")
     print(student1)
+    print("[2]")
     print(student2)
+    print("[3]")
     print(student3)
 
     print("-"*100 + "\n""Added: student 1/2/3 to course1", "\n" + "-"*100)
@@ -129,8 +139,11 @@ if __name__ == "__main__":
     course_1.add_student(student3)
 
     print("STUDENTS OVERVIEW\n")
+    print("[1]")
     print(student1)
+    print("[2]")
     print(student2)
+    print("[3]")
     print(student3)
 
     print("-"*100)

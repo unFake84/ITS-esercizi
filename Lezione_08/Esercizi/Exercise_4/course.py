@@ -44,7 +44,9 @@ class Course:
 
     def __str__(self) -> str:
         prof_str: str = str(self.professor.name) if self.professor else 'Not yet assigned'
-        student_str: str = '\n' + '\n'.join([str(s) for s in self.students]) if self.students else 'No students enrolled'
+        student_str: str = '\nSTUDENTS OVERVIEW:\n' + "\n" + \
+                            "\n".join([f'[{i}]\n' + str(s) for i, s in enumerate(self.students, 1)]) + \
+                            "\nEND STUDENTS OVERVIEW\n" if self.students else ''
         student_len: int = len(self.students) if self.students else 0
 
         return f"Course name: {self.course_name}\n"\

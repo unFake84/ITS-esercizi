@@ -47,16 +47,19 @@ class University:
         # std_str: str = '\n'.join([str(s.name) for s in self.students]) if self.students else f"No students registered"
 
         #return f"University: {self.name}\n\n\nDepartments:\n{dep_str}\n\nStudents:\n{std_str}"
+
         final_string: str = f"\t\t\tUniversity: {self.name}\n\n"
         if not self.departments:
             final_string += "No departments in this university"
         
         else:
-            final_string += "\nDepartments:\n\n"
-            for dptm in self.departments:
-                final_string += str(dptm) + "\n\n"
-                if not dptm.courses:
-                    final_string += "\n\nCONTINUARE CODICE\n\n" #AGGIUNGERE UN CORSO A DIPARTIMENTO1 PER VEDERE SE ENTRA NEL CICLO
+            final_string += f"\nDepartments: {len(self.departments)}\n\n"
+
+            for i, dptm in enumerate(self.departments, 1):
+
+                final_string += f"[{i}]\n" + str(dptm) + "\n\n"
+                if dptm.courses:
+                    final_string += "\n\nAGGIUNGERE PRIMA DI [] IL TIPO DI OGGETTO CHE SI STA GUARDANDO. ES STUDENT [2] COURSE [3] ETC\n\n"
         
         if not self.students:
             final_string += "\n\nNo students registered"
@@ -69,7 +72,7 @@ if __name__ == "__main__":
     university1: University = University("Uni1")
 
     print(university1)
-    print("-"*150)
+    print("-"*100)
 
     department1: Department = Department("Dipartimento1")
     department2: Department = Department("Dipartimento2")
@@ -78,8 +81,25 @@ if __name__ == "__main__":
     university1.add_department(department2)
     university1.add_department(department3)
 
+    course1: Course = Course("Corso1", "0001")
+    course2: Course = Course("Corso2", "0002")
+    department1.add_course(course1)
+    department1.add_course(course2)
+
+    professor1: Professor = Professor("Baudo", 60, "ZZ001AA", department1)
+    professor2: Professor = Professor("Paperino", 30, "MN889XZ", department1)
+    department1.add_professor(professor1)
+    department1.add_professor(professor2)
+
+    student1: Student = Student("Pippo", 49, "AH10B") # AGGIUNGERE GLI STUDENTI ALL'UNIVERSITA DOPO __STR__
+    student2: Student = Student("Pluto", 40, "AH14A")
+    student3: Student = Student("Clarabella", 39, "AM02D")
+    course1.add_student(student1)
+    course1.add_student(student2)
+    course1.add_student(student3)
+
     print(university1)
-    print("-"*150)
+    print("-"*100)
 
     # try:
     #     university1.add_department(department1)
