@@ -31,6 +31,7 @@ class Course:
 
     def add_student(self, student: Student) -> None:
         if student not in self.students:
+
             self.students.append(student)
             student.enroll(self)
 
@@ -49,9 +50,11 @@ class Course:
 
     def __str__(self) -> str:
         prof_str: str = str(self.professor.name) if self.professor else f'{"Not yet assigned":<10}'
+
         student_str: str = f'\nSTUDENTS {self.course_name.upper()} OVERVIEW:\n' + "\n" + \
                             "\n".join([f'{"Student " + "-" * 4} [{i}]\n' + str(s) for i, s in enumerate(self.students, 1)]) + \
                             f"\nEND STUDENTS {self.course_name.upper()} OVERVIEW\n" if self.students else ''
+
         student_len: int = len(self.students) if self.students else 0
 
         return f"{'Course name:':<12} {self.course_name:<10}\n"\

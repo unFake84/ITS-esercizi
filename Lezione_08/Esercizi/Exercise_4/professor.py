@@ -33,6 +33,7 @@ class Professor(Person):
 
     def assign_to_course(self, course: Course) -> None:
         if course.professor is not None:
+
             err_str: str = f"Can not add professor {self.name} to course {course.course_name}.\n"\
                             f"Professor {course.professor.name} already assigned to this course: {course.course_name}"
             raise ValueError(err_str)
@@ -44,6 +45,7 @@ class Professor(Person):
 
     def set_department(self, depart: Department) -> None:
             if depart != self.department:
+
                 self.department = depart
                 depart.add_professor(self)
 

@@ -108,10 +108,11 @@ list_of_students: list[Student] = [
 #     except ValueError as err:
 #         print(f"{err} <- No course assigned")
 
-# PRENDE TUTTI GLI STUDENDI ED OGNUNO HA 3 POSSIBILITÀ (corso1, corso2, nessun corso)
+# PRENDE TUTTI GLI STUDENTI ED OGNUNO HA 3 POSSIBILITÀ (corso1, corso2, nessun corso)
 for student in list_of_students:
 
     scelta: int = random.randint(1, 3)
+
     if scelta == 1:
         course1.add_student(student)
 

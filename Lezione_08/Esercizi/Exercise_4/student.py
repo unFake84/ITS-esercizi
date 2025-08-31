@@ -30,6 +30,7 @@ class Student(Person):
 
     def enroll(self, n_course: Course) -> None:
         if n_course not in self.courses:
+
             self.courses.append(n_course)
 
         else:
@@ -37,4 +38,5 @@ class Student(Person):
 
     def __str__(self):
         course_str: str = ', '.join([c.course_name for c in self.courses]) if self.courses else f"{'No courses yet':<10}"
+
         return super().__str__() + f"{'ID: ':<12} {self.student_id:<10}\n{'Courses:':<12} {course_str:<10}\n"

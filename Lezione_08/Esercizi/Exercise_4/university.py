@@ -32,6 +32,7 @@ class University:
 
     def add_department(self, n_depart: Department) -> None:
         if n_depart not in self.departments:
+
             self.departments.append(n_depart)
 
         else:
@@ -39,6 +40,7 @@ class University:
 
     def add_student(self, student: Student) -> None:
         if student not in self.students:
+
             self.students.append(student)
 
         else:
@@ -46,6 +48,7 @@ class University:
 
     def __str__(self) -> str:
         final_string: str = f"\t\t\tUniversity: {self.name}\n\n"
+
         if not self.departments:
             final_string += "No departments in this university"
 
