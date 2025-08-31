@@ -33,22 +33,22 @@ class University:
     def add_department(self, n_depart: Department) -> None:
         if n_depart not in self.departments:
             self.departments.append(n_depart)
-        
+
         else:
             raise ValueError(f"Department {n_depart.department_name} allready exist")
-    
+
     def add_student(self, student: Student) -> None:
         if student not in self.students:
             self.students.append(student)
-        
+
         else:
             raise ValueError(f"Student {student.name} already enrolled at this university")
-    
+
     def __str__(self) -> str:
         final_string: str = f"\t\t\tUniversity: {self.name}\n\n"
         if not self.departments:
             final_string += "No departments in this university"
-        
+
         else:
             final_string += f"\n{'Departments:':<8} {len(self.departments):<10}\n\n"
 
@@ -58,7 +58,14 @@ class University:
 
         if not self.students:
             final_string += "\n\nNo students registered"
-        
+
+        else:
+            final_string += f"\n\n{'Students:':<13} {len(self.students):<10}\n\n"
+
+            for i, stds in enumerate(self.students, 1):
+
+                final_string += f"Student {'-' * 4} [{i}]\n" + str(stds) + "\n"
+
         return final_string
 
 
@@ -82,13 +89,24 @@ if __name__ == "__main__":
     department1.add_course(course2)
 
     professor1: Professor = Professor("Baudo", 60, "ZZ001AA", department1)
-    professor2: Professor = Professor("Paperino", 30, "MN889XZ", department1)
+    professor2: Professor = Professor("Corrado", 63, "ZZ057DB", department1)
     department1.add_professor(professor1)
     department1.add_professor(professor2)
 
-    student1: Student = Student("Pippo", 49, "AH10B") # AGGIUNGERE GLI STUDENTI ALL'UNIVERSITA DOPO __STR__
+    student1: Student = Student("Pippo", 49, "AH10B")
     student2: Student = Student("Pluto", 40, "AH14A")
     student3: Student = Student("Clarabella", 39, "AM02D")
+    student4: Student = Student("Paperoga", 31, "AI01F")
+    student5: Student = Student("Topolina", 28, "AF08A")
+    student6: Student = Student("Paperino", 30, "MN89Z")
+    student7: Student = Student("Gastone", 29, "AA000A")
+    university1.add_student(student1)
+    university1.add_student(student2)
+    university1.add_student(student3)
+    university1.add_student(student4)
+    university1.add_student(student5)
+    university1.add_student(student6)
+    university1.add_student(student7)
     course1.add_student(student1)
     course1.add_student(student2)
     course1.add_student(student3)
@@ -102,33 +120,3 @@ if __name__ == "__main__":
 
     print(university1)
     print("-"*100)
-
-    # try:
-    #     university1.add_department(department1)
-
-    # except ValueError as err:
-    #     print(err)
-
-    # print(university1)
-
-    # student1: Student = Student("Pippo", 49, "AH10B")
-    # student2: Student = Student("Pluto", 40, "AH14A")
-    # student3: Student = Student("Clarabella", 39, "AM02D")
-
-    # print("-"*150)
-    # print(university1)
-
-    # university1.add_student(student1)
-    # university1.add_student(student2)
-    # university1.add_student(student3)
-
-    # print(university1)
-
-    # try:
-    #     university1.add_student(student1)
-
-    # except ValueError as err:
-
-    #     print(err)
-    
-    # print(university1)

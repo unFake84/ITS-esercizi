@@ -40,7 +40,7 @@ class Course:
     def set_professor(self, prof: Professor) -> None:
         if prof != self.professor:
 
-            prof.assign_to_course(self)
+            # prof.assign_to_course(self) per doppia responsabilità
             self.professor = prof
             prof.courses.append(self)
 
@@ -58,7 +58,7 @@ class Course:
                 f"{'Course code:':<12} {self.course_code:<10}\n"\
                 f"{'Professor:':<12} {prof_str:<10}\n"\
                 f"{'Students:':<12} {student_len:<10}\n{student_str:<10}"
-    
+
 if __name__ == "__main__":
 
     print("-"*50)
@@ -78,7 +78,7 @@ if __name__ == "__main__":
 
     try:
         mathcourse.add_student(student3)
-    
+
     except ValueError as err:
         print(f"{err}\n{'-'*50}")
 

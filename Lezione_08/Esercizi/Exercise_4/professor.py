@@ -15,13 +15,13 @@
 
 '''
 
+
 from __future__ import annotations
 from person import Person
 
-
 class Professor(Person):
 
-    def __init__(self, name, age, professor_id: str, department: Department) -> None:
+    def __init__(self, name, age, professor_id: str, department: Department|None = None) -> None:
         super().__init__(name, age)
 
         self.professor_id = professor_id
@@ -38,15 +38,17 @@ class Professor(Person):
             raise ValueError(err_str)
 
         else:
-            # self.courses.append(course) # per responsabilità doppia
-            course.professor = self
+            # self.courses.append(course)   # per responsabilità doppia
+            # course.professor = self       # vedi sopra
+            course.set_professor(self)
 
     def set_department(self, depart: Department) -> None:
-        if depart != self.department:
-            self.department = depart
+            if depart != self.department:
+                self.department = depart
+                depart.add_professor(self)
 
-        else:
-            raise ValueError(f"Professor is already assigned to this department")
+            else:
+                raise ValueError("Professor is already assigned to a department")
 
     def __str__(self):
         depart_str: str = self.department.department_name if self.department else f"{'Not assigned':<10}"

@@ -28,17 +28,20 @@ class Department:
         self.courses = []
         self.professors = []
 
-    def add_course(self, n_nourse: Course) -> None:
-        if n_nourse not in self.courses:
-            self.courses.append(n_nourse)
-        
+    def add_course(self, n_course: Course) -> None:
+        if n_course not in self.courses:
+
+            self.courses.append(n_course)
+
         else:
-            raise ValueError(f"Course {n_nourse.course_name} not added, already in the system")
-    
+            raise ValueError(f"Course {n_course.course_name} not added, already in the system")
+
     def add_professor(self, prof: Professor) -> None:
         if prof not in self.professors:
+
             self.professors.append(prof)
-        
+            prof.department = self
+
         else:
             raise ValueError(f"Professor {prof} is already present in this department")
 
@@ -96,7 +99,7 @@ if __name__ == "__main__":
 
     try:
         professor2.assign_to_course(course_1)
-    
+
     except ValueError as err:
         print("FAILURE:\n")
         print(f"{err}")
@@ -113,10 +116,10 @@ if __name__ == "__main__":
 
     print("-"*100)
     print("Added: course_1 to department1 <- Failure expeted", "\n" + "-"*100)
-    
+
     try:
         department1.add_course(course_1)
-    
+
     except ValueError as err:
         print("FAILURE:\n")
         print(err)

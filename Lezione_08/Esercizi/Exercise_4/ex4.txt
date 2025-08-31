@@ -119,38 +119,66 @@ Once these instances are created, follow these steps:
         A breakdown of departments and the courses they offer.
 
 UML:
-                ┌───────────────────┐
-                │     Person (ABC)  │
-                │-------------------│
-                │ - name: str       │
-                │ - age: int        │
-                │-------------------│
-                │ + get_role(): str │ (abstract)
-                │ + __str__(): str  │
-                └─────────▲─────────┘
-                          │
-          ┌───────────────┴───────────────┐
-          │                               │
-┌───────────────────┐           ┌───────────────────┐
-│     Student       │           │    Professor      │
-│-------------------│           │-------------------│
-│ - student_id: str │           │ - professor_id: s │
-│ - courses: list   │           │ - courses: list   │
-│-------------------│           │-------------------│
-│ + get_role(): str │           │ + get_role(): str │
-│ + enroll(c:Course)│           │ + assign(c:Course)│
-└─────────┬─────────┘           └───────────────────┘
-          │
-          │   (many-to-many)
-          ▼
-┌───────────────────┐
-│      Course       │
-│-------------------│
-│ - course_id: str  │
-│ - name: str       │
-│ - students: list  │
-│ - professor: Prof │
-│-------------------│
-│ + add_student(s)  │
-│ + set_professor(p)│
-└───────────────────┘
+                ┌───────────────────────┐
+                │     Person (ABC)      │
+                │-----------------------│
+                │ - name: str           │
+                │ - age: int            │
+                │-----------------------│
+                │ + get_role(): str (*) │
+                │ + __str__(): str      │
+                └───────────▲───────────┘
+                            │
+            ┌───────────────┴───────────────┐
+            │                               │
+┌───────────────────────┐         ┌───────────────────────┐
+│        Student        │         │       Professor       │
+│-----------------------│         │-----------------------│
+│ - student_id: str     │         │ - professor_id: str   │
+│ - courses: list       │         │ - courses: list       │
+│-----------------------│         │ - department: Dept    │
+│ + get_role(): str     │         │-----------------------│
+│ + enroll(c: Course)   │         │ + get_role(): str     │
+└───────────▲───────────┘         │ + assign_to_course(c) │
+            │ (0..*)              │ + set_department(d)   │
+            │                     └────────────▲──────────┘
+            │                                  │ (0..*)
+            ▼                                  ▼ (1)
+┌───────────────────────┐         ┌───────────────────────┐
+│        Course         │         │      Department       │
+│-----------------------│         │-----------------------│
+│ - course_id: str      │         │ - name: str           │
+│ - name: str           │         │ - professors: list    │
+│ - students: list      │         │ - courses: list       │
+│ - professor: Prof     │         │-----------------------│
+│-----------------------│         │ + add_professor(p)    │
+│ + add_student(s)      │         │ + add_course(c)       │
+│ + set_professor(p)    │         └────────────▲──────────┘
+└─────────▲─────────────┘                      │ (0..*)
+          │                                    │
+          │ (1 ↔ 0..*)  (assegnabile sia da Course sia da Professor)
+          ▼                                    │
+┌───────────────────────┐                      │
+│      University       │                      │
+│-----------------------│                      │
+│ - name: str           │ (1..*)               │
+│ - departments: list   │──────────────────────┘
+│ - students: list      │
+│-----------------------│
+│ + add_department(d)   │
+│ + add_student(s)      │
+└───────────────────────┘
+
+Corelazioni:
+
+Student ↔ Course:           0..*    ↔   0..*        (molti studenti seguono molti corsi)
+
+Professor ↔ Course:         1       ↔   0..*        (ogni corso ha 1 professore, un professore può insegnare più corsi, assegnabile da entrambi)
+
+Professor ↔ Department:     0..*    ↔   1           (più professori in un dipartimento, ogni professore ha al massimo un dipartimento)
+
+Department ↔ Course:        1       ↔   0..*        (ogni corso appartiene a un dipartimento, un dipartimento può avere più corsi)
+
+University ↔ Department:    1..*    ↔   0..*        (l’università ha più dipartimenti)
+
+University ↔ Student:       0..*    ↔   0..*        (l’università registra molti studenti)
