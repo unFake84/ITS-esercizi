@@ -83,6 +83,7 @@ class Biblioteca:
     - Gestice tutte le operazioni legate alla gestione di una biblioteca.
 
         Metodi della classe:
+
         - aggiungi_libro(libro): Aggiunge un nuovo libro al catalogo della biblioteca.
           Restituisce un messaggio di conferma.
 
@@ -126,7 +127,7 @@ class Biblioteca:
 
         else:
             raise ValueError("Libro già presente nel catalogo.")
-        
+
     def presta_libro(self, titolo: str) -> str:
         '''
         - Cerca un libro per titolo e, se disponibile e non già prestato,
@@ -136,9 +137,9 @@ class Biblioteca:
         nome_libro: str = None
         stato_libro: bool = None
 
-        for stato, libro in self._catalogo.items():
+        for stato, libri in self._catalogo.items():
 
-            for libro in libro.values():
+            for libro in libri.values():
 
                 if libro.titolo == titolo:
                     nome_libro = libro.titolo
@@ -150,34 +151,87 @@ class Biblioteca:
                 break
 
         if stato_libro is not None:
-            if not stato_libro:
-                self._catalogo[stato_libro].pop(nome_libro)
-                self._catalogo[not stato_libro][nome_libro] = oggetto
-                oggetto.stato = not stato_libro
+            if stato_libro == False:
+                self._catalogo[False].pop(nome_libro)
+                self._catalogo[True][nome_libro] = oggetto
+                oggetto.stato = True
 
-                # INSERIRE RETURN PER CONFERMA
+                return f"Il libro {titolo} è stato prestato con successo."
 
             else:
-                pass # INSERIRE NON DISPONIBILE PER PRESTITO
+                return f"Non è stato possibile, {titolo} non disponibile."
 
         else:
-            pass # INSERIRE NON TROVATO
+            return f"{titolo} non è ancora presente nel catalogo."
+
+    def restituisci_libro(self, titolo: str) -> str:
+        '''
+        - Cerca un libro per titolo e, se trovato e prestato, lo segna come disponibile.
+          Restituisce un messaggio di stato.
+        '''
+
+        nome_libro: bool = None
+        stato_libro: bool = None
+
+        for stato, libri in self._catalogo.items():
+
+            for libro in libri.values():
+
+                if libro.titolo == titolo:
+                    nome_libro = libro.titolo
+                    stato_libro = libro.stato
+                    oggetto: Libro = libro
+                    break
+
+            if stato_libro is not None:
+                break
+
+        if stato_libro is not None:
+            if stato_libro:
+                self._catalogo[True].pop(nome_libro)
+                self._catalogo[False][nome_libro] = oggetto
+                oggetto.stato = False
+
+                return f"Il libro {titolo} è stato restituito con successo."
+
+            else:
+                return f"Il libro {titolo} risulta già in giacenza, impossibile consegnare."
+
+        else:
+            return f"Il libro {titolo} non è della libreria {self.nome}."
+
+    def mostra_libri_disponibili(self) -> str:
+        '''
+        - Restituisce una lista dei titoli dei libri attualmente disponibili.
+          Se non ci sono libri disponibili, restituisce un messaggio di errore.
+        '''
+
+        if not self._catalogo[False]:
+            return f"Non ci sono libri disponibili al momento."
+        
+        stringa_finale: str = f"\nDISPONIBILI AL MOMENTO\n{'-' * 50}\n"
+
+        for libro in self._catalogo[False].values():
+
+            stringa_finale += str(libro) + f"\n" + '-' * 50 + '\n'
+
+        return stringa_finale
 
     def __str__(self) -> str:
-        disponibili_str: str = f"DISPONIBILI:\n{'-' * 30}\n"
-        prestati_str: str = f"PRESTATI:\n{'-' * 30}\n"
+        disponibili_str: str = f"DISPONIBILI:\n{'-' * 50}\n" if self._catalogo[False] else "NESSUN LIBRO DISPONIBILE\n"
+        prestati_str: str = f"PRESTATI:\n{'-' * 50}\n" if self._catalogo[True] else "NESSUN LIBRO PRESTATO\n"
 
         for stato, libri in self._catalogo.items():
 
             if stato == False:
                 for l in libri.values():
 
-                    disponibili_str += str(l) + f"\n" + '-' * 30 + "\n"
+                    disponibili_str += str(l) + f"\n" + '-' * 50 + "\n"
 
             if stato == True:
                 for l in libri.values():
 
-                    prestati_str += str(l) + f"\n" + '-' * 30 + "\n"
+                    prestati_str += str(l) + f"\n" + '-' * 50 + "\n"
 
         return f"\nBiblioteca: {self.nome}\n\n{disponibili_str}\n{prestati_str}"
 
@@ -195,7 +249,9 @@ if __name__ == "__main__":
 
         # TEST BIBLIOTECA
         libro2: Libro = Libro("Notte sull'acqua", "Ken Follet")
+
         biblio1: Biblioteca = Biblioteca("Biblio")
+
         print(biblio1.aggiungi_libro(libro1))
         print(biblio1.aggiungi_libro(libro2))
 
@@ -206,8 +262,35 @@ if __name__ == "__main__":
         print(f"\nEXCEPTION\nImpossibile aggiungere '{libro2.titolo}'.")
         print(err, "\n")
 
+    print("="*120)
     print(biblio1)
+    print("="*120)
 
-    biblio1.presta_libro("Notte sull'acqua")
+    print(biblio1.presta_libro("Notte sull'acqua"))
+    print(biblio1.presta_libro("Notte sull'acqua"))
+    print(biblio1.presta_libro("Il ritratto di Dorian Gray"))
 
+    print("="*120)
     print(biblio1)
+    print("="*120)
+
+    print(biblio1.restituisci_libro("Notte sull'acqua"))
+    print(biblio1.restituisci_libro("Notte sull'acqua"))
+    print(biblio1.restituisci_libro("Il ritratto di Dorian Gray"))
+
+    print("="*120)
+    print(biblio1)
+    print("="*120)
+
+    print(biblio1.presta_libro("Harry Potter e la pietra filosofale"))
+
+    print(biblio1.presta_libro("Notte sull'acqua"))
+    print("="*120)
+    print(biblio1.mostra_libri_disponibili())
+    print("="*120)
+
+    print(biblio1.presta_libro("Notte sull'acqua"))
+
+    print("="*120)
+    print(biblio1)
+    print("="*120)
