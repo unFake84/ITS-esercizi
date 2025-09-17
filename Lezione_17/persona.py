@@ -43,13 +43,19 @@ class Person:
     __last_name: str
     __age: int
 
-    def __init__(self, first_name: str, last_name) -> None:
+    def __init__(self, first_name: str, last_name: str) -> None:
         self.__first_name = first_name if isinstance(first_name, str) else None
         self.__last_name = last_name if isinstance(last_name, str) else None
         self.__age = 0 if self.__first_name and self.__last_name else None
 
+        if self.__first_name is None:
+            print("Il nome inserito non è una stringa!")
+        
+        if self.__last_name is None:
+            print("Il cognome inserito non è una stringa!")
+
     def __str__(self) -> str:
-        return f"First Name: {self.__first_name}\nLast name: {self.__last_name}\nAge: {self.__age}"
+        return f"Nome: {self.__first_name}\nCognome: {self.__last_name}\nEtà: {self.__age}"
 
     def setName(self, first_name: str) -> None:
         if isinstance(first_name, str):
@@ -87,11 +93,7 @@ class Person:
     def getAge(self) -> int|None:
         return self.__age
 
-    def greet(self) -> str:
-        '''
-        greet(): stampa il seguente saluto "Ciao, sono {nome} {cognome}! Ho {età} anni!"
-        '''
-
+    def greet(self) -> None:
         if isinstance(self.__age, int):
 
             print(f"Ciao, sono {self.__first_name} {self.__last_name}! Ho {self.__age} anni!")
@@ -99,9 +101,9 @@ class Person:
 if __name__ == "__main__":
 
     p1: Person = Person(4, 2)
-    p1.setName("Dioni")
-    p1.setLastName("Manon")
-    p1.setAge(40)
+    p1.setName("Agamennone")
+    p1.setLastName("Sbadalacci")
+    p1.setAge(57)
     # print(p1)
     # # print(p1.getName())
     p1.greet()

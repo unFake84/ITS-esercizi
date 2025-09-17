@@ -52,11 +52,62 @@ class Doctor(Person):
 
     def __init__(self, first_name: str, last_name: str, specialization: str, parcel: float) -> None:
         super().__init__(first_name, last_name)
-        '''
-        costruttore della classe Dottore,
-        il quale richiede in input la specializzazione (specialization) di un dottore e la sua parcella (parcel).
-        Tale metodo deve controllare che specialization sia una stringa e che parcel sia un float,
-        altrimenti assegna None all'attributo che non verifica la condizione richiesta,
-        mostrando un messaggio di errore, ad esempio, "La parcella inserita non è un float!".
-        '''
-        pass
+
+        self.__specialization = specialization if isinstance(specialization, str) else None
+        self.__parcel = parcel if isinstance(parcel, float) else None
+
+        if self.__specialization is None:
+            print("La specializzazione inserita non è una stringa!")
+
+        if self.__parcel is None:
+            print("La parcella inserita non è un float!")
+
+    def __str__(self):
+        parcel_filter: str = f"{self.__parcel:.2f}" if self.__parcel is not None else "Non definita"
+        return super().__str__() + f"\nSpecializzazione: {self.__specialization}\nParcella: {parcel_filter}"
+
+    def setSpecialization(self, specialization: str) -> None:
+        if isinstance(specialization, str):
+
+            self.__specialization = specialization
+
+        else:
+            print("La specializzazione inserita non è una stringa!")
+
+    def setParcel(self, parcel: float) -> None:
+        if isinstance(parcel, float) and parcel >= 0:
+
+            self.__parcel = parcel
+
+        else:
+            print("La parcella inserita non è un float!")
+
+    def getSpecialization(self) -> str:
+        return self.__specialization
+
+    def getParcel(self) -> float:
+        return self.__parcel
+
+    def isAValidDoctor(self) -> None:
+        if self.getAge() > 30:
+
+            print(f"Il dottore {self.getName()} {self.getLastName()} è un dottore valido!")
+
+        else:
+            print(f"Il dottore {self.getName()} {self.getLastName()} non è un dottore valido!")
+
+    def doctorGreet(self) -> None:
+        self.greet()
+        print(f"Sono un medico {self.getSpecialization()}")
+
+if __name__ == "__main__":
+
+    d1: Doctor = Doctor("Pino", "Micio", "Piediatra", 97.5)
+    d1.setAge(30)
+
+    d1.setSpecialization("Medico base")
+    d1.setParcel(99.5)
+
+    #print(d1)
+    #d1.isAValidDoctor()
+    d1.doctorGreet()
