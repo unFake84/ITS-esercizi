@@ -61,10 +61,10 @@ class Bill:
             self.__invoice = None
             self.__salary = None
             print("Non è possibile creare la classe fattura poichè il dottore non è valido!")
-    
+
     def getSalary(self) -> int:
         return self.__doctor.getParcel() * self.__invoice
-    
+
     def getDoctor(self) -> Doctor:
         return self.__doctor
 
@@ -77,10 +77,10 @@ class Bill:
             self.getSalary()
             doctor: Doctor = self.getDoctor()
             print(f"Alla lista del Dottor {doctor.getLastName()} è stato aggiunto il paziente {newPatient.getIdCode()}")
-    
+
     def removePatient(self, idCode: str) -> None:
         for patient in self.__patient:
-            
+
             if patient.getIdCode() == idCode:
                 self.__patient.remove(patient)
                 self.__invoice -= 1
