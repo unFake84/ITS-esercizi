@@ -45,7 +45,7 @@ class Bill:
     __patient: list[Patient]
     __doctor: Doctor
     __invoice: int
-    __salary: int
+    __salary: int|float
 
     def __init__(self, patient: list[Patient], doctor: Doctor) -> None:
         if doctor.getAge() > 30:
@@ -62,19 +62,26 @@ class Bill:
             self.__salary = None
             print("Non è possibile creare la classe fattura poichè il dottore non è valido!")
 
-    def getSalary(self) -> int:
-        return self.__doctor.getParcel() * self.__invoice
+    def getSalary(self) -> int|float:
+        self.__salary = self.__doctor.getParcel() * self.__invoice if self.__doctor is not None else 0
+
+        return self.__salary
 
     def getDoctor(self) -> Doctor:
         return self.__doctor
+
+    def getInvoice(self):
+        self.__invoice = len(self.__patient) if self.__patient is not None else 0
+
+        return self.__invoice
 
     def addPatient(self, newPatient: Patient) -> None:
         id_list: list[str] = [id_p.getIdCode() for id_p in self.__patient]
 
         if newPatient.getIdCode() not in id_list:
             self.__patient.append(newPatient)
-            self.__invoice += 1
             self.getSalary()
+            self.getInvoice()
             doctor: Doctor = self.getDoctor()
             print(f"Alla lista del Dottor {doctor.getLastName()} è stato aggiunto il paziente {newPatient.getIdCode()}")
 
@@ -83,8 +90,8 @@ class Bill:
 
             if patient.getIdCode() == idCode:
                 self.__patient.remove(patient)
-                self.__invoice -= 1
                 self.getSalary()
+                self.getInvoice()
                 doctor: Doctor = self.getDoctor()
                 print(f"Alla lista del Dottor {doctor.getLastName()} è stato rimosso il paziente {idCode}")
 
