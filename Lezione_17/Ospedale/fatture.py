@@ -48,8 +48,7 @@ class Bill:
     __salary: int|float
 
     def __init__(self, patient: list[Patient], doctor: Doctor) -> None:
-        if doctor.getAge() > 30:
-            doctor.isAValidDoctor()
+        if doctor.isAValidDoctor():
             self.__invoice = len(patient)
             self.__salary = 0
             self.__patient = patient

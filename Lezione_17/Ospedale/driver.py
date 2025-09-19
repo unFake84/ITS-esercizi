@@ -109,7 +109,7 @@ print(f"Salario Dottore2: {fattura2.getSalary():.2f} euro!")
 totale: float = fattura1.getSalary() + fattura2.getSalary()
 
 print("")
-print(f"L'Ospedale ha guadagnato in totale {totale:.2f} euro!")
+print(f"In totale, l'ospedale ha incassato: {totale:.2f} euro!")
 
 
 
