@@ -70,20 +70,42 @@ class Noleggio:
         return False
 
     def rentAMovie(self, film: Film, clientID: int) -> None:
-        '''
-        Tale metodo deve gestire il noleggio di un film ed ha come argomenti il film da noleggiare ed
-        il codice id del cliente che lo noleggia.
-        Affinché sia possibile noleggiare un film, un film deve essere disponibile in negozio.
-        Pertanto, il metodo deve verificare la disponibilità.
-        Nel caso in cui il film richiesto sia disponibile, rimuoverlo dalla lista dei film disponibili in negozio,
-        poi riempire il dizionario rented_film in questo modo:
-            la chiave sarà l'id del cliente che noleggia (id_client)
-            il corrispondente valore sarà una lista contenente i film noleggiati da quel cliente.
-        Pertanto, il film noleggiato, una volta rimosso dalla lista dei film disponibili in negozio deve essere
-        aggiunto alla lista dei film noleggiati dal cliente dato.
-        Se il cliente ha potuto noleggiare il film richiesto, stampare: "Il cliente {clientId} ha noleggiato {titolo_film}!".
-        Se, invece, il film richiesto non è disponibile pe il noleggio, stampare: Non è possibile nolegiare il film {titolo_film}!".
-        '''
-
         if self.isAvailable(film):
-            pass
+            self.film_list.remove(film)
+
+            if clientID not in self.rented_film:
+                self.rented_film[clientID] = [film]
+
+            else:
+                self.rented_film[clientID].append(film)
+
+            print(f"Il cliente {clientID} ha noleggiato {film.getTitle()}!")
+
+        else:
+            print(f"Non è possibile noleggiare il film {film.getTitle()}!")
+
+    def giveBack(self, film: Film, clientID: int, days: int) -> None:
+        if clientID in self.rented_film and film in self.rented_film[clientID]:
+
+            self.rented_film[clientID].remove(film)
+            self.film_list.append(film)
+            totale_penale: float = film.calcolaPenaleRitardo(days)
+            print(f"Cliente: {clientID}! La penale da pagare per il film {film.getTitle()} e' di {totale_penale} euro!")
+
+    def printMovies(self) -> None:
+        if self.film_list:
+            for film in self.film_list:
+
+                print(f"{film.getTitle()} - {film.getGenere()} -")
+
+        else:
+            print("Nessun film disponibile!")
+
+    def printRentMovies(self, clientID) -> None:
+        if clientID in self.rented_film:
+            for film_client in self.rented_film[clientID]:
+
+                print(f"{film_client.getTitle()} - {film_client.getGenere()} -")
+
+        else:
+            print(f"Nessun film noleggiato da questo cliente: {clientID}")

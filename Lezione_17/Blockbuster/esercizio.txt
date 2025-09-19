@@ -80,13 +80,17 @@ e per valore una lista contenente i film affittati dal cliente.
     Questo metodo deve stampare la lista dei film noleggiati dal cliente di cui viene specificato l'id.
 
 ### Test con codice driver
-Scrivere un codice driver in cui si crea una lista di 10 film, di cui 5 sono film d'azione, 4 sono commedie e 1 è un film drammatico. Successivamente:
+Scrivere un codice driver in cui si crea una lista di 10 film,
+di cui 5 sono film d'azione, 4 sono commedie e 1 è un film drammatico.
+Successivamente:
 
     Creare un oggetto Noleggio.
     Stampare: "Quale film vuoi nolleggiare?"
     Simulare il noleggio di un film di un primo cliente.
     Simulare il noleggio di un secondo film sempre da parte del primo cliente.
-    Simulare il noleggio del film precedente da parte di un secondo cliente. (assicurarsi che il codice avvisi il secondo cliente che il film richiesto non è disponibile).
+    Simulare il noleggio del film precedente da parte di un secondo cliente.
+    (assicurarsi che il codice avvisi il secondo cliente che il film richiesto non è disponibile).
+
     Simulare il noleggio di un terzo film da parte del secondo cliente.
     Simulare il reso del secondo film noleggiato dal primo cliente.
     Stampare la lista dei film disponibili in negozio.
