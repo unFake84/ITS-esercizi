@@ -20,7 +20,7 @@ from movie_genre import *
 from noleggio import Noleggio
 
 film1: Film = Azione(100, "True Lies")
-film2: Film = Azione(119, "Terminator 2 - Il giorno del giudizio")
+film2: Film = Azione(119, "Terminator 2 Il giorno del giudizio")
 film3: Film = Azione(189, "Live Action Hero")
 film4: Film = Azione(459, "Predator")
 film5: Film = Azione(756, "Arma Letale 4")
@@ -33,5 +33,30 @@ film10: Film = Drama(248, "Vi presento Joe Black")
 database_di_films: list[Film] = [film1, film2, film3, film4, film5, film6, film7, film8, film9, film10]
 
 noleggio: Noleggio = Noleggio(database_di_films)
+
+print("#"*100)
+print("DAY ONE\nEntra cliente 1 nel blockbuster")
+print(f"- Quale film vuoi noleggiare?\n- E' disponibile {film3.getTitle()}?")
+noleggio.rentAMovie(film3, 1)
+print(f"- E' possibile noleggiare anche {film4.getTitle()}?")
+noleggio.rentAMovie(film4, 1)
+
+
+print("#"*100)
+print("DAY TWO\nEntra cliente 2 nel blockbuster")
 print(f"- Quale film vuoi noleggiare?\n- E'disponibile {film3.getTitle()}?")
-noleggio.rentAMovie(film3, 999)
+noleggio.rentAMovie(film3, 2)
+print(f"- E' disponibile invece {film8.getTitle()}?")
+noleggio.rentAMovie(film8, 2)
+
+
+print("#"*100)
+print("A WEEK LATER\nEntra cliente 1 nel blockbuster")
+print(f"- Ciao devo restituire questo film {film4.getTitle()}, quanto devo pagare?")
+noleggio.giveBack(film4, 1, 7)
+
+
+print("#"*100)
+print("MOVIES IN DATABASE")
+noleggio.printMovies()
+print("#"*100)

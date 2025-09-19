@@ -59,7 +59,7 @@ class Noleggio:
         self.film_list = film_list
         self.rented_film = {}
 
-    def isAvailable(self, film: Film) -> bool:
+    def __isAvailable(self, film: Film) -> bool:
         for films in self.film_list:
 
             if films.isEqual(film):
@@ -70,7 +70,7 @@ class Noleggio:
         return False
 
     def rentAMovie(self, film: Film, clientID: int) -> None:
-        if self.isAvailable(film):
+        if self.__isAvailable(film):
             self.film_list.remove(film)
 
             if clientID not in self.rented_film:
@@ -90,7 +90,7 @@ class Noleggio:
             self.rented_film[clientID].remove(film)
             self.film_list.append(film)
             totale_penale: float = film.calcolaPenaleRitardo(days)
-            print(f"Cliente: {clientID}! La penale da pagare per il film {film.getTitle()} e' di {totale_penale} euro!")
+            print(f"Cliente: {clientID}! La penale da pagare per il film {film.getTitle()} e' di {totale_penale:.2f} euro!")
 
     def printMovies(self) -> None:
         if self.film_list:

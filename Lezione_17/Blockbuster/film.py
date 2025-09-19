@@ -40,7 +40,7 @@ class Film:
             return True
 
         return False
-    
+
 if __name__ == "__main__":
 
     f1: Film = Film(1, "Amadeus")
