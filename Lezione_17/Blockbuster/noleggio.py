@@ -71,6 +71,7 @@ class Noleggio:
 
     def rentAMovie(self, film: Film, clientID: int) -> None:
         if self.__isAvailable(film):
+
             self.film_list.remove(film)
 
             if clientID not in self.rented_film:
