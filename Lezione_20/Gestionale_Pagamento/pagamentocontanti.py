@@ -17,14 +17,13 @@ class PagamentoContanti(Pagamento):
         self.setImporto(importo)
 
     def dettagliPagamento(self) -> str:
-        numero_intero: int|float = int(self.getImporto()) if self.getImporto()%1 == 0 else float(self.getImporto())
-        return f"Pagamento in contanti di: €{numero_intero}"
+        return f"Pagamento in contanti di: €{self.getImporto():.2f}"
 
     def inPezziDa(self) -> None:
         importo: float = self.getImporto()
         banconoteEmonete: list[int] = [500, 200, 100, 50, 20, 10, 5, 2, 1, 0.5, 0.20, 0.10, 0.05, 0.01]
 
-        print(f"{importo} euro da pagare in contanti con:")
+        print(f"{importo:.2f} euro da pagare in contanti con:")
         for taglio in banconoteEmonete:
 
             n: int = int(importo // taglio)

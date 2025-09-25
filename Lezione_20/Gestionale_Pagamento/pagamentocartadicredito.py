@@ -7,19 +7,18 @@ oltre all'importo del pagamento.
 '''
 
 from pagamento import Pagamento
-from datetime import date
 
 class PagamentoCartaDiCredito(Pagamento):
 
     __titolare_carta: str
-    __data_di_scadenza: date
+    __data_di_scadenza: str
     __numero_carta: str
 
     def __init__(
             self,
             importo: int|float,
             titolare_carta: str,
-            data_scadenza: date,
+            data_scadenza: str,
             numero_carta: str
                  ) -> None:
         super().__init__()
@@ -28,6 +27,6 @@ class PagamentoCartaDiCredito(Pagamento):
         self.__titolare_carta = titolare_carta
         self.__data_di_scadenza = data_scadenza
         self.__numero_carta = numero_carta
-    
+
     def dettagliPagamento(self) -> str:
-        return f"Pagamento di: {self.getImporto()}effettuato con la carta di credito\nNome sulla carta {self.__titolare_carta}\nData di scadenza {self.__data_di_scadenza}\nNumero della carta: {self.__numero_carta}"
+        return f"Pagamento di: €{self.getImporto():.2f} effettuato con la carta di credito\nNome sulla carta: {self.__titolare_carta}\nData di scadenza: {self.__data_di_scadenza}\nNumero della carta: {self.__numero_carta}"
