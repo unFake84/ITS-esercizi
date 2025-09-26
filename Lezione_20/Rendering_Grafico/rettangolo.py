@@ -57,15 +57,15 @@ class Rettangolo(Forma):
         if isinstance(lunghezza, int|float) and lunghezza >= 1.5 and (self.altezza is None or abs(lunghezza - self.altezza) >= 0.5):
 
             self._lunghezza = lunghezza
+        
+        elif not isinstance(lunghezza, int|float):
+            raise ValueError(f"Non è un numero: >>{lunghezza}<<")
 
         elif lunghezza < 1.5:
             raise ValueError("Per un Rettangolo la lunghezza minima è 1.5!")
 
         elif abs(lunghezza - self.altezza) < 0.5:
             raise ValueError("Deve essere un rettangolo!Aumenta o diminuisci di almeno 0.5!")
-
-        else:
-            raise ValueError(f"Non è un numero: >>{lunghezza}<<")
 
     @property
     def altezza(self) -> int|float:
@@ -77,14 +77,14 @@ class Rettangolo(Forma):
 
             self._altezza = altezza
 
+        elif not isinstance(altezza, int|float):
+            raise ValueError(f"Non è un numero: >>{altezza}<<")
+
         elif altezza < 1.5:
             raise ValueError("Per un Rettangolo l'altezza minima è 1.5!")
 
         elif abs(altezza - self.lunghezza) < 0.5:
             raise ValueError("Deve essere un rettangolo! aumenta o diminuisci di almeno 0.5!")
-
-        else:
-            raise ValueError(f"Non è un numero: >>{altezza}<<")
 
 if __name__ == "__main__":
 
