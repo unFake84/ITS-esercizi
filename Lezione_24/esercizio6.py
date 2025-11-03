@@ -98,19 +98,19 @@ class Movie:
         self.director = director
         self.is_rented = False
 
-    def rent(self) -> None|str:
+    def rent(self) -> None:
         if not self.is_rented:
             self.is_rented = True
 
         else:
             print(f"Il film '{self.title}' è già noleggiato.")
 
-    def return_movie(self) -> None|str:
+    def return_movie(self) -> None:
         if self.is_rented:
             self.is_rented = False
 
         else:
-            print(f"Il film '{self.title}' nont è stato noleggiato da questo cliente.")
+            print(f"Il film '{self.title}' non è stato noleggiato da questo cliente.")
 
 class Customer:
     '''
@@ -187,13 +187,12 @@ class VideoRentalStore:
         se il cliente esiste nel videonoleggio,
         altrimenti stampa il messaggio "Cliente non trovato." e ritorna una lista vuota.
     '''
-    def __init__(self, movies: dict[str, Movie], customers: dict[str, Customer]) -> None:
+    def __init__(self, movies: dict[str, Movie] = {}, customers: dict[str, Customer] = {}) -> None:
         self.movies = movies
         self.customers = customers
     
     def add_movie(self, movie_id: str, title: str, director: str) -> None:
         '''
-        add_movie(movie_id:str, title: str, director: str):
         Aggiunge un nuovo film nel videonoleggio se non è già presente,
         altrimenti stampa il messaggio "Il film con ID '{movie_id}' esiste già."
         '''
@@ -202,3 +201,126 @@ class VideoRentalStore:
         
         else:
             print(f"Il film con ID '{movie_id}' esiste già.")
+    
+    def register_customer(self, customer_id: str, name: str) -> None:
+        '''
+        Iscrive un nuovo cliente nel videonoleggio se non è già presente,
+        altrimenti stampa il messaggio "Il cliente con ID '{customer_id}' è già registrato."
+        '''
+        if customer_id not in self.customers:
+            self.customers[customer_id] = Customer(customer_id, name)
+        
+        else:
+            print(f"Il cliente con ID '{customer_id} è già registrato'.")
+
+    def rent_movie(self, customer_id: str, movie_id: str) -> None:
+        ''''
+        Permette al cliente di noleggiare un film se entrambi esistono nel videonoleggio,
+        altrimenti stampa il messaggio "Cliente o film non trovato."
+        '''
+
+        if customer_id in self.customers and movie_id in self.movies:
+            self.customers[customer_id].rent_movie(self.movies[movie_id])
+        
+        else:
+            print("Cliente o film non trovato.")
+    
+    def return_movie(self, customer_id: str, movie_id: str) -> None:
+        '''
+        Permette al cliente di restituire un film se entrambi esistono nel videonoleggio,
+        altrimenti stampa il messaggio "Cliente o film non trovato."
+        '''
+
+        if customer_id in self.customers and movie_id in self.movies:
+            self.customers[customer_id].return_movie(self.movies[movie_id])
+
+        else:
+            print("Cliente o film non trovato.")
+
+    def get_rented_movies(self, customer_id: str) -> list[Movie]:
+        '''
+        list[Movie] - Restituisce la lista dei film noleggiati dal client (customer.rented_movies)
+        se il cliente esiste nel videonoleggio,
+        altrimenti stampa il messaggio "Cliente non trovato." e ritorna una lista vuota.
+        '''
+
+        if customer_id in self.customers:
+            return self.customers[customer_id].rented_movies
+        
+        else:
+            print("Cliente non trovato")
+            return []
+
+if __name__ == "__main__":
+    # TEST 1
+    print("#"*50)
+    # Creazione di un nuovo videonoleggio
+    videonoleggio = VideoRentalStore()
+
+    # Aggiunta di nuovi film
+    videonoleggio.add_movie("1", "Inception", "Christopher Nolan")
+    videonoleggio.add_movie("2", "The Matrix", "Wachowski Brothers")
+
+    # Registrazione di nuovi clienti
+    videonoleggio.register_customer("101", "Alice")
+    videonoleggio.register_customer("102", "Bob")
+
+    # Noleggio di film
+    videonoleggio.rent_movie("101", "1")
+    videonoleggio.rent_movie("102", "2")
+
+    # Tentativo di noleggiare un film già noleggiato
+    videonoleggio.rent_movie("101", "1")
+
+    # Restituzione di film
+    videonoleggio.return_movie("101", "1")
+
+    # Tentativo di restituire un film non noleggiato
+    videonoleggio.return_movie("101", "1")
+
+    # Ottenere la lista dei film noleggiati da un cliente
+    rented_movies_alice = videonoleggio.get_rented_movies("101")
+    print(f"Film noleggiati da Alice: {[movie.title for movie in rented_movies_alice]}")
+
+    rented_movies_bob = videonoleggio.get_rented_movies("102")
+    print(f"Film noleggiati da Bob: {[movie.title for movie in rented_movies_bob]}")
+
+    # TEST 2
+    print("#"*50)
+    # Creazione di un nuovo videonoleggio
+    videonoleggio = VideoRentalStore()
+
+    # Aggiunta di nuovi film
+    videonoleggio.add_movie("1", "Inception", "Christopher Nolan")
+    videonoleggio.add_movie("2", "The Matrix", "Wachowski Brothers")
+    videonoleggio.add_movie("3", "Interstellar", "Christopher Nolan")
+
+    # Registrazione di nuovi clienti
+    videonoleggio.register_customer("101", "Alice")
+
+    # Noleggio di più film
+    videonoleggio.rent_movie("101", "1")
+    videonoleggio.rent_movie("101", "2")
+
+    # Verifica dei film noleggiati da Alice
+    rented_movies_alice = videonoleggio.get_rented_movies("101")
+    print(f"Film noleggiati da Alice: {[movie.title for movie in rented_movies_alice]}")
+
+    # TEST 3
+    print("#"*50)
+    # Creazione di un nuovo videonoleggio
+    videonoleggio = VideoRentalStore()
+
+    # Aggiunta di nuovi film
+    videonoleggio.add_movie("1", "Inception", "Christopher Nolan")
+
+    # Registrazione di nuovi clienti
+    videonoleggio.register_customer("101", "Alice")
+
+    # Tentativo di noleggiare un film con ID non esistente
+    videonoleggio.rent_movie("101", "2")
+    # Output atteso: "Cliente o film non trovato."
+
+    # Verifica dei film noleggiati da Alice
+    rented_movies_alice = videonoleggio.get_rented_movies("101")
+    print(f"Film noleggiati da Alice: {[movie.title for movie in rented_movies_alice]}")
