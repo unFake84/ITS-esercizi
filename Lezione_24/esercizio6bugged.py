@@ -50,9 +50,9 @@ class Customer:
 
 class VideoRentalStore:
 
-    def __init__(self, movies: dict[str, Movie] = {}, customers: dict[str, Customer] = {}) -> None:
-        self.movies = movies
-        self.customers = customers
+    def __init__(self, movies: dict[str, Movie] = None, customers: dict[str, Customer] = None) -> None:
+        self.movies = movies if movies is not None else {}
+        self.customers = customers if customers is not None else {}
     
     def add_movie(self, movie_id: str, title: str, director: str) -> None:
         if movie_id not in self.movies:
