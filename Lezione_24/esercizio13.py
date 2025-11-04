@@ -40,7 +40,7 @@ class RecipeManager:
 
     def __init__(self) -> None:
         self.ricettario: dict[str, list[str]] = {}
-    
+
     def create_recipe(self, name: str, ingredients: list[str]) -> dict[str, list[str]] | str:
         '''
         Crea una nuova ricetta con il nome specificato e una lista di ingredienti.
@@ -49,11 +49,11 @@ class RecipeManager:
         if name not in self.ricettario:
             self.ricettario[name] = ingredients
 
-            return self.ricettario[name]
-        
+            return {name: self.ricettario[name]}
+
         else:
             return "La ricetta esiste già"
-    
+
     def add_ingredient(self, recipe_name: str, ingredient: str) -> list[str] | str:
         '''
         Aggiunge un ingrediente alla ricetta specificata.
@@ -62,8 +62,8 @@ class RecipeManager:
         if recipe_name in self.ricettario and ingredient not in self.ricettario[recipe_name]:
             self.ricettario[recipe_name].append(ingredient)
 
-            return self.ricettario[recipe_name]
-        
+            return {recipe_name: self.ricettario[recipe_name]}
+
         else:
             return "L'ingrediente esiste già" if ingredient in self.ricettario[recipe_name] else "La ricette non esiste"
 
@@ -72,32 +72,53 @@ class RecipeManager:
         Rimuove un ingrediente dalla ricetta specificata.
         Restituisce la ricetta aggiornata o un messaggio di errore se l'ingrediente non è presente o la ricetta non esiste.
         '''
-        if recipe_name in self.ricettario and ingredient in self.ricettario[recipe_name]:
-            return self.ricettario[recipe_name].remove(ingredient)
-        
+        if recipe_name in self.ricettario:
+            lista_ingredienti: list[str] = self.ricettario[recipe_name]
+            trovato_ingrediente: bool = False
+
+            for ingrediente in lista_ingredienti:
+
+                if ingrediente == ingredient:
+                    lista_ingredienti.remove(ingrediente)
+                    trovato_ingrediente = True
+
+            if trovato_ingrediente:
+                self.ricettario[recipe_name] = lista_ingredienti
+
+                return {recipe_name: self.ricettario[recipe_name]}
+
+            else:
+                return "Ingrediente non trovato"
+
         else:
-            return "L'ingrediente non è presente" if ingredient not in self.ricettario[recipe_name] else "La ricetta non esite"
-    
+            return "Ricetta non trovata"
+
     def update_ingredient(self, recipe_name: str, old_ingredient: str, new_ingredient: str) -> list[str] | str:
         '''
-        - update_ingredient(recipe_name, old_ingredient, new_ingredient):
         Sostituisce un ingrediente con un altro nella ricetta specificata.
         Restituisce la ricetta aggiornata o un messaggio di errore se l'ingrediente non è presente o la ricetta non esiste.
         '''
-        if recipe_name in self.ricettario[recipe_name] and old_ingredient in self.ricettario[recipe_name]:
+        if recipe_name in self.ricettario:
+            lista_ingredienti: list[str] = self.ricettario[recipe_name]
+            trovato_ingrediente: bool = False
 
-            lista_provv: list[str] = [i for i in self.ricettario[recipe_name]]
-            for ingr in lista_provv:
+            for i, ingrediente in enumerate(lista_ingredienti):
 
-                if ingr == old_ingredient:
-                    old_ingredient = new_ingredient
-                    self.ricettario[recipe_name] = lista_provv
+                if ingrediente == old_ingredient:
+                    lista_ingredienti[i] = new_ingredient
+                    trovato_ingrediente = True
 
-                    return self.ricettario[recipe_name]
-        
+            if trovato_ingrediente:
+                self.ricettario[recipe_name] = lista_ingredienti
+
+                return {recipe_name: self.ricettario[recipe_name]}
+
+            else:
+                return "Ingrediente non trovato"
+
         else:
-            return "L'ingrediente non è presente" if old_ingredient not in self.ricettario[recipe_name] else "La ricetta non esiste"
-    
+            return "Ricetta non trovata"
+
     def list_recipes(self) -> list[str]:
         '''
         Elenca tutte le ricette esistenti.
@@ -114,21 +135,30 @@ class RecipeManager:
 
         else:
             return "La ricetta non esiste"
-    
+
     def search_recipe_by_ingredient(self, ingredient) -> list[str] | str:
         '''
         Trova e restituisce tutte le ricette che contengono un determinato ingrediente.
         Restituisce un elenco di ricette o un messaggio di errore se nessuna ricetta contiene l'ingrediente.
         '''
         trovato: bool = False
-        elenco: list[str] = []
         for ricetta in self.ricettario.values():
 
             if ricetta in self.ricettario.values():
-                elenco.append(ricetta)
                 trovato = True
-        
-        if not trovato:
+
+        if trovato:
+            elenco_di_ricette: dict[str, list[str]] = {}
+            lista_di_ingredienti: list[str]
+
+            for ricetta, ingredienti in self.ricettario.items():
+
+                if ingredient in ingredienti:
+                    elenco_di_ricette[ricetta] = ingredienti
+
+            return elenco_di_ricette
+
+        else:
             return "Nessuna ricetta contiene l'ingrediente"
 
 if __name__ == "__main__":

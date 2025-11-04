@@ -34,6 +34,9 @@ class Account:
     def deposit(self, amount: float) -> None:
         self.balance += amount
 
+    def get_balance(self) -> float:
+        return self.balance
+
 class Bank:
 
     def __init__(self, accounts: dict[str, Account] = None) -> None:
@@ -50,12 +53,12 @@ class Bank:
     def deposit(self, account_id: str, amount: float) -> None:
         if account_id in self.accounts:
 
-            self.accounts[account_id].balance += amount
+            self.accounts[account_id].deposit(amount)
 
     def get_balance(self, account_id: str) -> float:
         if account_id in self.accounts:
 
-            return self.accounts[account_id].balance
+            return self.accounts[account_id].get_balance()
 
         else:
             raise KeyError("Account not found")
