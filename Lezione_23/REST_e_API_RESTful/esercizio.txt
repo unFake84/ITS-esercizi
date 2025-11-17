@@ -1,0 +1,235 @@
+1. Progettazione risorse:
+Considera un centro sportivo che gestisce corsi, istruttori e iscritti.
+Elenca le principali risorse e scrivi gli URI corretti.
+        Indica anche esempi di URI errati.
+
+        Corretti:               Errati:
+        /corsi                  /corso
+        /istruttori             /istruttore
+        /iscritti               /ottieniiscritto
+
+
+
+2. Metodi HTTP e CRUD:
+Per ciascuna operazione indica il metodo HTTP e il codice di stato corretto:
+
+        Creare un nuovo corso                       = POST      /corsi          ->  201 Created
+        Aggiornare i dati di un istruttore          = PUT       /istruttori/1   ->  200 OK
+        Eliminare un iscritto                       = DELETE    /iscritti/1     ->  204 No content
+        Ottenere l’elenco dei corsi                 = GET       /corsi          ->  200 OK
+        Tentare di accedere a un corso inesistente  = GET       /corsi/1        ->  404 Not Found
+
+
+
+3. Analisi JSON:
+Ecco un oggetto JSON relativo a una prenotazione di campo da tennis: 
+
+Content-Type: application/json
+{
+   'id': 12,
+   'cliente': 'Luca Neri', 
+   'campo': 3, 
+   'data': '2025-03-20', 
+   'ora': '18:00', 
+   'durata_ore': 2
+}
+
+BASE URL: https://api.esempio.it
+
+Individua la risorsa e utilizza i metodi HTTP per crea una nuova prenotazione con i dati forniti,
+modificare l'intera prenotazione, e creare una nuova prenotazione con dati differenti.
+Indica anche il codice di stato corretto.
+
+        POST https://api.esempio.it/prenotazioni
+        Content-Type: application/json
+        {
+        'id': 12,
+        'cliente': 'Luca Neri', 
+        'campo': 3, 
+        'data': '2025-03-20', 
+        'ora': '18:00', 
+        'durata_ore': 2
+        }
+
+        CODICE STATO = 201 CREATED
+
+
+        PUT https://api.esempio.it/prenotazioni/12
+        Content-Type: application/json
+        {
+        'id': 12,
+        'cliente': 'Luca Neri', 
+        'campo': 7, 
+        'data': '2025-11-13', 
+        'ora': '15:00', 
+        'durata_ore': 1
+        }
+
+        CODICE STATO = 200 OK
+
+
+        POST https://api.esempio.it/prenotazioni/
+        {
+        'id': 13,
+        'cliente': 'Luca Bianchi', 
+        'campo': 3, 
+        'data': '2025-11-15', 
+        'ora': '11:00', 
+        'durata_ore': 3
+        }
+
+        CODICE STATO = 201 CREATED
+
+
+
+
+
+4. Progetta una mini API:
+un’agenzia di viaggi deve gestire destinazioni, clienti e prenotazioni.
+Definisci 5 endpoint REST (metodo + URI + esempio di risposta JSON).
+
+        POST /destinazioni
+        [
+            {
+                "id": 1,
+                "nome": "Parigi",
+                "nazione": "Francia",
+                "prezzo_base": 450
+            },
+            {
+                "id": 2,
+                "nome": "Tokyo",
+                "nazione": "Giappone",
+                "prezzo_base": 1200
+            },
+            {
+                "id": 3,
+                "nome": "Honolulu",
+                "nazione": "Hawaii",
+                "prezzo_base": 2000
+            }
+        ]
+        201 - Created
+
+        POST /clienti
+        [
+            {
+                "id": 1000,
+                "nome": "Vinicio",
+                "cognome": "Lorotolo",
+                "email": "vini@rot.it"
+            }
+        ]
+
+
+5. Livelli di Maturità REST:
+ti vengono mostrati esempi di API.
+Indica per ciascuno il livello di maturità (0–3) secondo il modello di Richardson.
+
+POST 
+https://api.esempio.it/api
+Content-Type: application/json
+{
+  "action": "crea_prenotazione",
+  "payload": {
+   "cliente": "Sara Bianchi",
+   "campo": 1,
+   "data": "2025-04-05",
+   "ora": "07:30",
+   "durata_ore": 1.5
+   }
+}
+
+POST 
+https://api.esempio.it/api
+Content-Type: application/json
+{
+  "action": "recupera_prenotazione",
+  "payload": {
+   "cliente_id": 4
+   }
+}
+
+Livello: .....
+
+POST 
+https://api.esempio.it/prenotazioni
+Content-Type: application/json
+{
+    "cliente": "Sara Bianchi",
+    "campo": 1,
+    "data": "2025-04-05",
+    "ora": "07:30",
+    "durata_ore": 1.5
+}
+
+GET 
+https://api.esempio.it/utenti
+Content-Type: application/json
+{
+    "cliente_id": 4
+}
+
+Livello: ....
+
+POST 
+https://api.esempio.it/prenotazioni
+Content-Type: application/json
+{
+  "action": "crea_prenotazione",
+  "payload": {
+   "cliente": "Sara Bianchi",
+   "campo": 1,
+   "data": "2025-04-05",
+   "ora": "07:30",
+   "durata_ore": 1.5
+   }
+}
+
+HTTP/1.1 201 Created
+Content-Type: application/json
+{
+  "id": 57,
+  "cliente": "Sara Bianchi",
+  "campo": 1,
+  "data": "2025-04-05",
+  "ora": "07:30",
+  "durata_ore": 1.5,
+  "stato": "prenotata",
+  "_links": {
+    "self": { "href": "/prenotazioni/57", "method": "GET" },
+    "update": { "href": "/prenotazioni/57", "method": "PATCH" },
+    "cancel": { "href": "/prenotazioni/57", "method": "DELETE" },
+    "list": { "href": "/prenotazioni?data=2025-04-05", "method": "GET" },
+    "payment": { "rel": "capture", "href": "/pagamenti", "method": "POST",
+                 "body_schema": { "prenotazione_id": "number", "importo": "number" } }
+  }
+}
+
+Livello: ....
+
+POST 
+https://api.esempio.it/prenotazioni
+Content-Type: application/json
+{
+  "action": "crea_prenotazione",
+  "payload": {
+   "cliente": "Sara Bianchi",
+   "campo": 1,
+   "data": "2025-04-05",
+   "ora": "07:30",
+   "durata_ore": 1.5
+   }
+}
+
+POST 
+https://api.esempio.it/utenti
+Content-Type: application/json
+{
+  "action": "recupera_prenotazione",
+  "payload": {
+   "cliente_id": 4
+   }
+}
+
+Livello: ....
