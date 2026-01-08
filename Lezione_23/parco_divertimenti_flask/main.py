@@ -49,11 +49,11 @@ Metodi:
         return {
             "id": self.identificativo,
             "nome": self.nome,
-            "altezza minima": self.min_height,
+            "altezza_minima": self.min_height,
             "categoria": self.category()
             }
 
-    def wait_time(self, crowd_factor: float = 1.0) -> float:
+    def wait_time(self, crowd_factor: float = 1.0) -> int:
         return round(self.base_wait() * crowd_factor)
 
 class RollerCoaster(Ride):
@@ -88,14 +88,11 @@ Metodi:
     def base_wait(self) -> int:
         return 40
 
-    def info(self):
-        return {
-            "id": self.identificativo,
-            "nome": self.nome,
-            "altezza minima": self.min_height,
-            "categoria": self.category(),
-            "inversioni": self.inversions
-            }
+    def info(self) -> dict[str, str|int]:
+        data: dict[str, str|int] = super().info()
+        data["inversioni"] = self.inversions
+
+        return data
 
 class Carousel(Ride):
     '''
@@ -124,20 +121,16 @@ Metodi:
 
         self.animals: list[str] = animals
 
-    def category(self):
+    def category(self) -> str:
         return "family"
 
-    def base_wait(self):
+    def base_wait(self) -> int:
         return 10
 
-    def info(self):
-        return {
-            "id": self.identificativo,
-            "nome": self.nome,
-            "altezza minima": self.min_height,
-            "categoria": self.category(),
-            "animali": self.animals
-            }
+    def info(self) -> dict[str, str|int]:
+        data: dict[str, str|int] = super().info()
+        data["animali"] = self.animals
+        return data
 
 class Park:
     '''
@@ -160,20 +153,36 @@ Metodi:
     list_all():
         restituisce una lista di tutte le attrazioni (puoi ordinare per categoria e nome, opzionale).
     '''
-    def __init__(self, rides: dict[str, Ride] = {}) -> None:
-        self.rides: dict[str, Ride] = rides
-    
+    def __init__(self, rides: dict[str, Ride] = None) -> None:
+        self.rides: dict[str, Ride] = rides if rides is not None else {}
+
     def add(self, ride: Ride) -> None:
         self.rides[ride.identificativo] = ride
-    
+
     def get(self, ride_id: str) -> Ride|None:
         if ride_id not in self.rides:
             return None
 
         return self.rides[ride_id]
-    
-    def list_all(self) -> list[Ride]:
-        lista_roller: list[Ride] = [a1 for a1 in self.rides.values() if a1.category() == "roller_coaster"]
-        lista_carosuel: list[Ride] = [a2 for a2 in self.rides.values() if a2.category() == "family"]
 
-        return lista_roller + lista_carosuel
+    def list_all(self) -> list[dict[str, str|int]]:
+
+        return [ride.info() for ride in self.rides.values()]
+
+"""
+Nel codice principale dovrà essere creato un parco
+e dovranno essere create almeno due attrazioni,
+una di tipo RollerCoaster e una di tipo Carousel.
+"""
+ride1: RollerCoaster = RollerCoaster("1", "RollerBanCoaster", 140, 3)
+ride2: Carousel = Carousel("2", "Carousel", 60, ["cavallo", "tigre", "elefante", "ippopotamo"])
+dizioActraction: dict[str, Ride] = {
+    ride1.identificativo: ride1,
+    ride2.identificativo: ride2
+}
+
+parco1: Park = Park(dizioActraction)
+
+# print(ride1.info())
+# print(ride2.info())
+print(parco1.list_all())
